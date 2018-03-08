@@ -1,8 +1,9 @@
 import { Component, default as React } from 'react'
 import styled from 'styled-components'
-import LoginButton from '../components/LoginButton'
+import LoginButton from '../components/Buttons/LoginButton'
+import TextInput, { type } from '../components/TextInput/TextInput'
 import { primary, white } from '../styles/colors'
-
+import { phone } from '../styles/screenSize'
 class LoginScreen extends Component {
   public state = {
     email: '',
@@ -12,31 +13,31 @@ class LoginScreen extends Component {
   }
 
   public render() {
-    const { email, password } = this.state
     return (
       <Container>
         <FormContainer>
           <Logo>91paisa</Logo>
-          <Input
-            placeholder="E-mail"
-            onChange={this.handleEmailChange}
-            value={email}
-          />
-          <Input
-            type="password"
+          <TextInput placeholder="Email" onChange={this.handleEmailChange} />
+          <TextInput
             placeholder="Password"
+            type={type.password}
             onChange={this.handlePasswordChange}
-            value={password}
           />
-          <LoginButton loading={false} />
+          <LoginButton
+            loading={this.state.loading}
+            onClick={() => {
+              alert('login')
+              this.setState({ loading: true })
+            }}
+          />
         </FormContainer>
       </Container>
     )
   }
-  private handleEmailChange = (e: any) =>
-    this.setState({ email: e.target.value })
-  private handlePasswordChange = (e: any) =>
-    this.setState({ password: e.target.value })
+
+  private handleEmailChange = (email: string) => this.setState({ email })
+  private handlePasswordChange = (password: string) =>
+    this.setState({ password })
 }
 
 const Container = styled.div`
@@ -46,7 +47,10 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 2fr minmax(300px, 400px) 0.2fr;
   grid-template-rows: 1fr minmax(300px, 500px) 1fr;
-  box-shadow: black;
+  @media (${phone}) {
+    grid-template-columns: 0.1fr 1fr 0.1fr;
+    grid-template-rows: 1em auto 1fr;
+  }
 `
 
 const FormContainer = styled.div`
@@ -62,14 +66,13 @@ const FormContainer = styled.div`
   }
   transition-duration: 300ms;
 `
-const Input = styled.input`
-  padding: 0.2rem;
-  margin: 1rem;
-`
+
 const Logo = styled.p`
   font-size: 2.4rem;
   text-align: center;
   letter-spacing: 0.1rem;
+  padding-bottom: 3rem;
+  @media (${phone});
 `
 
 export default LoginScreen
