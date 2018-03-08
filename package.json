@@ -18,7 +18,7 @@
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
-    "deploy": "npm run build && aws s3 sync build/ s3://91paisa",
+    "deploy:alpha": "npm run build && aws s3 sync build/ s3://91p.notdr.one && aws s3 sync build/ s3://91paisa",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "storybook": "start-storybook -p 6006",
