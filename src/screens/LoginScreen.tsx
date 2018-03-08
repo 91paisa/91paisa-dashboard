@@ -1,5 +1,6 @@
 import { Component, default as React } from 'react'
 import styled from 'styled-components'
+import { login } from '../api/loginAPI'
 import LoginButton from '../components/Buttons/LoginButton'
 import TextInput, { type } from '../components/TextInput/TextInput'
 import { primary, white } from '../styles/colors'
@@ -26,8 +27,10 @@ class LoginScreen extends Component {
           <LoginButton
             loading={this.state.loading}
             onClick={() => {
-              alert('login')
               this.setState({ loading: true })
+              login(this.state.email, this.state.password).then(res =>
+                alert(res),
+              )
             }}
           />
         </FormContainer>
