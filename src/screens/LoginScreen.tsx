@@ -72,7 +72,6 @@ const Logo = styled.p`
   text-align: center;
   letter-spacing: 0.1rem;
   padding-bottom: 3rem;
-  @media (${phone});
 `
 
 export default LoginScreen
