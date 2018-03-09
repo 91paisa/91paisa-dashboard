@@ -39,8 +39,7 @@
     "@types/react-dom": "^15.5.7",
     "babel-core": "^6.26.0",
     "ts-loader": "^3.5.0",
-    "typescript": "^2.7.2",
-    "@stoxrybook/react": "latest"
+    "typescript": "^2.7.2"
   },
   "moduleFileExtensions": [
     "ts",

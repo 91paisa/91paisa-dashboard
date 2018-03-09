@@ -9,6 +9,7 @@ import { IReduxState } from './store/initial-state'
 interface IProps {
   token: string | null
 }
+
 class App extends React.Component<IProps, {}> {
   public componentDidMount() {
     this.interceptNetwork()
@@ -21,7 +22,9 @@ class App extends React.Component<IProps, {}> {
 
   private interceptNetwork() {
     axios.interceptors.response.use(
-      response => response,
+      response => {
+        return response
+      },
       error => {
         if (error.response) {
           if (error.response.status === 403) {

@@ -6,9 +6,7 @@ export default function(state = {}, action: IAuthActions) {
     const token = action.token
     if (token) {
       localStorage.setItem('token', token)
-      return (state = {
-        token,
-      })
+      return { token }
     }
   }
   if (action.type === auth.logout) {

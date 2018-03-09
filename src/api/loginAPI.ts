@@ -1,22 +1,16 @@
 import axios from 'axios'
 
-const LOGIN_PATH = 'http://localhost/api/v1/reviewer/login/'
+const loginPath = 'http://localhost:8080/api/v1/reviewer/login/'
 
-export const login = (email: string, password: string) => {
+export const loginAPI = (
+  email: string,
+  password: string,
+): Promise<string | undefined> => {
   const data = new FormData()
   data.append('email', email)
   data.append('password', password)
-  return axios({
-    data,
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    method: 'POST',
-    url: LOGIN_PATH,
-  })
-    .then(response => localStorage.setItem('token', response.data.data))
-    .catch(err => {
-      return false
-    })
+  return axios
+    .post(loginPath, data)
+    .then(res => res.data.data)
+    .catch(() => undefined)
 }

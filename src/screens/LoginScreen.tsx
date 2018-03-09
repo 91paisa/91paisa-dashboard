@@ -1,11 +1,22 @@
 import { Component, default as React } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators, Dispatch } from 'redux'
 import styled from 'styled-components'
-import { login } from '../api/loginAPI'
+import { IAuthActions, login } from '../actions/auth-actions'
 import LoginButton from '../components/Buttons/LoginButton'
 import TextInput, { type } from '../components/TextInput/TextInput'
 import { primary, white } from '../styles/colors'
 import { phone } from '../styles/screenSize'
-class LoginScreen extends Component {
+interface IProps {
+  login: any
+}
+interface IState {
+  email: string
+  error: string
+  loading: boolean
+  password: string
+}
+class LoginScreen extends Component<IProps, IState> {
   public state = {
     email: '',
     error: '',
@@ -27,10 +38,10 @@ class LoginScreen extends Component {
           <LoginButton
             loading={this.state.loading}
             onClick={() => {
-              this.setState({ loading: true })
-              login(this.state.email, this.state.password).then(res =>
-                alert(res),
-              )
+              this.setState({ loading: true }, () => {
+                const { email, password } = this.state
+                this.props.login(email, password)
+              })
             }}
           />
         </FormContainer>
@@ -76,5 +87,6 @@ const Logo = styled.p`
   letter-spacing: 0.1rem;
   padding-bottom: 3rem;
 `
-
-export default LoginScreen
+const mapDispatchToProps = (dispatch: Dispatch<IAuthActions>) =>
+  bindActionCreators({ login }, dispatch)
+export default connect(null, mapDispatchToProps)(LoginScreen)
