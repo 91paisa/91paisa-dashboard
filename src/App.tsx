@@ -1,6 +1,8 @@
 import axios from 'axios'
 import * as React from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators, Dispatch } from 'redux'
+import { IAuthActions, logout } from './actions/auth-actions'
 import { setHeaders } from './api/setHeaders'
 import Home from './screens/Home'
 import LoginScreen from './screens/LoginScreen'
@@ -8,6 +10,7 @@ import { IReduxState } from './store/initial-state'
 
 interface IProps {
   token: string | null
+  logout: any
 }
 
 class App extends React.Component<IProps, {}> {
@@ -28,7 +31,7 @@ class App extends React.Component<IProps, {}> {
       error => {
         if (error.response) {
           if (error.response.status === 403) {
-            alert('remove token')
+            this.props.logout()
           } else {
             // const { status, statusText } = error.response
             // console.log(status, statusText, error.response)
@@ -46,4 +49,7 @@ function mapStateToProps(state: IReduxState) {
   }
 }
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = (dispatch: Dispatch<IAuthActions>) =>
+  bindActionCreators({ logout }, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
