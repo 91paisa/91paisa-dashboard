@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const loginPath = 'http://localhost:8080/api/v1/reviewer/login/'
+const loginPath = 'http://192.168.0.107:8080/api/v1/reviewer/login/'
 
 export const loginAPI = (
   email: string,

@@ -2,6 +2,7 @@ import { Component, default as React } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import styled from 'styled-components'
 import Sidebar from '../components/Sidebar/Sidebar'
+import { lightGrey } from '../styles/colors'
 
 class Home extends Component {
   public render() {
@@ -23,7 +24,7 @@ const Container = styled.div`
 `
 
 const Content = styled.div`
-  background: deeppink;
+  background: ${lightGrey};
 `
 
 export default Home
