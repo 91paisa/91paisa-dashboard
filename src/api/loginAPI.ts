@@ -1,6 +1,5 @@
 import axios from 'axios'
-
-const loginPath = 'http://192.168.0.107:8080/api/v1/reviewer/login/'
+import { AuthPath } from './apiConstants'
 
 export const loginAPI = (
   email: string,
@@ -10,7 +9,7 @@ export const loginAPI = (
   data.append('email', email)
   data.append('password', password)
   return axios
-    .post(loginPath, data)
+    .post(AuthPath.login, data)
     .then(res => res.data.data)
     .catch(() => undefined)
 }

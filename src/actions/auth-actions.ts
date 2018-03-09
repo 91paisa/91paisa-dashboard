@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux'
 import { loginAPI } from '../api/loginAPI'
-import { auth } from './constants'
+import { authActions } from './actionConstants'
 export interface IAuthActions {
-  type: auth
+  type: authActions
   token?: string
 }
 export const login = (email: string, password: string) => {
@@ -10,12 +10,12 @@ export const login = (email: string, password: string) => {
     loginAPI(email, password).then(token =>
       dispatch({
         token,
-        type: auth.login,
+        type: authActions.login,
       }),
     )
   }
 }
 
 export const logout = (): IAuthActions => ({
-  type: auth.logout,
+  type: authActions.logout,
 })
