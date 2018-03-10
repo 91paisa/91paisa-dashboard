@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
 import styled from 'styled-components'
 import { IAuthActions, login } from '../actions/auth-actions'
-import { setHeaders } from '../api/setHeaders'
+import { setHeadersApi } from '../api/set-headers-api'
 import LoginButton from '../components/Buttons/LoginButton'
 import TextInput, { type } from '../components/TextInput/TextInput'
 import { primary, white } from '../styles/colors'
@@ -26,7 +26,7 @@ class LoginScreen extends Component<IProps, IState> {
   }
 
   public componentWillMount() {
-    setHeaders()
+    setHeadersApi()
   }
 
   public render() {

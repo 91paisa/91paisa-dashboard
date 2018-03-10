@@ -1,5 +1,5 @@
 import axios from 'axios'
-export const setHeaders = () => {
+export const setHeadersApi = () => {
   const token = localStorage.getItem('token')
   axios.defaults.headers.post.Accept = 'application/json'
   axios.defaults.headers.post['Content-Type'] =

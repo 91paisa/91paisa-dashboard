@@ -1,4 +1,4 @@
-import { ICustomer } from '../api/customersAPI'
+import { ICustomer } from '../api/customer-api'
 
 export interface IReduxState {
   auth: {

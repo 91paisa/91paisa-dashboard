@@ -1,5 +1,5 @@
 import { Component, default as React } from 'react'
-import { ICustomer } from '../../api/customersAPI'
+import { ICustomer } from '../../api/customer-api'
 interface IProps {
   customers: ICustomer[]
 }

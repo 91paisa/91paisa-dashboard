@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { AuthPath } from './apiConstants'
+import { AuthPath } from './constants-api'
 
-export const loginAPI = (
+export const loginApi = (
   email: string,
   password: string,
 ): Promise<string | undefined> => {

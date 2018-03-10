@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import styled from 'styled-components'
 import { getAllCustomers } from '../actions/customer-actions'
-import { setHeaders } from '../api/setHeaders'
+import { setHeadersApi } from '../api/set-headers-api'
 import Sidebar from '../components/Sidebar/Sidebar'
 import Content from './Content'
 interface IProps {
@@ -12,7 +12,7 @@ interface IProps {
 }
 class Home extends Component<IProps, {}> {
   public componentWillMount() {
-    setHeaders()
+    setHeadersApi()
   }
   public componentDidMount() {
     this.props.getAllCustomers()

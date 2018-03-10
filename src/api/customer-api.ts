@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { CustomerPath } from './apiConstants'
+import { CustomerPath } from './constants-api'
 export interface ICustomer {
   name: string
   phone: string
@@ -24,7 +24,4 @@ export const getCustomers = (): Promise<ICustomer[]> =>
   axios
     .post(CustomerPath.all, getCustomersFormData(0, 1000)) // TODO fix implement limits and offset
     .then(res => formatCustomersList(res))
-    .catch(err => {
-      console.log(err.reponse)
-      return []
-    })
+    .catch(() => [])

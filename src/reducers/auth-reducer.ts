@@ -1,5 +1,5 @@
-import { authActions } from '../actions/actionConstants'
 import { IAuthActions } from '../actions/auth-actions'
+import { authActions } from '../actions/constants-actions'
 
 export default function(state = {}, action: IAuthActions) {
   if (action.type === authActions.login) {
