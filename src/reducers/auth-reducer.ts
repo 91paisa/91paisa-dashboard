@@ -11,7 +11,7 @@ export default function(state = {}, action: IAuthActions) {
   }
   if (action.type === authActions.logout) {
     localStorage.removeItem('token')
-    return (state = {})
+    return {}
   }
   return state
 }

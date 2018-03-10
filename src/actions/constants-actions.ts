@@ -6,3 +6,8 @@ export enum authActions {
 export enum customersActions {
   getAll = 'CUSTOMER_GET_ALL',
 }
+
+export enum balanceActions {
+  eko = 'EKO_BALANCE',
+  nodal = 'NODAL_BALANCE',
+}

@@ -3,12 +3,16 @@ import { connect } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import styled from 'styled-components'
+import { getEkoBalance, getNodalBalance } from '../actions/balances-actions'
 import { getAllCustomers } from '../actions/customer-actions'
 import { setHeadersApi } from '../api/set-headers-api'
 import Sidebar from '../components/Sidebar/Sidebar'
 import Content from './Content'
+
 interface IProps {
   getAllCustomers: any
+  getNodalBalance: any
+  getEkoBalance: any
 }
 class Home extends Component<IProps, {}> {
   public componentWillMount() {
@@ -35,5 +39,8 @@ const Container = styled.div`
   grid-template-columns: 14rem 1fr;
 `
 const mapDispatchToProps = (dispatch: any) =>
-  bindActionCreators({ getAllCustomers }, dispatch)
+  bindActionCreators(
+    { getAllCustomers, getNodalBalance, getEkoBalance },
+    dispatch,
+  )
 export default connect(null, mapDispatchToProps)(Home)

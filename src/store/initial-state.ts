@@ -1,3 +1,4 @@
+import { IBalance } from '../api/balances-api'
 import { ICustomer } from '../api/customer-api'
 
 export interface IReduxState {
@@ -5,8 +6,8 @@ export interface IReduxState {
     token: string | null
   }
   balances: {
-    eko: number | undefined
-    nodal: number | undefined
+    eko: IBalance | null
+    nodal: IBalance | null
   }
   customers: ICustomer[]
 }
@@ -17,8 +18,14 @@ const state: IReduxState = {
     },
   },
   balances: {
-    eko: 201921,
-    nodal: 45310,
+    eko: {
+      amount: 125212,
+      timestamp: '7:00PM 12/3/17',
+    },
+    nodal: {
+      amount: 132012.43,
+      timestamp: '7:01PM 12/3/17',
+    },
   },
   customers: [],
 }
