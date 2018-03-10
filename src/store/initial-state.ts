@@ -1,3 +1,5 @@
+import { ICustomer } from '../api/customersAPI'
+
 export interface IReduxState {
   auth: {
     token: string | null
@@ -6,6 +8,7 @@ export interface IReduxState {
     eko: number | undefined
     nodal: number | undefined
   }
+  customers: ICustomer[]
 }
 const state: IReduxState = {
   auth: {
@@ -17,5 +20,6 @@ const state: IReduxState = {
     eko: 201921,
     nodal: 45310,
   },
+  customers: [],
 }
 export default state

@@ -1,22 +1,15 @@
 import { Component, default as React } from 'react'
-
-class Customers extends Component {
-  public state = {
-    hi: 'bye',
-  }
+import { ICustomer } from '../../api/customersAPI'
+interface IProps {
+  customers: ICustomer[]
+}
+class Customers extends Component<IProps> {
   public render() {
     return (
       <div>
-        <p>C</p>
-        <p>U</p>
-        <p>S</p>
-        <p>T</p>
-        <p>o</p>
-        <p>M</p>
-        <p>E</p>
-        <p>R</p>
-        <p>S</p>
-        <p>this.state.hi</p>
+        <pre>
+          <code>{JSON.stringify(this.props.customers, null, 4)}</code>
+        </pre>
       </div>
     )
   }

@@ -3,7 +3,6 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
 import { IAuthActions, logout } from './actions/auth-actions'
-import { setHeaders } from './api/setHeaders'
 import Home from './screens/Home'
 import LoginScreen from './screens/LoginScreen'
 import { IReduxState } from './store/initial-state'
@@ -16,7 +15,6 @@ interface IProps {
 class App extends React.Component<IProps, {}> {
   public componentDidMount() {
     this.interceptNetwork()
-    setHeaders()
   }
 
   public render() {
