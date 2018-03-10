@@ -28,10 +28,10 @@ const Amount = styled.p`
   padding: 1rem 0.2rem 0 1rem;
 `
 const Label = styled.p`
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   color: ${graphite};
   letter-spacing: 2px;
-  padding: 0 1rem 0.4rem 0.8rem;
+  padding: 0 1rem 0.4rem 0.6rem;
 `
 
 const FlexRow = styled.div`

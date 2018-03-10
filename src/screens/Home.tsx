@@ -36,7 +36,7 @@ class Home extends Component<IProps, {}> {
 const Container = styled.div`
   display: grid;
   height: 100vh;
-  grid-template-columns: 14rem 1fr;
+  grid-template-columns: 15rem 1fr;
 `
 const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
