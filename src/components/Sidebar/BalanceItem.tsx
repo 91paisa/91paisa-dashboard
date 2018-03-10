@@ -7,12 +7,14 @@ interface IProps {
 }
 const BalanceItem: React.SFC<IProps> = (props: IProps) => (
   <div>
-    <Amount>
-      {props.amount.toLocaleString('en-IN', {
-        currency: 'INR',
-        style: 'currency',
-      })}
-    </Amount>
+    {props.amount && (
+      <Amount>
+        {props.amount.toLocaleString('en-IN', {
+          currency: 'INR',
+          style: 'currency',
+        })}
+      </Amount>
+    )}
     <Label>{props.label}</Label>
   </div>
 )

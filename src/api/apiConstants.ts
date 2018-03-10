@@ -1,4 +1,4 @@
-export const basePath = 'http://192.168.0.107:8080/api/v1/reviewer/'
+export const basePath = 'http://192.168.0.109:8080/api/v1/reviewer/'
 
 export const CustomerPath = {
   all: `${basePath}all/`,

@@ -3,8 +3,8 @@ export interface IReduxState {
     token: string | null
   }
   balances: {
-    eko: number
-    nodal: number
+    eko: number | undefined
+    nodal: number | undefined
   }
 }
 const state: IReduxState = {
