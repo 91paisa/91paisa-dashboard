@@ -18,6 +18,7 @@ const Content = () => (
 
 const Container = styled.div`
   background: ${lightGrey};
+  padding: 0 1rem;
 `
 
 export default Content
