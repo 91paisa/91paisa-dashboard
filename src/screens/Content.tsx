@@ -19,7 +19,7 @@ const Content = () => (
 const Container = styled.div`
   background: ${lightGrey};
   padding: 0 1rem;
-  overflow: scroll;
+  overflow: hidden;
 `
 
 export default Content
