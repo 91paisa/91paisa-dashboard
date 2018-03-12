@@ -76,7 +76,7 @@ export const getAllTransactionsAPI = (
           amount: $.amount,
           createdTimestamp: $.created_at,
           id: $.eko_transaction_id,
-          status: splitTransactionStatus[$.status],
+          status: splitTransactionStatus[$.status_code],
           updatedTimestamp: $.updated_at,
         })),
         type: _.transaction_type,
