@@ -1,22 +1,18 @@
 import { Component, default as React } from 'react'
-
-class Transactions extends Component {
+import { ITransaction } from '../../api/transaction-api'
+interface IProps {
+  transactions: ITransaction[]
+}
+class Transactions extends Component<IProps> {
   public state = {
     hi: 'bye',
   }
   public render() {
     return (
-      <div>
-        <p>T</p>
-        <p>R</p>
-        <p>A</p>
-        <p>N</p>
-        <p>S</p>
-        <p>A</p>
-        <p>C</p>
-        <p>T</p>
-        <p>i</p>
-        <p>this.state.hi</p>
+      <div style={{ overflow: 'scroll', height: '100vh' }}>
+        <pre>
+          <code>{JSON.stringify(this.props.transactions, null, 4)}</code>
+        </pre>
       </div>
     )
   }

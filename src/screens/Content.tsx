@@ -4,14 +4,14 @@ import styled from 'styled-components'
 import { lightGrey } from '../styles/colors'
 import CustomersContainer from './Customers/CustomersContainer'
 import Dashboard from './Dashboard/Dashboard'
-import Transactions from './Transactions/Transactions'
+import TransactionsContainer from './Transactions/TransactionsContainer'
 
 const Content = () => (
   <Container>
     <Switch>
       <Route exact={true} path={'/'} component={Dashboard} />
       <Route path={'/customers'} component={CustomersContainer} />
-      <Route path={'/transactions'} component={Transactions} />
+      <Route path={'/transactions'} component={TransactionsContainer} />
     </Switch>
   </Container>
 )

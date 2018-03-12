@@ -8,6 +8,10 @@ export const CustomerPath = {
   verify: `${basePath}customer/verify/`,
 }
 
+export const TransactionPath = {
+  all: `${basePath}transaction/all/`,
+}
+
 export const AuthPath = {
   login: `${basePath}reviewer/login/`,
   logout: `${basePath}reviewer/logout/`,
