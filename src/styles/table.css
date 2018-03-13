@@ -48,7 +48,7 @@
   max-width: 100%;
   white-space: nowrap;
   text-overflow: ellipsis;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .ReactVirtualized__Table__headerColumn,

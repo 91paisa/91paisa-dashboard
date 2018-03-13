@@ -1,4 +1,4 @@
-export const basePath = 'http://localhost:8080/api/v1/'
+export const basePath = 'http://192.168.0.101:8080/api/v1/'
 
 export const CustomerPath = {
   all: `${basePath}customer/all/`,
