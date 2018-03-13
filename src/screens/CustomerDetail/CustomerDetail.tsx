@@ -1,7 +1,7 @@
 import { Component, default as React } from 'react'
 import { ICustomer } from '../../api/customer-api'
 interface IProps {
-  customer: ICustomer
+  customer: ICustomer | undefined
 }
 class CustomerDetail extends Component<IProps, {}> {
   public render() {

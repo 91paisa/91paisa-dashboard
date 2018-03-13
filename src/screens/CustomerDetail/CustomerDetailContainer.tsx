@@ -7,8 +7,9 @@ const mapStateToProps = (state: IReduxState, props: any) => {
   const index = state.customers.findIndex(
     customer => customer.phone === customerPhone,
   )
+  const customerData = index < 0 ? undefined : state.customers[index]
   return {
-    customer: state.customers[index],
+    customer: customerData,
   }
 }
 export default connect(mapStateToProps)(CustomerDetail)
