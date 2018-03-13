@@ -30,7 +30,7 @@ function formatCustomersList(res: any): ICustomer[] {
       lastTransaction = `${amount.toLocaleString('en-IN', {
         currency: 'INR',
         style: 'currency',
-      })} * ${moment(createTimestamp).format('lll')}`
+      })}  •  ${moment(createTimestamp).format('lll')}`
     }
     return {
       lastTransaction,

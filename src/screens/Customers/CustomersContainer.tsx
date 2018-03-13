@@ -1,9 +1,15 @@
-import { connect } from 'react-redux'
-import { IReduxState } from '../../store/initial-state'
-import Customers from './Customers'
-function mapStateToProps(state: IReduxState) {
-  return {
-    customers: state.customers,
+import { Component, default as React } from 'react'
+import CustomersListContainer from './CustomerListContainer'
+import Search from './Search'
+class CustomersContainer extends Component {
+  public render() {
+    return (
+      <div>
+        <Search />
+        <CustomersListContainer />
+      </div>
+    )
   }
 }
-export default connect(mapStateToProps)(Customers)
+
+export default CustomersContainer
