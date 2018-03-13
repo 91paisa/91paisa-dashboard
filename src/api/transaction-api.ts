@@ -42,7 +42,7 @@ export interface ITransaction {
   }
   createTimestamp: string
   updatedTimestamp: string
-  transactionDetails: ISplitTransaction[]
+  transactionDetails?: ISplitTransaction[]
 }
 
 const getAllTransactionsFormData = (limit: number, offset: number) => {
@@ -84,4 +84,10 @@ export const getAllTransactionsAPI = (
       }))
     })
     .catch(() => undefined)
+}
+
+export const resolveTransactionStatus = (
+  statusCodes: splitTransactionStatus[],
+) => {
+  return splitTransactionStatus.processing
 }

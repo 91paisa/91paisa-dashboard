@@ -1,6 +1,6 @@
 import { Component, default as React } from 'react'
 import styled from 'styled-components'
-import { fog, primary, white } from '../../styles/colors'
+import { fog, white } from '../../styles/colors'
 
 export enum type {
   password = 'password',
@@ -46,13 +46,15 @@ const Input = styled.input`
   padding: 0.7rem;
   display: inline-block;
   background: ${white};
-  border: 1px solid ${fog};
+  //border: 1px solid ${fog};
+  border: none;
+  box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.2);
   border-radius: 0.4rem;
   font-size: 1rem;
   line-height: 1.2rem;
   outline: none;
   &:focus {
-    border: 1px solid ${primary};
+    box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.4);
   }
 `
 

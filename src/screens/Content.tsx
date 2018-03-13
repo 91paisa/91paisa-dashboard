@@ -18,7 +18,6 @@ const Content = () => (
 
 const OuterContainer = styled.div`
   background: ${lightGrey};
-  padding: 0 0 0 1rem;
   overflow: hidden;
 `
 
