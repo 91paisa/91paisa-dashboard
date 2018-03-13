@@ -4,6 +4,8 @@ import { Provider } from 'react-redux'
 import App from './App'
 import store from './store'
 import './styles/reset.css'
+// tslint:disable-next-line
+import 'react-virtualized/styles.css'
 
 ReactDOM.render(
   <Provider store={store}>
