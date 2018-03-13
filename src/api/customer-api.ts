@@ -32,11 +32,19 @@ function formatCustomersList(res: any): ICustomer[] {
         style: 'currency',
       })}  •  ${moment(createTimestamp).format('lll')}`
     }
+    let status
+    if (customer.mandate_approved) {
+      status = customerStatus.mandateApproved
+    } else if (!customer.verified) {
+      status = customerStatus.unverified
+    } else {
+      status = customerStatus.mandatePending
+    }
     return {
       lastTransaction,
-      mandateApproved: customer.mandate_approved,
       name: customer.name,
       phone: customer.phone_number,
+      status,
       verified: customer.verified,
     }
   })
