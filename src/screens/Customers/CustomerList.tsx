@@ -49,7 +49,7 @@ class CustomerList extends Component<IProps, {}> {
     )
   }
 
-  private handleRowClick = ({ event, index, rowData }: any) => {
+  private handleRowClick = ({ rowData }: any) => {
     const nav = this.props.history
     nav.push(nav.location.pathname + '/' + rowData.phone)
   }
