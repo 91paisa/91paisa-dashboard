@@ -7,18 +7,18 @@ import Dashboard from './Dashboard/Dashboard'
 import TransactionsContainer from './Transactions/TransactionsContainer'
 
 const Content = () => (
-  <Container>
+  <OuterContainer>
     <Switch>
       <Route exact={true} path={'/'} component={Dashboard} />
       <Route path={'/customers'} component={CustomersContainer} />
       <Route path={'/transactions'} component={TransactionsContainer} />
     </Switch>
-  </Container>
+  </OuterContainer>
 )
 
-const Container = styled.div`
+const OuterContainer = styled.div`
   background: ${lightGrey};
-  padding: 0 1rem;
+  padding: 0 0 0 1rem;
   overflow: hidden;
 `
 
