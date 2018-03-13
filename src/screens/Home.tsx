@@ -21,12 +21,13 @@ class Home extends Component<IProps, {}> {
     setHeadersApi()
   }
   public componentDidMount() {
-    const _ = this.props
-    _.getAllCustomers()
-    _.getAllTransactions()
-    _.getNodalBalance()
-    _.getEkoBalance()
+    const props = this.props
+    setInterval(() => {
+      this.fetchData(props)
+    }, 400000) // 6.67m
+    this.fetchData(props)
   }
+
   public render() {
     return (
       <Router>
@@ -36,6 +37,12 @@ class Home extends Component<IProps, {}> {
         </Container>
       </Router>
     )
+  }
+  private fetchData(_: IProps) {
+    _.getAllCustomers()
+    _.getAllTransactions()
+    _.getNodalBalance()
+    _.getEkoBalance()
   }
 }
 
