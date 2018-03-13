@@ -8,6 +8,7 @@ import {
   oddRow,
   TableContainer,
 } from '../../styles/table-styles'
+import StatusCircle from './StatusCircle'
 interface IProps extends RouteComponentProps<IProps> {
   customers: ICustomer[]
 }
@@ -53,9 +54,10 @@ class CustomerList extends Component<IProps, {}> {
     const nav = this.props.history
     nav.push(nav.location.pathname + '/' + rowData.phone)
   }
-  private renderMandateCell = () => {
-    return <div>Hi</div>
-  }
+  private renderMandateCell = ({ rowData }: any) => (
+    <StatusCircle status={rowData.status} />
+  )
+
   private rowStyler = ({ index }: any) => {
     if (index < 0) {
       return headerRow
