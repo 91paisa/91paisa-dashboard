@@ -4,7 +4,8 @@ export enum authActions {
 }
 
 export enum customersActions {
-  getAll = 'CUSTOMER_GET_ALL',
+  getAll = 'GET_ALL_CUSTOMERS',
+  getBeneficiaries = 'GET_BENEFICIARIES',
 }
 
 export enum balanceActions {

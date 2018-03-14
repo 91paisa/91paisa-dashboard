@@ -6,6 +6,10 @@ export enum customerStatus {
   mandateApproved,
   mandateRejected,
 }
+export enum beneficiaryStatus {
+  verified,
+  unverified,
+}
 
 export interface ILastTransaction {
   amount: number
@@ -17,6 +21,16 @@ export interface ICustomer {
   phone: string
   status: customerStatus
   lastTransaction: ILastTransaction | undefined
+  beneficiaries: IBeneficiary[] | undefined
+}
+
+export interface IBeneficiary {
+  id: string
+  name: string
+  phone: string
+  account: number
+  ifsc: string
+  status: beneficiaryStatus
 }
 
 const getCustomersFormData = (offset: number, limit: number): FormData => {
@@ -58,3 +72,27 @@ export const getCustomers = (): Promise<ICustomer[]> =>
     .post(CustomerPath.all, getCustomersFormData(0, 1000)) // TODO fix implement limits and offset
     .then(res => formatCustomersList(res))
     .catch(() => [])
+
+const getCustomerFormData = (customerPhone: string) => {
+  const data = new FormData()
+  data.append('phone', customerPhone)
+  return data
+}
+export const getBeneficiariesAPI = (
+  customerPhone: string,
+): Promise<IBeneficiary[]> =>
+  axios
+    .post(CustomerPath.detail, getCustomerFormData(customerPhone))
+    .then(response => {
+      return response.data.data.beneficiaries.map((b: any) => ({
+        account: b.account_number,
+        id: b.beneficiary_id,
+        ifsc: b.ifsc,
+        name: b.name,
+        phone: b.phone_number,
+        status: b.verified
+          ? beneficiaryStatus.verified
+          : beneficiaryStatus.unverified,
+      }))
+    })
+    .catch(err => err)

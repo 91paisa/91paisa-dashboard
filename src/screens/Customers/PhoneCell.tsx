@@ -4,11 +4,13 @@ import { dark, graphite } from '../../styles/colors'
 
 interface IProps {
   phone: string
+  style?: any
+  fontSize?: any
 }
 const PhoneCell: React.SFC<IProps> = props => (
-  <div style={{ display: 'flex', alignItems: 'flex-end' }}>
-    <CountryCode>+91</CountryCode>
-    <Phone>{props.phone}</Phone>
+  <div style={{ display: 'flex', alignItems: 'flex-end', ...props.style }}>
+    <CountryCode style={{ ...props.fontSize }}>+91</CountryCode>
+    <Phone style={{ ...props.fontSize }}>{props.phone}</Phone>
   </div>
 )
 
@@ -19,7 +21,7 @@ const CountryCode = styled.span`
 `
 
 const Phone = styled.span`
-  letter-spacing: 1.5px;
+  letter-spacing: 1.2px;
   font-size: 1.1rem;
   font-weight: 500;
   color: ${dark};
