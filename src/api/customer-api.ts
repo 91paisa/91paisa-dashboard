@@ -1,5 +1,4 @@
 import axios from 'axios'
-import moment from 'moment'
 import { CustomerPath } from './constants-api'
 export enum customerStatus {
   unverified,
@@ -7,11 +6,17 @@ export enum customerStatus {
   mandateApproved,
   mandateRejected,
 }
+
+export interface ILastTransaction {
+  amount: number
+  createdTimestamp: string
+}
+
 export interface ICustomer {
   name: string
   phone: string
   status: customerStatus
-  lastTransaction: string | undefined
+  lastTransaction: ILastTransaction | undefined
 }
 
 const getCustomersFormData = (offset: number, limit: number): FormData => {
@@ -25,12 +30,11 @@ function formatCustomersList(res: any): ICustomer[] {
     let lastTransaction
     if (customer.latest_transaction.amount !== 0) {
       const amount = customer.latest_transaction.amount
-      const createTimestamp = customer.latest_transaction.created_at
-      // const status = splitTransactionStatus.processing
-      lastTransaction = `${amount.toLocaleString('en-IN', {
-        currency: 'INR',
-        style: 'currency',
-      })}  •  ${moment(createTimestamp).format('lll')}`
+      const createdTimestamp = customer.latest_transaction.created_at
+      lastTransaction = {
+        amount,
+        createdTimestamp,
+      }
     }
     let status
     if (customer.mandate_approved) {
