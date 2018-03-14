@@ -1,6 +1,6 @@
 import { Table } from 'react-virtualized'
 import styled from 'styled-components'
-import { lightGrey, white } from './colors'
+import { lightGrey, primary, white } from './colors'
 export const TableContainer = styled(Table as any)`
   outline: none;
   background: white;
@@ -8,7 +8,10 @@ export const TableContainer = styled(Table as any)`
 `
 
 export const headerRow = {
+  background: primary,
   boxShadow: '0 1px 2px hsla(0, 0%, 0%, 0.1)',
+  color: white,
+  letterSpacing: '2px',
 }
 
 export const oddRow = {

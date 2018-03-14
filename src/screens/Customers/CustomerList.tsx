@@ -23,7 +23,7 @@ class CustomerList extends Component<IProps, {}> {
               width={width}
               height={height}
               headerHeight={48}
-              rowHeight={52}
+              rowHeight={60}
               rowStyle={this.rowStyler}
               onRowClick={this.handleRowClick}
               overscanColumnCount={3}
@@ -32,11 +32,11 @@ class CustomerList extends Component<IProps, {}> {
             >
               <Column
                 label="Status"
-                width={80}
+                width={100}
                 dataKey="mandateApproved"
                 cellRenderer={this.renderMandateCell}
               />
-              <Column label="Phone" width={120} dataKey="phone" />
+              <Column label="Phone" width={160} dataKey="phone" />
               <Column label="Name" width={300} dataKey="name" />
               <Column
                 label="Last Transaction"
