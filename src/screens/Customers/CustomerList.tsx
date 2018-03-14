@@ -9,6 +9,7 @@ import {
   TableContainer,
 } from '../../styles/table-styles'
 import LastTransactionCell from './LastTransactionCell'
+import PhoneCell from './PhoneCell'
 import StatusCircle from './StatusCircle'
 interface IProps extends RouteComponentProps<IProps> {
   customers: ICustomer[]
@@ -37,7 +38,12 @@ class CustomerList extends Component<IProps, {}> {
                 dataKey="mandateApproved"
                 cellRenderer={this.renderMandateCell}
               />
-              <Column label="Phone" width={160} dataKey="phone" />
+              <Column
+                label="Phone"
+                width={190}
+                dataKey="phone"
+                cellRenderer={this.renderPhoneCell}
+              />
               <Column label="Name" width={300} dataKey="name" />
               <Column
                 label="Last Transaction"
@@ -62,6 +68,10 @@ class CustomerList extends Component<IProps, {}> {
 
   private renderLastTransactionCell = ({ rowData }: any) => (
     <LastTransactionCell lastTransaction={rowData.lastTransaction} />
+  )
+
+  private renderPhoneCell = ({ rowData }: any) => (
+    <PhoneCell phone={rowData.phone} />
   )
 
   private rowStyler = ({ index }: any) => {

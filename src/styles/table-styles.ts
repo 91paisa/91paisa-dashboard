@@ -4,6 +4,7 @@ import { lightGrey, primary, white } from './colors'
 export const TableContainer = styled(Table as any)`
   outline: none;
   background: white;
+  border-radius: 4px;
   box-shadow: 0 2px 4px hsla(0, 0%, 0%, 0.1);
 `
 

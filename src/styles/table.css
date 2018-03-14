@@ -18,6 +18,7 @@
 /* Table default theme */
 
 .ReactVirtualized__Table {
+  border-radius: 4px;
 }
 
 .ReactVirtualized__Table__Grid {
@@ -25,6 +26,7 @@
 
 .ReactVirtualized__Table__headerRow {
   font-weight: 600;
+  border-radius: 4px 4px 0 0;
   color: #1d2028;
   text-transform: uppercase;
   display: flex;
