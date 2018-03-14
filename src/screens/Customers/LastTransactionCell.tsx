@@ -16,7 +16,9 @@ const LastTransactionCell: React.SFC<IProps> = props => {
         })}
       </FlexColumnAmount>
       <FlexColumnDate>
-        {`${moment(props.lastTransaction.createdTimestamp).format('l')}`}
+        {`${moment(props.lastTransaction.createdTimestamp).format(
+          'DD/MM/YYYY',
+        )}`}
       </FlexColumnDate>
       <FlexColumnDate>
         {`${moment(props.lastTransaction.createdTimestamp).format('LT')}`}

@@ -7,7 +7,7 @@ interface IProps {
 const TimeCell: React.SFC<IProps> = props => (
   <Container>
     <p>{moment(props.time).format('LT')}</p>
-    <p>{moment(props.time).format('l')}</p>
+    <p>{moment(props.time).format('DD/MM/YYYY')}</p>
   </Container>
 )
 
