@@ -1,5 +1,6 @@
 import { Component, default as React } from 'react'
 import { ITransaction } from '../../api/transaction-api'
+import TransactionsListContainer from './TranasctionsListContainer'
 interface IProps {
   transactions: ITransaction[]
 }
@@ -10,9 +11,7 @@ class Transactions extends Component<IProps> {
   public render() {
     return (
       <div style={{ overflow: 'scroll', height: '100vh' }}>
-        <pre>
-          <code>{JSON.stringify(this.props.transactions, null, 4)}</code>
-        </pre>
+       <TransactionsListContainer/>
       </div>
     )
   }

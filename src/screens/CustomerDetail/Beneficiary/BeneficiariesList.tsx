@@ -35,7 +35,7 @@ const Empty = styled.p`
   font-weight: 600;
 `
 const Title = styled.p`
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   padding: 1rem;
 `
 const FlexContainer = styled.div`
