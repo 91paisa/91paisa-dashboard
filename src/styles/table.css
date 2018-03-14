@@ -37,7 +37,6 @@
 .ReactVirtualized__Table__row {
   display: flex;
   cursor: pointer;
-  padding: 0.2rem;
   flex-direction: row;
   align-items: center;
   font-size: 1rem;
@@ -53,7 +52,8 @@
 
 .ReactVirtualized__Table__headerColumn,
 .ReactVirtualized__Table__rowColumn {
-  margin-right: 10px;
+  margin: 0.3rem 1rem;
+  padding-left: 0.4rem;
   min-width: 0;
 }
 .ReactVirtualized__Table__rowColumn {
@@ -63,7 +63,7 @@
 
 .ReactVirtualized__Table__headerColumn:first-of-type,
 .ReactVirtualized__Table__rowColumn:first-of-type {
-  margin-left: 10px;
+  margin-left: 2rem;
 }
 .ReactVirtualized__Table__sortableHeaderColumn {
   cursor: pointer;
