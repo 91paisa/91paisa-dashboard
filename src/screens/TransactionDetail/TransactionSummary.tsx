@@ -1,10 +1,15 @@
 import moment from 'moment'
 import * as React from 'react'
 import styled from 'styled-components'
-import { ITransaction } from '../../api/transaction-api'
+import {
+  ISplitTransaction,
+  ITransaction,
+  splitTransactionStatus,
+} from '../../api/transaction-api'
 import Card from '../../components/Card'
 import { dark, graphite, positiveGreen } from '../../styles/colors'
 import PhoneCell from '../Customers/PhoneCell'
+import TransactionDetailLine from './TransactionDetailLine'
 
 interface IProps {
   transaction: ITransaction
@@ -19,6 +24,18 @@ const TransactionSummary: React.SFC<IProps> = props => {
     amount,
     updatedTimestamp,
   } = props.transaction
+
+  function getCompletedTimestamp(splits: ISplitTransaction[] | undefined) {
+    if (
+      splits &&
+      splits.filter(split => split.status !== splitTransactionStatus.success)
+        .length > 0
+    ) {
+      return <p style={{ letterSpacing: '6px' }}>---</p>
+    }
+    return <Time>{moment(updatedTimestamp).format('lll')}</Time>
+  }
+
   return (
     <Card>
       <SummaryContainer>
@@ -34,7 +51,7 @@ const TransactionSummary: React.SFC<IProps> = props => {
         </Amount>
         <Beneficiary>{beneficiary.name}</Beneficiary>
         <div />
-        <div style={{ background: `${positiveGreen}` }} />
+        <TransactionDetailLine splits={props.transaction.transactionDetails} />
         <div />
         <PhoneCell
           style={{
@@ -66,7 +83,7 @@ const TransactionSummary: React.SFC<IProps> = props => {
         </Commission>
         <TimeContainer style={{ justifyContent: 'flex-start' }}>
           <TimeLabel>Completed</TimeLabel>
-          <Time>{moment(updatedTimestamp).format('lll')}</Time>
+          {getCompletedTimestamp(props.transaction.transactionDetails)}
         </TimeContainer>
       </SummaryContainer>
     </Card>
