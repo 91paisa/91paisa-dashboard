@@ -5,13 +5,14 @@ import { lightGrey } from '../styles/colors'
 import CustomerDetailContainer from './CustomerDetail/CustomerDetailContainer'
 import CustomersContainer from './Customers/CustomersContainer'
 import Dashboard from './Dashboard/Dashboard'
+import TransactionDetailContainer from './TransactionDetail/TransactionDetailContainer'
 import TransactionsContainer from './Transactions/TransactionsContainer'
 
 const Content = () => (
   <OuterContainer>
     <Switch>
-      <Route exact={true} path={'/'} component={Dashboard}/>
-      <Route exact={true} path={'/customers'} component={CustomersContainer}/>
+      <Route exact={true} path={'/'} component={Dashboard} />
+      <Route exact={true} path={'/customers'} component={CustomersContainer} />
       <Route
         exact={true}
         path={'/transactions'}
@@ -20,6 +21,10 @@ const Content = () => (
       <Route
         path={'/customers/:customerPhone'}
         component={CustomerDetailContainer}
+      />
+      <Route
+        path={'/transactions/:transactionId'}
+        component={TransactionDetailContainer}
       />
     </Switch>
   </OuterContainer>
