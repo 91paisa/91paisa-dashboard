@@ -1,6 +1,7 @@
 import { IBalance } from '../api/balances-api'
 import { ICustomer } from '../api/customer-api'
 import { ITransaction } from '../api/transaction-api'
+
 export interface IReduxState {
   auth: {
     token: string | null
@@ -12,9 +13,10 @@ export interface IReduxState {
   customers: ICustomer[]
   transactions: ITransaction[]
 }
+
 const state: IReduxState = {
   auth: {
-    get token() {
+    get token () {
       return localStorage.getItem('token')
     },
   },

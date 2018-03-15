@@ -4,9 +4,11 @@ import { IBeneficiary } from '../../../api/customer-api'
 import Card from '../../../components/Card'
 import { grey } from '../../../styles/colors'
 import BeneficiaryItem from './BeneficiaryItem'
+
 interface IProps {
   beneficiaries: IBeneficiary[]
 }
+
 const BeneficiariesList: React.SFC<IProps> = props => {
   return (
     <Card>
@@ -14,10 +16,10 @@ const BeneficiariesList: React.SFC<IProps> = props => {
       <FlexContainer>
         {props.beneficiaries && props.beneficiaries.length ? (
           props.beneficiaries.map(beneficiary => (
-            <BeneficiaryItem beneficiary={beneficiary} key={beneficiary.id} />
+            <BeneficiaryItem beneficiary={beneficiary} key={beneficiary.id}/>
           ))
         ) : (
-          <EmptyView />
+          <EmptyView/>
         )}
       </FlexContainer>
     </Card>

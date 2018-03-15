@@ -1,11 +1,14 @@
 import axios from 'axios'
 import { TransactionPath } from './constants-api'
+
 export enum transactionType {
   send = 'SEND',
 }
+
 export enum transactionMode {
   cash = 'CASH',
 }
+
 export enum splitTransactionStatus {
   didNotTry,
   hold,
@@ -19,6 +22,7 @@ export enum splitTransactionStatus {
   refundPending,
   refundSuccess,
 }
+
 interface ISplitTransaction {
   id: string
   amount: number
@@ -26,6 +30,7 @@ interface ISplitTransaction {
   createdTimestamp: string
   updatedTimestamp: string
 }
+
 export interface ITransaction {
   id: string
   type: transactionType

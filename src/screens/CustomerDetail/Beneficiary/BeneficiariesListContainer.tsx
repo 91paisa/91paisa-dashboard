@@ -14,12 +14,14 @@ interface IOwnProps {
   customerPhone: string
   customerIndex: number
 }
+
 class BeneficiariesListContainer extends Component<IOwnProps | any> {
-  public componentDidMount() {
+  public componentDidMount () {
     this.props.getBeneficiaryAction(this.props.customerPhone)
   }
-  public render() {
-    return <BeneficiariesList beneficiaries={this.props.beneficiaries} />
+
+  public render () {
+    return <BeneficiariesList beneficiaries={this.props.beneficiaries}/>
   }
 }
 
@@ -30,7 +32,7 @@ const mapStateToProps = (state: IReduxState, props: IOwnProps) => {
   }
 }
 const mapDispatchToProps = (dispatch: any) => {
-  return bindActionCreators({ getBeneficiaryAction }, dispatch)
+  return bindActionCreators({getBeneficiaryAction}, dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(
   BeneficiariesListContainer,

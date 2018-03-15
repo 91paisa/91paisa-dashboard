@@ -1,9 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { dark } from '../../styles/colors'
+
 const Search = () => (
   <Container>
-    <Input placeholder="Type name or phone number to search" />
+    <Input placeholder="Type name or phone number to search"/>
   </Container>
 )
 export default Search

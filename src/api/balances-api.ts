@@ -2,6 +2,7 @@ export interface IBalance {
   amount: number
   timestamp: string
 }
+
 export const getEkoBalanceApi = (): IBalance => ({
   amount: 90000,
   timestamp: '7:00PM 12/3/18',

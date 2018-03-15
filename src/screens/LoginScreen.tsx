@@ -8,15 +8,18 @@ import LoginButton from '../components/Buttons/LoginButton'
 import TextInput, { type } from '../components/TextInput/TextInput'
 import { primary, white } from '../styles/colors'
 import { phone } from '../styles/screenSize'
+
 interface IProps {
   login: any
 }
+
 interface IState {
   email: string
   error: string
   loading: boolean
   password: string
 }
+
 class LoginScreen extends Component<IProps, IState> {
   public state = {
     email: '',
@@ -25,16 +28,16 @@ class LoginScreen extends Component<IProps, IState> {
     password: '',
   }
 
-  public componentWillMount() {
+  public componentWillMount () {
     setHeadersApi()
   }
 
-  public render() {
+  public render () {
     return (
       <Container>
         <FormContainer>
           <Logo>91paisa</Logo>
-          <TextInput placeholder="Email" onChange={this.handleEmailChange} />
+          <TextInput placeholder="Email" onChange={this.handleEmailChange}/>
           <TextInput
             placeholder="Password"
             type={type.password}
@@ -43,8 +46,8 @@ class LoginScreen extends Component<IProps, IState> {
           <LoginButton
             loading={this.state.loading}
             onClick={() => {
-              this.setState({ loading: true }, () => {
-                const { email, password } = this.state
+              this.setState({loading: true}, () => {
+                const {email, password} = this.state
                 this.props.login(email, password)
               })
             }}
@@ -54,9 +57,9 @@ class LoginScreen extends Component<IProps, IState> {
     )
   }
 
-  private handleEmailChange = (email: string) => this.setState({ email })
+  private handleEmailChange = (email: string) => this.setState({email})
   private handlePasswordChange = (password: string) =>
-    this.setState({ password })
+    this.setState({password})
 }
 
 const Container = styled.div`
@@ -93,5 +96,5 @@ const Logo = styled.p`
   padding-bottom: 3rem;
 `
 const mapDispatchToProps = (dispatch: Dispatch<IAuthActions>) =>
-  bindActionCreators({ login }, dispatch)
+  bindActionCreators({login}, dispatch)
 export default connect(null, mapDispatchToProps)(LoginScreen)

@@ -7,10 +7,11 @@ interface IProps {
   style?: any
   fontSize?: any
 }
+
 const PhoneCell: React.SFC<IProps> = props => (
-  <div style={{ display: 'flex', alignItems: 'flex-end', ...props.style }}>
-    <CountryCode style={{ ...props.fontSize }}>+91</CountryCode>
-    <Phone style={{ ...props.fontSize }}>{props.phone}</Phone>
+  <div style={{display: 'flex', alignItems: 'flex-end', ...props.style}}>
+    <CountryCode style={{...props.fontSize}}>+91</CountryCode>
+    <Phone style={{...props.fontSize}}>{props.phone}</Phone>
   </div>
 )
 

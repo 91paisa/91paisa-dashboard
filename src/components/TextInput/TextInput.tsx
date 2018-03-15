@@ -14,10 +14,12 @@ interface IProps {
   type?: type
   disabled?: boolean
 }
+
 class TextInput extends Component<IProps> {
   public state = {
     value: '',
   }
+
   public render() {
     const { placeholder, label } = this.props
     return (
@@ -32,6 +34,7 @@ class TextInput extends Component<IProps> {
       </div>
     )
   }
+
   private handleChange = (event: any) => {
     const value = event.target.value
     this.setState({ value }, () => {

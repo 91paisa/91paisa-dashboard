@@ -3,9 +3,11 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { ILastTransaction } from '../../api/customer-api'
 import { grey } from '../../styles/colors'
+
 interface IProps {
   lastTransaction: ILastTransaction
 }
+
 const LastTransactionCell: React.SFC<IProps> = props => {
   return props.lastTransaction ? (
     <FlexContainer>

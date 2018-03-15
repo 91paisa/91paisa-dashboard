@@ -1,8 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
+
 interface IProps {
   amount: number
 }
+
 const AmountCell: React.SFC<IProps> = props => (
   <Container>
     {props.amount.toLocaleString('en-EN', {

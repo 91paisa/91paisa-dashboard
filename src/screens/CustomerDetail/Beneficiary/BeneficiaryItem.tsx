@@ -3,16 +3,19 @@ import styled from 'styled-components'
 import { beneficiaryStatus, IBeneficiary } from '../../../api/customer-api'
 import { alertRed, positiveGreen } from '../../../styles/colors'
 import PhoneCell from '../../Customers/PhoneCell'
+
 interface IProps {
   beneficiary: IBeneficiary
 }
+
 interface IContainerProps {
   status: beneficiaryStatus
 }
+
 const BeneficiaryItem: React.SFC<IProps> = props => (
   <Container status={props.beneficiary.status}>
     <PhoneCell
-      fontSize={{ fontSize: '1.4rem' }}
+      fontSize={{fontSize: '1.4rem'}}
       phone={props.beneficiary.phone}
     />
     <Name>{props.beneficiary.name}</Name>
@@ -23,7 +26,7 @@ const BeneficiaryItem: React.SFC<IProps> = props => (
   </Container>
 )
 
-export function getSpacedAccount(account: string): string {
+export function getSpacedAccount (account: string): string {
   let i = 0
   const splitAccount = []
   while (i < account.length) {
@@ -37,7 +40,7 @@ export function getSpacedAccount(account: string): string {
   return splitAccount.join(' ').toString()
 }
 
-export function getSpacedIFSC(ifsc: string): string {
+export function getSpacedIFSC (ifsc: string): string {
   return ifsc.substring(0, 5) + ' ' + ifsc.substring(5)
 }
 
@@ -56,7 +59,7 @@ const Container = styled.div`
   margin: 0 1rem;
   border-radius: 4px;
   border-color: ${(props: IContainerProps) =>
-    props.status === beneficiaryStatus.verified ? positiveGreen : alertRed};
+  props.status === beneficiaryStatus.verified ? positiveGreen : alertRed};
   border-width: 1px;
   border-style: solid;
   &:hover {

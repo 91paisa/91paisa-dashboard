@@ -2,10 +2,12 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { primary, primaryDark, white } from '../../styles/colors'
 import Spinner from '../Spinner/Spinner'
+
 interface IProps {
   loading: boolean
   onClick: () => void
 }
+
 const LoginButton: React.SFC<IProps> = (props: IProps) => (
   <Button onClick={props.loading ? undefined : props.onClick}>
     {props.loading ? <Spinner /> : <Text>Login</Text>}

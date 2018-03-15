@@ -4,7 +4,8 @@ class Dashboard extends Component {
   public state = {
     hi: 'bye',
   }
-  public render() {
+
+  public render () {
     return (
       <div>
         <p>D</p>

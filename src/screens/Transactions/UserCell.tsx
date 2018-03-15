@@ -1,12 +1,14 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import PhoneCell from '../Customers/PhoneCell'
+
 interface IProps {
   data: {
     name: string
     phone: string
   }
 }
+
 const UserCell: React.SFC<IProps> = props => (
   <Container>
     <p>{props.data.name}</p>

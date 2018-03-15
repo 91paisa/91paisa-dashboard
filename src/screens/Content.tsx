@@ -10,8 +10,8 @@ import TransactionsContainer from './Transactions/TransactionsContainer'
 const Content = () => (
   <OuterContainer>
     <Switch>
-      <Route exact={true} path={'/'} component={Dashboard} />
-      <Route exact={true} path={'/customers'} component={CustomersContainer} />
+      <Route exact={true} path={'/'} component={Dashboard}/>
+      <Route exact={true} path={'/customers'} component={CustomersContainer}/>
       <Route
         exact={true}
         path={'/transactions'}

@@ -22,6 +22,7 @@ class BottomBar extends Component {
     )
   }
 }
+
 const active = 'active'
 const StyledLink = styled(NavLink)`
   width: 48px;

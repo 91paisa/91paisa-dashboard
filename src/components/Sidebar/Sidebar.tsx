@@ -30,6 +30,7 @@ class Sidebar extends Component {
     )
   }
 }
+
 const active = 'active'
 const StyledLink = styled(NavLink)`
   list-style-type: none;

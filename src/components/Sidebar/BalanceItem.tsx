@@ -2,9 +2,11 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { IBalance } from '../../api/balances-api'
 import { dark, graphite } from '../../styles/colors'
+
 interface IProps extends IBalance {
   label: string
 }
+
 const BalanceItem: React.SFC<IProps> = (props: IProps) => (
   <div>
     {props.amount && (

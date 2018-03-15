@@ -1,6 +1,7 @@
 import { Table } from 'react-virtualized'
 import styled from 'styled-components'
 import { lightGrey, primary, white } from './colors'
+
 export const TableContainer = styled(Table as any)`
   outline: none;
   background: white;

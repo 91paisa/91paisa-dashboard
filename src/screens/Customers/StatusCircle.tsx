@@ -1,9 +1,11 @@
 import * as React from 'react'
 import { customerStatus } from '../../api/customer-api'
 import { getColorBasedOnCustomerStatus } from '../CustomerDetail/StatusStrip'
+
 interface IProps {
   status: customerStatus
 }
+
 const StatusCircle: React.SFC<IProps> = props => (
   <div
     style={{

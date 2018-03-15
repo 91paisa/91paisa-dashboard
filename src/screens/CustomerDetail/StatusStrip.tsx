@@ -11,6 +11,7 @@ import {
 interface IProps {
   status: customerStatus
 }
+
 const StatusStrip: React.SFC<IProps> = props => {
   return (
     <div

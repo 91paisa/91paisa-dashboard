@@ -1,11 +1,13 @@
 import axios from 'axios'
 import { CustomerPath } from './constants-api'
+
 export enum customerStatus {
   unverified,
   mandatePending,
   mandateApproved,
   mandateRejected,
 }
+
 export enum beneficiaryStatus {
   verified,
   unverified,
@@ -39,7 +41,8 @@ const getCustomersFormData = (offset: number, limit: number): FormData => {
   data.append('offset', `${offset}`)
   return data
 }
-function formatCustomersList(res: any): ICustomer[] {
+
+function formatCustomersList (res: any): ICustomer[] {
   return res.data.data.map((customer: any) => {
     let lastTransaction
     if (customer.latest_transaction.amount !== 0) {
@@ -67,6 +70,7 @@ function formatCustomersList(res: any): ICustomer[] {
     }
   })
 }
+
 export const getCustomers = (): Promise<ICustomer[]> =>
   axios
     .post(CustomerPath.all, getCustomersFormData(0, 1000)) // TODO fix implement limits and offset
