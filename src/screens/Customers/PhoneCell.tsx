@@ -9,11 +9,21 @@ interface IProps {
 }
 
 const PhoneCell: React.SFC<IProps> = props => (
-  <div style={{display: 'flex', alignItems: 'flex-end', ...props.style}}>
-    <CountryCode style={{...props.fontSize}}>+91</CountryCode>
-    <Phone style={{...props.fontSize}}>{props.phone}</Phone>
+  <div style={{ display: 'flex', alignItems: 'flex-end', ...props.style }}>
+    <CountryCode style={{ ...props.fontSize }}>+91</CountryCode>
+    <Phone style={{ ...props.fontSize }}> {getSpacedPhone(props.phone)}</Phone>
   </div>
 )
+
+export function getSpacedPhone(phone: string): string {
+  return (
+    phone.substring(0, 4) +
+    ' ' +
+    phone.substring(4, 7) +
+    ' ' +
+    phone.substring(7)
+  )
+}
 
 const CountryCode = styled.span`
   color: ${graphite};
@@ -22,7 +32,6 @@ const CountryCode = styled.span`
 `
 
 const Phone = styled.span`
-  letter-spacing: 1.2px;
   font-size: 1.1rem;
   font-weight: 500;
   color: ${dark};

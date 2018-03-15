@@ -15,7 +15,7 @@ const AmountCell: React.SFC<IProps> = props => (
 )
 
 const Container = styled.p`
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 `
 
 export default AmountCell
