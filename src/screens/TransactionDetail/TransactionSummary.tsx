@@ -22,18 +22,22 @@ const TransactionSummary: React.SFC<IProps> = props => {
     createTimestamp,
     commission,
     amount,
-    updatedTimestamp,
   } = props.transaction
 
   function getCompletedTimestamp(splits: ISplitTransaction[] | undefined) {
-    if (
-      splits &&
-      splits.filter(split => split.status !== splitTransactionStatus.success)
-        .length > 0
-    ) {
-      return <p style={{ letterSpacing: '6px' }}>---</p>
+    if (splits) {
+      if (
+        splits.filter(split => split.status !== splitTransactionStatus.success)
+          .length === 0
+      ) {
+        return (
+          <Time>
+            {moment(splits[splits.length - 1].updatedTimestamp).format('lll')}
+          </Time>
+        )
+      }
     }
-    return <Time>{moment(updatedTimestamp).format('lll')}</Time>
+    return <p style={{ letterSpacing: '6px' }}>---</p>
   }
 
   return (
