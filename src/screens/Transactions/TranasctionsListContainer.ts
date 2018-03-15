@@ -3,7 +3,7 @@ import { withRouter } from 'react-router'
 import { IReduxState } from '../../store/initial-state'
 import TransactionsList from './TransactionsList'
 
-function mapStateToProps (state: IReduxState) {
+function mapStateToProps(state: IReduxState) {
   return {
     transactions: state.transactions,
   }
