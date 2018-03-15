@@ -25,7 +25,7 @@ const TransactionSummary: React.SFC<IProps> = props => {
   } = props.transaction
 
   function getCompletedTimestamp(splits: ISplitTransaction[] | undefined) {
-    if (splits) {
+    if (splits && splits.length > 0) {
       if (
         splits.filter(split => split.status !== splitTransactionStatus.success)
           .length === 0

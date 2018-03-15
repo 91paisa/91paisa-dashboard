@@ -11,6 +11,7 @@ import {
 } from '../../styles/table-styles'
 import AmountCell from './AmountCell'
 import TimeCell from './TimeCell'
+import TransactionStatusCell from './TransactionStatusCell'
 import UserCell from './UserCell'
 
 interface IProps extends RouteComponentProps<IProps> {
@@ -18,11 +19,11 @@ interface IProps extends RouteComponentProps<IProps> {
 }
 
 class TransactionsList extends Component<IProps, {}> {
-  public render () {
+  public render() {
     return (
-      <div style={{margin: '0', height: '100vh'}}>
-        <AutoSizer style={{width: '100%'}}>
-          {({width, height}: any) => (
+      <div style={{ margin: '0', height: '100vh' }}>
+        <AutoSizer style={{ width: '100%' }}>
+          {({ width, height }: any) => (
             <TableContainer
               style={{
                 background: `${lightGrey}`,
@@ -37,7 +38,7 @@ class TransactionsList extends Component<IProps, {}> {
               onRowClick={this.handleRowClick}
               overscanColumnCount={3}
               rowCount={this.props.transactions.length}
-              rowGetter={({index}: any) => this.props.transactions[index]}
+              rowGetter={({ index }: any) => this.props.transactions[index]}
             >
               <Column
                 label="Amount"
@@ -69,6 +70,12 @@ class TransactionsList extends Component<IProps, {}> {
                 dataKey="amount"
                 cellRenderer={this.handleUpdatedTimeStamp}
               />
+              <Column
+                label="Status"
+                width={200}
+                dataKey="amount"
+                cellRenderer={this.handleStatus}
+              />
             </TableContainer>
           )}
         </AutoSizer>
@@ -76,29 +83,32 @@ class TransactionsList extends Component<IProps, {}> {
     )
   }
 
-  private handleAmountCell = ({rowData}: any) => (
-    <AmountCell amount={rowData.amount}/>
+  private handleAmountCell = ({ rowData }: any) => (
+    <AmountCell amount={rowData.amount} />
   )
 
-  private handleCustomerCell = ({rowData}: any) => (
-    <UserCell data={rowData.customer}/>
+  private handleCustomerCell = ({ rowData }: any) => (
+    <UserCell data={rowData.customer} />
   )
-  private handleBeneficiaryCell = ({rowData}: any) => (
-    <UserCell data={rowData.beneficiary}/>
+  private handleBeneficiaryCell = ({ rowData }: any) => (
+    <UserCell data={rowData.beneficiary} />
   )
-  private handleCreatedTimeStamp = ({rowData}: any) => (
-    <TimeCell time={rowData.createdTimestamp}/>
+  private handleCreatedTimeStamp = ({ rowData }: any) => (
+    <TimeCell time={rowData.createdTimestamp} />
   )
-  private handleUpdatedTimeStamp = ({rowData}: any) => (
-    <TimeCell time={rowData.updatedTimestamp}/>
+  private handleUpdatedTimeStamp = ({ rowData }: any) => (
+    <TimeCell time={rowData.updatedTimestamp} />
+  )
+  private handleStatus = ({ rowData }: any) => (
+    <TransactionStatusCell splits={rowData.transactionDetails} />
   )
 
-  private handleRowClick = ({rowData}: any) => {
+  private handleRowClick = ({ rowData }: any) => {
     const nav = this.props.history
     nav.push(nav.location.pathname + '/' + rowData.id)
   }
 
-  private rowStyler = ({index}: any) => {
+  private rowStyler = ({ index }: any) => {
     if (index < 0) {
       return headerRow
     }

@@ -24,7 +24,7 @@ const SplitList: React.SFC<IProps> = props => {
   )
 }
 
-const EmptyView = () => <Empty>No beneficiary added</Empty>
+const EmptyView = () => <Empty>No splits</Empty>
 const Empty = styled.p`
   text-align: center;
   display: inline-block;
