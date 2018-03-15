@@ -1,23 +1,21 @@
 import { default as React } from 'react'
 import styled from 'styled-components'
-import { IBeneficiary } from '../../../api/customer-api'
-import Card from '../../../components/Card'
-import { grey } from '../../../styles/colors'
-import BeneficiaryItem from './BeneficiaryItem'
+import { ISplitTransaction } from '../../api/transaction-api'
+import Card from '../../components/Card'
+import { grey } from '../../styles/colors'
+import SplitItem from './SplitItem'
 
 interface IProps {
-  beneficiaries: IBeneficiary[]
+  splits: ISplitTransaction[] | undefined
 }
 
-const BeneficiariesList: React.SFC<IProps> = props => {
+const SplitList: React.SFC<IProps> = props => {
   return (
     <Card>
-      <Title>Beneficiaries</Title>
+      <Title>Splits</Title>
       <FlexContainer>
-        {props.beneficiaries && props.beneficiaries.length ? (
-          props.beneficiaries.map(beneficiary => (
-            <BeneficiaryItem beneficiary={beneficiary} key={beneficiary.id} />
-          ))
+        {props.splits && props.splits.length ? (
+          props.splits.map(trx => <SplitItem split={trx} key={trx.id} />)
         ) : (
           <EmptyView />
         )}
@@ -44,4 +42,4 @@ const FlexContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
 `
-export default BeneficiariesList
+export default SplitList

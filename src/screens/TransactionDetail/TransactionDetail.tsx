@@ -1,18 +1,23 @@
-import { Component, default as React } from 'react'
+import { Component, default as React, Fragment } from 'react'
 import { ITransaction } from '../../api/transaction-api'
+import SplitList from './SplitList'
+import TransactionSummary from './TransactionSummary'
 
 interface IProps {
-  transaction: ITransaction
+  transaction: ITransaction | undefined
   transactionIndex: number
 }
+
 class TransactionDetail extends Component<IProps> {
   public render() {
+    if (!this.props.transaction) {
+      return <div />
+    }
     return (
-      <div>
-        <pre>
-          <code>{JSON.stringify(this.props.transaction, null, 4)}</code>
-        </pre>
-      </div>
+      <Fragment>
+        <TransactionSummary transaction={this.props.transaction} />
+        <SplitList splits={this.props.transaction.transactionDetails} />
+      </Fragment>
     )
   }
 }

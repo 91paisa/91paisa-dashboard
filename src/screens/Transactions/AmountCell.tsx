@@ -3,10 +3,11 @@ import styled from 'styled-components'
 
 interface IProps {
   amount: number
+  style?: any
 }
 
 const AmountCell: React.SFC<IProps> = props => (
-  <Container>
+  <Container style={props.style}>
     {props.amount.toLocaleString('en-EN', {
       currency: 'INR',
       style: 'currency',

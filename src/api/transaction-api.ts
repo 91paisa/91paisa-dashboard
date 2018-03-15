@@ -23,7 +23,7 @@ export enum splitTransactionStatus {
   refundSuccess,
 }
 
-interface ISplitTransaction {
+export interface ISplitTransaction {
   id: string
   amount: number
   status: splitTransactionStatus
@@ -80,8 +80,8 @@ export const getAllTransactionsAPI = (
         transactionDetails: _.eko_transactions.map(($: any) => ({
           amount: $.amount,
           createdTimestamp: $.created_at,
-          id: $.eko_transaction_id,
-          status: splitTransactionStatus[$.status_code],
+          id: $.eko_tid.String,
+          status: $.status_code,
           updatedTimestamp: $.updated_at,
         })),
         type: _.transaction_type,
