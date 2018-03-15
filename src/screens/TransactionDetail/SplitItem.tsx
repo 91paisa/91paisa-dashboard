@@ -7,6 +7,7 @@ import {
 import { alertPending, positiveGreen } from '../../styles/colors'
 import AmountCell from '../Transactions/AmountCell'
 import TimeCell from '../Transactions/TimeCell'
+import { normalizeSplitTransactionStatus } from '../Transactions/TransactionStatusCell'
 
 interface IProps {
   split: ISplitTransaction
@@ -25,7 +26,12 @@ const SplitItem: React.SFC<IProps> = props => (
     </div>
     <div>
       <p style={{ textAlign: 'right', display: 'block' }}># {props.split.id}</p>
-      <p>Status: {splitTransactionStatus[props.split.status]}</p>
+      <p>
+        Status:{' '}
+        {normalizeSplitTransactionStatus(
+          splitTransactionStatus[props.split.status],
+        )}
+      </p>
     </div>
   </Container>
 )
