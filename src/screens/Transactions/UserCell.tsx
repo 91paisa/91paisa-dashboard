@@ -16,7 +16,7 @@ const UserCell: React.SFC<IProps> = props => (
   </Container>
 )
 
-const Container = styled.p`
+const Container = styled.div`
   font-size: 1.1rem;
 `
 

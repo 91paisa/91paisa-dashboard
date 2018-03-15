@@ -13,7 +13,7 @@ const TimeCell: React.SFC<IProps> = props => (
   </Container>
 )
 
-const Container = styled.p`
+const Container = styled.div`
   display: block;
   font-size: 1.1rem;
 `
