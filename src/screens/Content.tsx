@@ -35,6 +35,7 @@ const Content = () => (
 const OuterContainer = styled.div`
   background: ${lightGrey};
   overflow: hidden;
+  border-left: ${lightGrey} 2px solid;
 `
 
 export default Content

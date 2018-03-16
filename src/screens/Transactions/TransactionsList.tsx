@@ -26,7 +26,6 @@ class TransactionsList extends Component<IProps, {}> {
           <TableContainer
             style={{
               background: `${lightGrey}`,
-              borderLeft: `2px solid ${lightGrey}`,
               borderRadius: 0,
             }}
             width={width}
