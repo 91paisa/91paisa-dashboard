@@ -1,3 +1,4 @@
+import { authStatus } from '../actions/auth-actions'
 import { IBalance } from '../api/balances-api'
 import { ICustomer } from '../api/customer-api'
 import { ITransaction } from '../api/transaction-api'
@@ -5,6 +6,7 @@ import { ITransaction } from '../api/transaction-api'
 export interface IReduxState {
   auth: {
     token: string | null
+    status: authStatus
   }
   balances: {
     eko: IBalance | null
@@ -16,9 +18,10 @@ export interface IReduxState {
 
 const state: IReduxState = {
   auth: {
-    get token () {
+    get token() {
       return localStorage.getItem('token')
     },
+    status: authStatus.success,
   },
   balances: {
     eko: {

@@ -2,21 +2,28 @@ import { Component, default as React } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
 import styled from 'styled-components'
-import { IAuthActions, login } from '../actions/auth-actions'
+import {
+  authStatus,
+  IAuthActions,
+  loading,
+  login,
+} from '../actions/auth-actions'
 import { setHeadersApi } from '../api/set-headers-api'
 import LoginButton from '../components/Buttons/LoginButton'
 import TextInput, { type } from '../components/TextInput/TextInput'
-import { primary, white } from '../styles/colors'
+import { IReduxState } from '../store/initial-state'
+import { alertRed, primary, white } from '../styles/colors'
 import { phone } from '../styles/screenSize'
 
 interface IProps {
   login: any
+  loading: any
+  status: authStatus
 }
 
 interface IState {
   email: string
   error: string
-  loading: boolean
   password: string
 }
 
@@ -24,42 +31,49 @@ class LoginScreen extends Component<IProps, IState> {
   public state = {
     email: '',
     error: '',
-    loading: false,
     password: '',
   }
 
-  public componentWillMount () {
+  public componentWillMount() {
     setHeadersApi()
   }
 
-  public render () {
+  public render() {
     return (
       <Container>
-        <FormContainer>
+        <FormContainer onSubmit={this.handleSubmit}>
           <Logo>91paisa</Logo>
-          <TextInput placeholder="Email" onChange={this.handleEmailChange}/>
+          <TextInput placeholder="Email" onChange={this.handleEmailChange} />
           <TextInput
             placeholder="Password"
             type={type.password}
             onChange={this.handlePasswordChange}
           />
           <LoginButton
-            loading={this.state.loading}
+            loading={this.props.status === authStatus.loading}
             onClick={() => {
-              this.setState({loading: true}, () => {
-                const {email, password} = this.state
-                this.props.login(email, password)
-              })
+              this.handleSubmit()
             }}
           />
+          {this.props.status === authStatus.failure && (
+            <p style={{ color: alertRed }}>Unable to login</p>
+          )}
         </FormContainer>
       </Container>
     )
   }
 
-  private handleEmailChange = (email: string) => this.setState({email})
+  private handleEmailChange = (email: string) => this.setState({ email })
   private handlePasswordChange = (password: string) =>
-    this.setState({password})
+    this.setState({ password })
+  private handleSubmit = (e?: any) => {
+    if (e) {
+      e.preventDefault()
+    }
+    this.props.loading()
+    const { email, password } = this.state
+    this.props.login(email, password)
+  }
 }
 
 const Container = styled.div`
@@ -75,7 +89,7 @@ const Container = styled.div`
   }
 `
 
-const FormContainer = styled.div`
+const FormContainer = styled.form`
   grid-row-start: 2;
   grid-column-start: 2;
   padding: 1rem;
@@ -95,6 +109,13 @@ const Logo = styled.p`
   letter-spacing: 0.1rem;
   padding-bottom: 3rem;
 `
+
+const mapStateToProps = (state: IReduxState) => {
+  return {
+    status: state.auth.status,
+  }
+}
+
 const mapDispatchToProps = (dispatch: Dispatch<IAuthActions>) =>
-  bindActionCreators({login}, dispatch)
-export default connect(null, mapDispatchToProps)(LoginScreen)
+  bindActionCreators({ login, loading }, dispatch)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)
