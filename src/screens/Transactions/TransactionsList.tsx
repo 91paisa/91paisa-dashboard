@@ -21,65 +21,63 @@ interface IProps extends RouteComponentProps<IProps> {
 class TransactionsList extends Component<IProps, {}> {
   public render() {
     return (
-      <div style={{ margin: '0', height: '100vh' }}>
-        <AutoSizer style={{ width: '100%' }}>
-          {({ width, height }: any) => (
-            <TableContainer
-              style={{
-                background: `${lightGrey}`,
-                borderLeft: `2px solid ${lightGrey}`,
-                borderRadius: 0,
-              }}
-              width={width}
-              height={height}
-              headerHeight={48}
-              rowHeight={88}
-              rowStyle={this.rowStyler}
-              onRowClick={this.handleRowClick}
-              overscanColumnCount={3}
-              rowCount={this.props.transactions.length}
-              rowGetter={({ index }: any) => this.props.transactions[index]}
-            >
-              <Column
-                label="Amount"
-                width={100}
-                dataKey="amount"
-                cellRenderer={this.handleAmountCell}
-              />
-              <Column
-                label="Customer"
-                width={190}
-                dataKey="amount"
-                cellRenderer={this.handleCustomerCell}
-              />
-              <Column
-                label="Beneficiary"
-                width={190}
-                dataKey="amount"
-                cellRenderer={this.handleBeneficiaryCell}
-              />
-              <Column
-                label="Created at"
-                width={150}
-                dataKey="amount"
-                cellRenderer={this.handleCreatedTimeStamp}
-              />
-              <Column
-                label="Updated at"
-                width={150}
-                dataKey="amount"
-                cellRenderer={this.handleUpdatedTimeStamp}
-              />
-              <Column
-                label="Status"
-                width={200}
-                dataKey="amount"
-                cellRenderer={this.handleStatus}
-              />
-            </TableContainer>
-          )}
-        </AutoSizer>
-      </div>
+      <AutoSizer style={{ width: '100%' }}>
+        {({ width, height }: any) => (
+          <TableContainer
+            style={{
+              background: `${lightGrey}`,
+              borderLeft: `2px solid ${lightGrey}`,
+              borderRadius: 0,
+            }}
+            width={width}
+            height={height}
+            headerHeight={48}
+            rowHeight={88}
+            rowStyle={this.rowStyler}
+            onRowClick={this.handleRowClick}
+            overscanColumnCount={3}
+            rowCount={this.props.transactions.length}
+            rowGetter={({ index }: any) => this.props.transactions[index]}
+          >
+            <Column
+              label="Amount"
+              width={100}
+              dataKey="amount"
+              cellRenderer={this.handleAmountCell}
+            />
+            <Column
+              label="Customer"
+              width={190}
+              dataKey="amount"
+              cellRenderer={this.handleCustomerCell}
+            />
+            <Column
+              label="Beneficiary"
+              width={190}
+              dataKey="amount"
+              cellRenderer={this.handleBeneficiaryCell}
+            />
+            <Column
+              label="Created at"
+              width={150}
+              dataKey="amount"
+              cellRenderer={this.handleCreatedTimeStamp}
+            />
+            <Column
+              label="Updated at"
+              width={150}
+              dataKey="amount"
+              cellRenderer={this.handleUpdatedTimeStamp}
+            />
+            <Column
+              label="Status"
+              width={200}
+              dataKey="amount"
+              cellRenderer={this.handleStatus}
+            />
+          </TableContainer>
+        )}
+      </AutoSizer>
     )
   }
 
