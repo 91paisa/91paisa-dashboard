@@ -13,15 +13,15 @@ interface IProps {
 }
 
 class App extends React.Component<IProps, {}> {
-  public componentDidMount () {
+  public componentWillMount() {
     this.interceptNetwork()
   }
 
-  public render () {
-    return this.props.token ? <Home/> : <LoginScreen/>
+  public render() {
+    return this.props.token ? <Home /> : <LoginScreen />
   }
 
-  private interceptNetwork () {
+  private interceptNetwork() {
     axios.interceptors.response.use(
       response => {
         return response
@@ -30,8 +30,10 @@ class App extends React.Component<IProps, {}> {
         if (error.response) {
           if (error.response.status === 403) {
             this.props.logout()
+            return
           } else {
             // const { status, statusText } = error.response
+            // tslint:disable-next-line
             // console.log(status, statusText, error.response)
           }
         }
@@ -41,13 +43,13 @@ class App extends React.Component<IProps, {}> {
   }
 }
 
-function mapStateToProps (state: IReduxState) {
+function mapStateToProps(state: IReduxState) {
   return {
     token: state.auth.token,
   }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<IAuthActions>) =>
-  bindActionCreators({logout}, dispatch)
+  bindActionCreators({ logout }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

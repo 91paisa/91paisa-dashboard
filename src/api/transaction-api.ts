@@ -59,7 +59,7 @@ const getAllTransactionsFormData = (limit: number, offset: number) => {
 export const getAllTransactionsAPI = (
   limit: number = 1000,
   offset: number = 0,
-): Promise<ITransaction | undefined> => {
+): Promise<ITransaction> => {
   return axios
     .post(TransactionPath.all, getAllTransactionsFormData(limit, offset))
     .then(res => {
@@ -88,7 +88,7 @@ export const getAllTransactionsAPI = (
         updatedTimestamp: _.updated_at,
       }))
     })
-    .catch(() => undefined)
+    .catch(() => [])
 }
 
 export const resolveTransactionStatus = (
