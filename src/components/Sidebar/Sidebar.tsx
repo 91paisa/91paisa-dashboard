@@ -40,6 +40,7 @@ const StyledLink = styled(NavLink)`
   padding: 0.3rem 1.5rem;
   margin: 0.6rem 0.5rem;
   border-radius: 8px;
+  font-size: 1rem;
   font-weight: 500;
   text-decoration: none;
   &.${active} {
