@@ -16,6 +16,7 @@ import UserCell from './UserCell'
 
 interface IProps extends RouteComponentProps<IProps> {
   transactions: ITransaction[]
+  hideCustomerColumn?: boolean
 }
 
 class TransactionsList extends Component<IProps, {}> {
@@ -44,12 +45,14 @@ class TransactionsList extends Component<IProps, {}> {
               dataKey="amount"
               cellRenderer={this.handleAmountCell}
             />
-            <Column
-              label="Customer"
-              width={190}
-              dataKey="amount"
-              cellRenderer={this.handleCustomerCell}
-            />
+            {this.props.hideCustomerColumn && (
+              <Column
+                label="Customer"
+                width={190}
+                dataKey="amount"
+                cellRenderer={this.handleCustomerCell}
+              />
+            )}
             <Column
               label="Beneficiary"
               width={190}
