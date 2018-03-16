@@ -2,6 +2,7 @@ import { Component, default as React, Fragment } from 'react'
 import styled from 'styled-components'
 import Card from '../../components/Card'
 import { alertRed } from '../../styles/colors'
+
 interface IProps {
   logout: any
 }
