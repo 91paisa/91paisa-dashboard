@@ -19,8 +19,8 @@
   },
   "scripts": {
     "start": "REACT_APP_BASE_URL=local react-scripts-ts start",
-    "build:beta": "REACT_APP_BASE_URL=beta react-scripts-ts build_beta",
-    "build:prod": "REACT_APP_BASE_URL=prod react-scripts-ts build_prod",
+    "build:beta": "REACT_APP_BASE_URL=beta react-scripts-ts build",
+    "build:prod": "REACT_APP_BASE_URL=prod react-scripts-ts build",
     "deploy:s3":
       "npm run build && aws s3 sync build/ s3://91p.notdr.one && aws s3 sync build/ s3://91paisa",
     "test": "react-scripts-ts test --env=jsdom",
