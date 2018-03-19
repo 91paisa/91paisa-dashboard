@@ -18,9 +18,11 @@
     "tslint-config-prettier": "^1.9.0"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "deploy:alpha": "npm run build && aws s3 sync build/ s3://91p.notdr.one && aws s3 sync build/ s3://91paisa",
+    "start": "REACT_APP_BASE_URL=local react-scripts-ts start",
+    "build:beta": "REACT_APP_BASE_URL=beta react-scripts-ts build",
+    "build:prod": "REACT_APP_BASE_URL=prod react-scripts-ts build",
+    "deploy:s3":
+      "npm run build && aws s3 sync build/ s3://91p.notdr.one && aws s3 sync build/ s3://91paisa",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "storybook": "start-storybook -p 6006",
@@ -50,10 +52,5 @@
     "ts-loader": "^3.5.0",
     "typescript": "^2.7.2"
   },
-  "moduleFileExtensions": [
-    "ts",
-    "tsx",
-    "js",
-    "json"
-  ]
+  "moduleFileExtensions": ["ts", "tsx", "js", "json"]
 }
