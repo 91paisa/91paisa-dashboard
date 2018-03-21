@@ -15,8 +15,8 @@ import TransactionStatusCell from './TransactionStatusCell'
 import UserCell from './UserCell'
 
 interface IProps extends RouteComponentProps<IProps> {
-  transactions: ITransaction[]
   hideCustomerColumn?: boolean
+  transactions: ITransaction[]
 }
 
 class TransactionsList extends Component<IProps, {}> {
@@ -31,7 +31,7 @@ class TransactionsList extends Component<IProps, {}> {
             }}
             width={width}
             height={height}
-            headerHeight={48}
+            headerHeight={40}
             rowHeight={88}
             rowStyle={this.rowStyler}
             onRowClick={this.handleRowClick}
@@ -45,29 +45,29 @@ class TransactionsList extends Component<IProps, {}> {
               dataKey="amount"
               cellRenderer={this.handleAmountCell}
             />
-            {this.props.hideCustomerColumn && (
+            {!this.props.hideCustomerColumn && (
               <Column
                 label="Customer"
-                width={190}
+                width={140}
                 dataKey="amount"
                 cellRenderer={this.handleCustomerCell}
               />
             )}
             <Column
               label="Beneficiary"
-              width={190}
+              width={140}
               dataKey="amount"
               cellRenderer={this.handleBeneficiaryCell}
             />
             <Column
               label="Created at"
-              width={150}
+              width={140}
               dataKey="amount"
               cellRenderer={this.handleCreatedTimeStamp}
             />
             <Column
               label="Updated at"
-              width={150}
+              width={140}
               dataKey="amount"
               cellRenderer={this.handleUpdatedTimeStamp}
             />

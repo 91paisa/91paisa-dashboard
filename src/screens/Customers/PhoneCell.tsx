@@ -27,12 +27,12 @@ export function getSpacedPhone(phone: string): string {
 
 const CountryCode = styled.span`
   color: ${graphite};
-  font-size: 1.1rem;
+  font-size: 1rem;
   padding-right: 4px;
 `
 
 const Phone = styled.span`
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
   color: ${dark};
 `

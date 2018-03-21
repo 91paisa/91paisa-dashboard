@@ -9,7 +9,7 @@
 /* Grid default theme */
 
 .ReactVirtualized__Grid {
-    outline: none;
+  outline: none;
 }
 
 .ReactVirtualized__Grid__innerScrollContainer {
@@ -18,72 +18,81 @@
 /* Table default theme */
 
 .ReactVirtualized__Table {
-    border-radius: 4px;
+  border-radius: 4px;
+}
+@media (min-width: 25em) {
+  .ReactVirtualized__Table {
+    border-radius: 0;
+  }
+  .ReactVirtualized__Table__headerRow {
+    font-weight: 400;
+    box-shadow: none;
+  }
 }
 
 .ReactVirtualized__Table__Grid {
 }
 
 .ReactVirtualized__Table__headerRow {
-    font-weight: 600;
-    border-radius: 4px 4px 0 0;
-    color: #1d2028;
-    text-transform: uppercase;
-    display: flex;
-    flex-direction: row;
-    padding: 0.5rem 0;
-    box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.1);
-    align-items: flex-start;
-    font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px 4px 0 0;
+  color: #1d2028;
+  text-transform: capitalize;
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem 0;
+  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.1);
+  align-items: flex-start;
+  font-size: inherit;
 }
 
 .ReactVirtualized__Table__row {
-    display: flex;
-    cursor: pointer;
-    flex-direction: row;
-    align-items: center;
-    font-size: 1rem;
+  display: flex;
+  cursor: pointer;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1rem;
 }
 
 .ReactVirtualized__Table__headerTruncatedText {
-    display: inline-block;
-    max-width: 100%;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
+  display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .ReactVirtualized__Table__headerColumn,
 .ReactVirtualized__Table__rowColumn {
-    margin: 0.3rem 1rem;
-    padding-left: 0.4rem;
-    min-width: 0;
+  margin: 0.4rem 1rem;
+  padding-left: 0.4rem;
+  min-width: 0;
 }
 
 .ReactVirtualized__Table__rowColumn {
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .ReactVirtualized__Table__headerColumn:first-of-type,
 .ReactVirtualized__Table__rowColumn:first-of-type {
-    margin-left: 2rem;
+  margin-left: 2rem;
 }
 
 .ReactVirtualized__Table__sortableHeaderColumn {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .ReactVirtualized__Table__sortableHeaderIconContainer {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .ReactVirtualized__Table__sortableHeaderIcon {
-    flex: 0 0 24px;
-    height: 1em;
-    width: 1em;
-    fill: currentColor;
+  flex: 0 0 24px;
+  height: 1em;
+  width: 1em;
+  fill: currentColor;
 }
 
 /* List default theme */

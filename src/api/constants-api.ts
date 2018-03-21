@@ -3,7 +3,7 @@ const basePath = () => {
   // tslint:disable-next-line
   console.log('env', env, process.env)
   if (env.NODE_ENV === 'development') {
-    return 'http://localhost:8080/api/v1/'
+    return 'http://192.168.0.107:8080/api/v1/'
   }
   if (env.REACT_APP_BASE_URL === 'beta') {
     return 'https://beta.91paisa.com/api/v1/'

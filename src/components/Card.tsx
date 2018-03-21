@@ -3,7 +3,7 @@ import { white } from '../styles/colors'
 
 const Card = styled.div`
   box-shadow: 0 2px 4px hsla(0, 0%, 0%, 0.2);
-  margin: 1rem 2rem;
+  margin: 1% 1%;
   display: flex;
   background: ${white};
   flex-direction: column;

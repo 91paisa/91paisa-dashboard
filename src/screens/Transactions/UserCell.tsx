@@ -12,6 +12,7 @@ interface IProps {
 const UserCell: React.SFC<IProps> = props => (
   <Container>
     <p>{props.data.name}</p>
+    <div style={{ padding: '0.3rem' }} />
     <PhoneCell phone={props.data.phone} />
   </Container>
 )

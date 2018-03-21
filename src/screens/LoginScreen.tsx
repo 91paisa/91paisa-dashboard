@@ -84,8 +84,8 @@ const Container = styled.div`
   grid-template-columns: 2fr minmax(300px, 400px) 0.2fr;
   grid-template-rows: 1fr minmax(300px, 500px) 1fr;
   @media (${phone}) {
-    grid-template-columns: 0.1fr 1fr 0.1fr;
-    grid-template-rows: 1em auto 1fr;
+    grid-template-columns: 1% 1fr 1%;
+    grid-template-rows: 1% auto 1fr;
   }
 `
 
@@ -108,6 +108,10 @@ const Logo = styled.p`
   text-align: center;
   letter-spacing: 0.1rem;
   padding-bottom: 3rem;
+  @media (${phone}) {
+    padding-bottom: 1rem;
+    font-size: 1.2rem;
+  }
 `
 
 const mapStateToProps = (state: IReduxState) => {

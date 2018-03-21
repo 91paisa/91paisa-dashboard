@@ -25,10 +25,10 @@ class CustomerDetail extends Component<IProps, {}> {
               style={{
                 borderRadius: '4px',
                 height: '60vh',
-                padding: '0 2rem',
+                padding: '0 1%',
               }}
             >
-              <CustomerTransactionContainer />
+              <CustomerTransactionContainer  />
             </div>
           </Fragment>
         )}

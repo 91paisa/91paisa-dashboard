@@ -53,7 +53,6 @@ const Input = styled.input`
   border: none;
   box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.2);
   border-radius: 0.4rem;
-  font-size: 1rem;
   line-height: 1.2rem;
   outline: none;
   &:focus {

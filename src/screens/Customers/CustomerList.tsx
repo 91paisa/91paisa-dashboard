@@ -17,65 +17,115 @@ interface IProps extends RouteComponentProps<IProps> {
 }
 
 class CustomerList extends Component<IProps, {}> {
-  public render () {
+  public render() {
     return (
-      <div style={{margin: '0 3rem', height: '87vh'}}>
-        <AutoSizer style={{width: '100%'}}>
-          {({width, height}: any) => (
-            <TableContainer
-              width={width}
-              height={height}
-              headerHeight={48}
-              rowHeight={60}
-              rowStyle={this.rowStyler}
-              onRowClick={this.handleRowClick}
-              overscanColumnCount={3}
-              rowCount={this.props.customers.length}
-              rowGetter={({index}: any) => this.props.customers[index]}
-            >
-              <Column
-                label="Status"
-                width={100}
-                dataKey="mandateApproved"
-                cellRenderer={this.renderMandateCell}
-              />
-              <Column
-                label="Phone"
-                width={190}
-                dataKey="phone"
-                cellRenderer={this.renderPhoneCell}
-              />
-              <Column label="Name" width={300} dataKey="name"/>
-              <Column
-                label="Last Transaction"
-                width={400}
-                dataKey="lastTransaction"
-                cellRenderer={this.renderLastTransactionCell}
-              />
-            </TableContainer>
-          )}
+      <div style={{ margin: '0 1%', height: '87vh' }}>
+        <AutoSizer style={{ width: '100%' }}>
+          {({ width, height }: any) => {
+            if (width >= 400) {
+              return this.desktopTable(width, height)
+            } else {
+              return this.phoneTable(width, height)
+            }
+          }}
         </AutoSizer>
       </div>
     )
   }
 
-  private handleRowClick = ({rowData}: any) => {
+  private phoneTable = (width: number, height: number) => {
+    return (
+      <TableContainer
+        width={width}
+        style={{
+          boxShadow: 'none',
+        }}
+        height={height}
+        headerHeight={0}
+        rowHeight={50}
+        rowStyle={this.rowStyler}
+        onRowClick={this.handleRowClick}
+        overscanColumnCount={5}
+        rowCount={this.props.customers.length}
+        rowGetter={({ index }: any) => this.props.customers[index]}
+      >
+        <Column
+          label="Status"
+          width={width / 7}
+          dataKey="mandateApproved"
+          cellRenderer={this.renderMandateCell}
+        />
+        <Column
+          label="Customer"
+          dataKey="status"
+          width={width - width / 7}
+          cellRenderer={this.renderCustomerDataCell}
+        />
+      </TableContainer>
+    )
+  }
+
+  private desktopTable = (width: number, height: number) => {
+    return (
+      <TableContainer
+        width={width}
+        height={height}
+        headerHeight={40}
+        rowHeight={60}
+        rowStyle={this.rowStyler}
+        onRowClick={this.handleRowClick}
+        overscanColumnCount={3}
+        rowCount={this.props.customers.length}
+        rowGetter={({ index }: any) => this.props.customers[index]}
+      >
+        <Column
+          label="Status"
+          width={100}
+          dataKey="mandateApproved"
+          cellRenderer={this.renderMandateCell}
+        />
+        <Column
+          label="Phone"
+          width={190}
+          dataKey="phone"
+          cellRenderer={this.renderPhoneCell}
+        />
+        <Column label="Name" width={300} dataKey="name" />
+        <Column
+          label="Last Transaction"
+          width={400}
+          dataKey="lastTransaction"
+          cellRenderer={this.renderLastTransactionCell}
+        />
+      </TableContainer>
+    )
+  }
+
+  private handleRowClick = ({ rowData }: any) => {
     const nav = this.props.history
     nav.push(nav.location.pathname + '/' + rowData.phone)
   }
-  private renderMandateCell = ({rowData}: any) => (
-    <StatusCircle status={rowData.status}/>
+
+  private renderMandateCell = ({ rowData }: any) => (
+    <StatusCircle status={rowData.status} />
   )
 
-  private renderLastTransactionCell = ({rowData}: any) => (
-    <LastTransactionCell lastTransaction={rowData.lastTransaction}/>
+  private renderCustomerDataCell = ({ rowData }: any) => (
+    <div>
+      <p>{rowData.name}</p>
+      <PhoneCell phone={rowData.phone} />
+    </div>
   )
 
-  private renderPhoneCell = ({rowData}: any) => (
-    <PhoneCell phone={rowData.phone}/>
+  private renderLastTransactionCell = ({ rowData }: any) => (
+    <LastTransactionCell lastTransaction={rowData.lastTransaction} />
   )
 
-  private rowStyler = ({index}: any) => {
+  private renderPhoneCell = ({ rowData }: any) => (
+    <PhoneCell phone={rowData.phone} />
+  )
+
+  private rowStyler = ({ index }: any) => {
     if (index < 0) {
       return headerRow
     }

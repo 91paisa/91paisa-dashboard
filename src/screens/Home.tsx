@@ -29,11 +29,11 @@ class Home extends Component<IProps, IState> {
     width: window.innerWidth,
   }
 
-  public componentWillMount () {
+  public componentWillMount() {
     setHeadersApi()
   }
 
-  public componentDidMount () {
+  public componentDidMount() {
     const props = this.props
     setInterval(() => {
       this.fetchData(props)
@@ -42,29 +42,29 @@ class Home extends Component<IProps, IState> {
     window.addEventListener('resize', this.updateWindowDimensions)
   }
 
-  public componentWillUnmount () {
+  public componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions)
   }
 
-  public render () {
+  public render() {
     return (
       <Router>
         {this.state.width > 400 ? (
           <Container>
-            <Sidebar/>
-            <Content/>
+            <Sidebar />
+            <Content />
           </Container>
         ) : (
           <PhoneContainer>
-            <Content/>
-            <BottomBar/>
+            <Content />
+            <BottomBar />
           </PhoneContainer>
         )}
       </Router>
     )
   }
 
-  private fetchData (_: IProps) {
+  private fetchData(_: IProps) {
     _.getAllCustomers()
     _.getAllTransactions()
     _.getNodalBalance()
@@ -72,12 +72,12 @@ class Home extends Component<IProps, IState> {
   }
 
   private updateWindowDimensions = () =>
-    this.setState({width: window.innerWidth, height: window.innerHeight})
+    this.setState({ width: window.innerWidth, height: window.innerHeight })
 }
 
 const PhoneContainer = styled.div`
   display: grid;
-  height: 90vh;
+  height: 100vh;
   overflow: hidden;
   grid-template-rows: 1fr 40px;
 `
@@ -88,7 +88,7 @@ const Container = styled.div`
 `
 const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
-    {getAllCustomers, getNodalBalance, getEkoBalance, getAllTransactions},
+    { getAllCustomers, getNodalBalance, getEkoBalance, getAllTransactions },
     dispatch,
   )
 export default connect(null, mapDispatchToProps)(Home)

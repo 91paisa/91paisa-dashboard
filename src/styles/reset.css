@@ -2,11 +2,9 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font: inherit;
-  color: inherit;
   min-width: 0;
   -webkit-font-smoothing: antialiased;
-
+  font-size: 12px;
   /* it will surely make problem in the future... to be inspected. */
   flex-shrink: 0;
 }
@@ -14,10 +12,16 @@
 body {
   cursor: default;
   font-family: 'Museo Sans', 'Open Sans', Arial, Helvetica, sans-serif;
-  font-size: 14px;
   color: #1d2028;
   font-weight: 300;
-  line-height: 1.5;
+  line-height: 1.4rem;
+}
+
+@media (max-width: 25em) {
+  body {
+    font-size: 10px;
+    background: pink;
+  }
 }
 
 b {
