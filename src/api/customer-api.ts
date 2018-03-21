@@ -42,7 +42,7 @@ const getCustomersFormData = (offset: number, limit: number): FormData => {
   return data
 }
 
-function formatCustomersList (res: any): ICustomer[] {
+function formatCustomersList(res: any): ICustomer[] {
   return res.data.data.map((customer: any) => {
     let lastTransaction
     if (customer.latest_transaction.amount !== 0) {

@@ -1,29 +1,29 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font: inherit;
-    color: inherit;
-    min-width: 0;
-    -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  min-width: 0;
+  -webkit-font-smoothing: antialiased;
 
-    /* it will surely make problem in the future... to be inspected. */
-    flex-shrink: 0;
+  /* it will surely make problem in the future... to be inspected. */
+  flex-shrink: 0;
 }
 
 body {
-    cursor: default;
-    font-family: 'Museo Sans', 'Open Sans', Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    color: #1d2028;
-    font-weight: 300;
-    line-height: 1.5;
+  cursor: default;
+  font-family: 'Museo Sans', 'Open Sans', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #1d2028;
+  font-weight: 300;
+  line-height: 1.5;
 }
 
 b {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 em {
-    font-style: italic;
+  font-style: italic;
 }

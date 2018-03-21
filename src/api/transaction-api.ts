@@ -90,9 +90,3 @@ export const getAllTransactionsAPI = (
     })
     .catch(() => [])
 }
-
-export const resolveTransactionStatus = (
-  statusCodes: splitTransactionStatus[],
-) => {
-  return splitTransactionStatus.processing
-}
