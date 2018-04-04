@@ -6,7 +6,6 @@ export const graphite = '#767676'
 export const grey = '#999999'
 export const identity = '#41ccb4'
 export const lightGrey = '#f9f9f9'
-export const pearl = '#ff0000'
 export const positiveGreen = '#96d071'
 export const primary =
   process.env.REACT_APP_BASE_URL === 'prod' ? '#27B88F' : '#4b84ff'
