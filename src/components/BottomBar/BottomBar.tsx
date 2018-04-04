@@ -34,6 +34,7 @@ const StyledLink = styled(NavLink)`
   border-radius: 8px;
   font-weight: 500;
   text-decoration: none;
+  position: absolute;
   &.${active} {
     opacity: 1;
     background: ${lightGrey};
