@@ -82,7 +82,7 @@ const Container = styled.div`
   width: 100vw;
   display: grid;
   grid-template-columns: 2fr minmax(300px, 400px) 0.2fr;
-  grid-template-rows: 1fr minmax(300px, 500px) 1fr;
+  grid-template-rows: 1fr auto 1fr;
   @media (${phone}) {
     grid-template-columns: 1% 1fr 1%;
     grid-template-rows: 1% auto 1fr;
