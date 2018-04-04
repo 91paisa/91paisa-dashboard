@@ -9,7 +9,7 @@ const basePath = () => {
     return 'https://beta.91paisa.com/api/v1/'
   }
   if (env.REACT_APP_BASE_URL === 'prod') {
-    return 'https://91paisa.com/api/v1/'
+    return 'https://stable.91paisa.com/api/v1/'
   }
   return
 }
