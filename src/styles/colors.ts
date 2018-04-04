@@ -10,5 +10,5 @@ export const positiveGreen = '#96d071'
 export const primary =
   process.env.REACT_APP_BASE_URL === 'prod' ? '#27B88F' : '#673AB7'
 export const primaryDark =
-  process.env.REACT_APP_BASE_URL === 'prod' ? '#1a785c' : '#4c19b7'
+  process.env.REACT_APP_BASE_URL === 'prod' ? '#1a785c' : '#4c1ab7'
 export const white = '#ffffff'
