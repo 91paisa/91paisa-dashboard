@@ -1,7 +1,5 @@
 const basePath = () => {
   const env = process.env
-  // tslint:disable-next-line
-  console.log('env', env, process.env)
   if (env.NODE_ENV === 'development') {
     return 'http://192.168.0.107:8080/api/v1/'
   }
