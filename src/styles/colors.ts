@@ -12,5 +12,4 @@ export const primary =
 export const primaryDark =
   process.env.REACT_APP_BASE_URL === 'prod' ? '#1a785c' : '#2666ff'
 export const transparent = 'transparent'
-export const wallet = '#4b84ff'
 export const white = '#ffffff'
