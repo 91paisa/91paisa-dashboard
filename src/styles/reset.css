@@ -19,8 +19,7 @@ body {
 
 @media (max-width: 25em) {
   body {
-    font-size: 10px;
-    background: pink;
+    font-size: 12px;
   }
 }
 

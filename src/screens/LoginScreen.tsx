@@ -84,8 +84,8 @@ const Container = styled.div`
   grid-template-columns: 2fr auto 0.2fr;
   grid-template-rows: 1fr auto 1fr;
   @media (${phone}) {
-    grid-template-columns: 1% 1fr 1%;
-    grid-template-rows: 1% auto 1fr;
+    display: block;
+    background: white;
   }
 `
 
@@ -101,6 +101,14 @@ const FormContainer = styled.form`
   &:hover {
     box-shadow: 0 0 14px rgba(50, 50, 93, 0.3), 0 5px 3px rgba(0, 0, 0, 0.08);
   }
+  @media (${phone}) {
+    display: block;
+    box-shadow: none;
+    padding: 3rem 2rem;
+    &:hover {
+      box-shadow: none;
+    }
+  }
   transition-duration: 300ms;
 `
 
@@ -110,8 +118,9 @@ const Logo = styled.p`
   letter-spacing: 0.1rem;
   padding-bottom: 3rem;
   @media (${phone}) {
-    padding-bottom: 1rem;
-    font-size: 1.2rem;
+    padding-bottom: 1.6rem;
+    font-size: 2rem;
+    font-weight: bolder;
   }
 `
 

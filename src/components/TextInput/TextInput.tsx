@@ -1,6 +1,7 @@
 import { Component, default as React } from 'react'
 import styled from 'styled-components'
-import { fog, white } from '../../styles/colors'
+import { fog, lightGrey, white } from '../../styles/colors'
+import { phone } from '../../styles/screenSize'
 
 export enum type {
   password = 'password',
@@ -56,7 +57,16 @@ const Input = styled.input`
   line-height: 1.2rem;
   outline: none;
   &:focus {
-    box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.4);
+    box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.3);
+  }
+  @media (${phone}) {
+    background: ${lightGrey};
+    box-shadow: none;
+    &:focus {
+      border: 1px solid ${fog};  
+      box-shadow:none;
+      box-sizing: padding-box;
+    }
   }
 `
 
