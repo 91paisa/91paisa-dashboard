@@ -1,7 +1,8 @@
 const basePath = () => {
   const env = process.env
   if (env.NODE_ENV === 'development') {
-    return 'http://192.168.0.107:8080/api/v1/'
+    return 'https://beta.91paisa.com/api/v1/'
+    // return 'http://192.168.0.107:8080/api/v1/'
   } else if (env.REACT_APP_BASE_URL === 'beta') {
     return 'https://beta.91paisa.com/api/v1/'
   } else if (env.REACT_APP_BASE_URL === 'prod') {

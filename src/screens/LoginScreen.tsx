@@ -81,7 +81,7 @@ const Container = styled.div`
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-columns: 2fr minmax(300px, 400px) 0.2fr;
+  grid-template-columns: 2fr auto 0.2fr;
   grid-template-rows: 1fr auto 1fr;
   @media (${phone}) {
     grid-template-columns: 1% 1fr 1%;
@@ -92,7 +92,8 @@ const Container = styled.div`
 const FormContainer = styled.form`
   grid-row-start: 2;
   grid-column-start: 2;
-  padding: 1rem;
+  padding: 3rem 1rem;
+  min-width: 300px;
   background: ${white};
   display: inline-block;
   border-radius: 1rem;
