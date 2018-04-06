@@ -1,11 +1,19 @@
 import { Component, default as React } from 'react'
+import { rangeEnum } from '../../api/helpers/dateRangeHelper'
+import { customerStats } from '../../api/statistics-api'
 
 class Dashboard extends Component {
   public state = {
     hi: 'bye',
   }
 
-  public render () {
+  public componentDidMount() {
+    customerStats(rangeEnum.days)
+    customerStats(rangeEnum.weeks)
+    customerStats(rangeEnum.months)
+  }
+
+  public render() {
     return (
       <div>
         <p>D</p>
