@@ -92,7 +92,7 @@ const Container = styled.div`
 const FormContainer = styled.form`
   grid-row-start: 2;
   grid-column-start: 2;
-  padding: 3rem 1rem;
+  padding: 3rem 1rem 0.5rem 1rem;
   min-width: 300px;
   background: ${white};
   display: inline-block;
