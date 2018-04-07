@@ -1,4 +1,5 @@
 import { Component, default as React, Fragment } from 'react'
+import styled from 'styled-components'
 import { ICustomer } from '../../api/customer-api'
 import BeneficiariesListContainer from './Beneficiary/BeneficiariesListContainer'
 import CustomerCard from './CustomerCard'
@@ -13,7 +14,7 @@ class CustomerDetail extends Component<IProps, {}> {
   public render() {
     const { customer, customerIndex } = this.props
     return (
-      <div>
+      <Container>
         {customer && (
           <Fragment>
             <CustomerCard customer={customer} />
@@ -21,20 +22,17 @@ class CustomerDetail extends Component<IProps, {}> {
               customerPhone={customer.phone}
               customerIndex={customerIndex}
             />
-            <div
-              style={{
-                borderRadius: '4px',
-                height: '60vh',
-                padding: '0 1%',
-              }}
-            >
-              <CustomerTransactionContainer  />
-            </div>
+            {customer.lastTransaction && <CustomerTransactionContainer />}
           </Fragment>
         )}
-      </div>
+      </Container>
     )
   }
 }
+
+const Container = styled.div`
+  max-width: 80rem;
+  margin: 0 auto;
+`
 
 export default CustomerDetail
