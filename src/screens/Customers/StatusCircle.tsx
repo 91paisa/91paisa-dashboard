@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { customerStatus } from '../../api/customer-api'
-import { getColorBasedOnCustomerStatus } from '../CustomerDetail/StatusStrip'
+import { getColorBasedOnCustomerStatus } from '../../helpers/ColorHelper'
 
 interface IProps {
   status: customerStatus

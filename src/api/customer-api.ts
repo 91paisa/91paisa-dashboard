@@ -3,7 +3,8 @@ import { CustomerPath } from './constants-api'
 
 export enum customerStatus {
   unverified,
-  mandatePending,
+  mandateNotInitialted,
+  mandateInitiated,
   mandateApproved,
   mandateRejected,
 }
@@ -53,22 +54,34 @@ function formatCustomersList(res: any): ICustomer[] {
         createdTimestamp,
       }
     }
-    let status
-    if (customer.mandate_approved) {
-      status = customerStatus.mandateApproved
-    } else if (!customer.verified) {
-      status = customerStatus.unverified
-    } else {
-      status = customerStatus.mandatePending
-    }
+    const status = getMandateStatusEnum(
+      customer.mandate_status,
+      customer.verified,
+    )
     return {
       lastTransaction,
       name: customer.name,
       phone: customer.phone_number,
       status,
-      verified: customer.verified,
     }
   })
+}
+
+function getMandateStatusEnum(mandateStatus: number, verified: boolean) {
+  let status
+
+  if (mandateStatus === 1) {
+    status = customerStatus.mandateInitiated
+  } else if (mandateStatus === 2) {
+    status = customerStatus.mandateApproved
+  } else if (mandateStatus === 3) {
+    status = customerStatus.mandateRejected
+  } else if (!verified) {
+    status = customerStatus.unverified
+  } else {
+    status = customerStatus.mandateNotInitialted
+  }
+  return status
 }
 
 export const getCustomers = (): Promise<ICustomer[]> =>

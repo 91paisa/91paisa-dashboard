@@ -12,14 +12,14 @@ interface IProps {
 
 const CustomerCard: React.SFC<IProps> = _ => {
   if (_.customer === undefined) {
-    return <div/>
+    return <div />
   }
   return (
     <Card>
-      <StatusStrip status={_.customer.status}/>
+      <StatusStrip status={_.customer.status} />
       <Name>{_.customer.name}</Name>
       <PhoneCell
-        style={{justifyContent: 'center'}}
+        style={{ justifyContent: 'center' }}
         phone={_.customer.phone}
       />
     </Card>

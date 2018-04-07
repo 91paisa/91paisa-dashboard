@@ -1,12 +1,6 @@
 import * as React from 'react'
 import { customerStatus } from '../../api/customer-api'
-import {
-  alertPending,
-  alertRed,
-  dark,
-  grey,
-  positiveGreen,
-} from '../../styles/colors'
+import { getColorBasedOnCustomerStatus } from '../../helpers/ColorHelper'
 
 interface IProps {
   status: customerStatus
@@ -25,21 +19,4 @@ const StatusStrip: React.SFC<IProps> = props => {
     />
   )
 }
-
-export const getColorBasedOnCustomerStatus = (status: customerStatus) => {
-  if (status === customerStatus.unverified) {
-    return grey
-  }
-  if (status === customerStatus.mandateApproved) {
-    return positiveGreen
-  }
-  if (status === customerStatus.mandateRejected) {
-    return alertRed
-  }
-  if (status === customerStatus.mandatePending) {
-    return alertPending
-  }
-  return dark
-}
-
 export default StatusStrip
