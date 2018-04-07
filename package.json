@@ -22,6 +22,9 @@
     "build:beta": "REACT_APP_BASE_URL=beta react-scripts-ts build",
     "build:prod": "REACT_APP_BASE_URL=prod react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
+    "deploy:release": "git push origin release && git push server release",
+    "deploy:production":
+      "git push origin production && git push server production",
     "eject": "react-scripts-ts eject",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
