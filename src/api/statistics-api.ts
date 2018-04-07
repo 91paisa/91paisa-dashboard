@@ -1,4 +1,4 @@
-import { getMinMaxDateRange, rangeEnum } from './helpers/dateRangeHelper'
+import { getMinMaxDateRange, rangeEnum } from '../helpers/dateRangeHelper'
 
 export const customerStats = (range: rangeEnum) => {
   const minMaxDate = getMinMaxDateRange(range)

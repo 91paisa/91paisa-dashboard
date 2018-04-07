@@ -1,6 +1,6 @@
 import { Component, default as React } from 'react'
-import { rangeEnum } from '../../api/helpers/dateRangeHelper'
 import { customerStats } from '../../api/statistics-api'
+import { rangeEnum } from '../../helpers/dateRangeHelper'
 
 class Dashboard extends Component {
   public state = {
