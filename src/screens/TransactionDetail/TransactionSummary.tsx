@@ -1,14 +1,11 @@
 import moment from 'moment'
 import * as React from 'react'
 import styled from 'styled-components'
-import {
-  ISplitTransaction,
-  ITransaction,
-  splitTransactionStatus,
-} from '../../api/transaction-api'
+import { ITransaction } from '../../api/transaction-api'
 import Card from '../../components/Card'
-import { dark, graphite, positiveGreen } from '../../styles/colors'
+import { graphite, positiveGreen } from '../../styles/colors'
 import PhoneCell from '../Customers/PhoneCell'
+import CompletedTimestamp from './CompletedTimestamp'
 import TransactionDetailLine from './TransactionDetailLine'
 
 interface IProps {
@@ -23,22 +20,6 @@ const TransactionSummary: React.SFC<IProps> = props => {
     commission,
     amount,
   } = props.transaction
-
-  function getCompletedTimestamp(splits: ISplitTransaction[] | undefined) {
-    if (splits && splits.length > 0) {
-      if (
-        splits.filter(split => split.status !== splitTransactionStatus.success)
-          .length === 0
-      ) {
-        return (
-          <Time>
-            {moment(splits[splits.length - 1].updatedTimestamp).format('lll')}
-          </Time>
-        )
-      }
-    }
-    return <p style={{ letterSpacing: '6px' }}>---</p>
-  }
 
   return (
     <Card>
@@ -77,7 +58,7 @@ const TransactionSummary: React.SFC<IProps> = props => {
         />
         <TimeContainer style={{ alignItems: 'flex-end' }}>
           <TimeLabel>Created</TimeLabel>
-          <Time>{moment(createTimestamp).format('lll')}</Time>
+          <span>{moment(createTimestamp).format('lll')}</span>
         </TimeContainer>
         <Commission title="Commission">
           {commission.toLocaleString('en-EN', {
@@ -87,17 +68,15 @@ const TransactionSummary: React.SFC<IProps> = props => {
         </Commission>
         <TimeContainer style={{ justifyContent: 'flex-start' }}>
           <TimeLabel>Completed</TimeLabel>
-          {getCompletedTimestamp(props.transaction.transactionDetails)}
+          <CompletedTimestamp splits={props.transaction.transactionDetails} />
         </TimeContainer>
       </SummaryContainer>
     </Card>
   )
 }
+
 const TimeLabel = styled.p`
   color: ${graphite};
-`
-const Time = styled.p`
-  color: ${dark};
 `
 
 const TimeContainer = styled.div`
