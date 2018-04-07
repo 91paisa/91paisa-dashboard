@@ -1,10 +1,15 @@
 import * as React from 'react'
 
 export enum SpaceEnum {
-  s = '4px',
-  m = '8px',
-  l = '12px',
-  xl = '16px',
+  xxxs = '0.1rem',
+  xxs = '0.25rem',
+  xs = '0.5rem',
+  s = '0.75rem',
+  m = '1rem',
+  l = '1.25rem',
+  xl = '1.5rem',
+  xxl = '1.75rem',
+  xxxl = '2rem',
 }
 interface IProps {
   width?: SpaceEnum

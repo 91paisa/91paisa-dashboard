@@ -1,8 +1,9 @@
-import { Component, default as React, Fragment } from 'react'
+import { Component, default as React } from 'react'
+import styled from 'styled-components'
 import { ITransaction } from '../../api/transaction-api'
 import Card from '../../components/Card'
 import SplitList from './SplitList'
-import TransactionApproveRejectButton from './TransactionApproveRejectButton'
+import TransactionApprovalButton from './TransactionApprovalButton'
 import TransactionSummary from './TransactionSummary'
 
 interface IProps {
@@ -16,15 +17,20 @@ class TransactionDetail extends Component<IProps> {
       return <div />
     }
     return (
-      <Fragment>
+      <Container>
         <Card>
           <TransactionSummary transaction={this.props.transaction} />
-          <TransactionApproveRejectButton />
+          <TransactionApprovalButton />
         </Card>
         <SplitList splits={this.props.transaction.transactionDetails} />
-      </Fragment>
+      </Container>
     )
   }
 }
+
+const Container = styled.div`
+  max-width: 80rem;
+  margin: 0 auto;
+`
 
 export default TransactionDetail

@@ -7,7 +7,6 @@ import { getEkoBalance, getNodalBalance } from '../actions/balances-actions'
 import { getAllCustomers } from '../actions/customer-actions'
 import { getAllTransactions } from '../actions/transactions-actions'
 import { setHeadersApi } from '../api/set-headers-api'
-import BottomBar from '../components/BottomBar/BottomBar'
 import Sidebar from '../components/Sidebar/Sidebar'
 import Content from './Content'
 
@@ -56,8 +55,8 @@ class Home extends Component<IProps, IState> {
           </Container>
         ) : (
           <PhoneContainer>
+            <Sidebar />
             <Content />
-            <BottomBar />
           </PhoneContainer>
         )}
       </Router>
@@ -78,8 +77,7 @@ class Home extends Component<IProps, IState> {
 const PhoneContainer = styled.div`
   display: grid;
   height: 100vh;
-  overflow: hidden;
-  grid-template-rows: 1fr 40px;
+  grid-template-rows: 2rem 1fr;
 `
 const Container = styled.div`
   display: grid;
