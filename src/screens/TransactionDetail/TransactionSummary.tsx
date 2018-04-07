@@ -2,7 +2,6 @@ import moment from 'moment'
 import * as React from 'react'
 import styled from 'styled-components'
 import { ITransaction } from '../../api/transaction-api'
-import Card from '../../components/Card'
 import { graphite, positiveGreen } from '../../styles/colors'
 import PhoneCell from '../Customers/PhoneCell'
 import CompletedTimestamp from './CompletedTimestamp'
@@ -22,56 +21,54 @@ const TransactionSummary: React.SFC<IProps> = props => {
   } = props.transaction
 
   return (
-    <Card>
-      <SummaryContainer>
-        <div />
-        <div />
-        <div />
-        <Customer>{customer.name}</Customer>
-        <Amount>
-          {amount.toLocaleString('en-EN', {
-            currency: 'INR',
-            style: 'currency',
-          })}
-        </Amount>
-        <Beneficiary>{beneficiary.name}</Beneficiary>
-        <div />
-        <TransactionDetailLine splits={props.transaction.transactionDetails} />
-        <div />
-        <PhoneCell
-          style={{
-            alignItems: 'top',
-            fontSize: '1.2rem',
-            justifyContent: 'flex-end',
-            padding: '0 0.8rem',
-          }}
-          phone={customer.phone}
-        />
-        <div />
-        <PhoneCell
-          style={{
-            alignItems: 'top',
-            fontSize: '1.2rem',
-            padding: '0 0.8rem',
-          }}
-          phone={beneficiary.phone}
-        />
-        <TimeContainer style={{ alignItems: 'flex-end' }}>
-          <TimeLabel>Created</TimeLabel>
-          <span>{moment(createTimestamp).format('lll')}</span>
-        </TimeContainer>
-        <Commission title="Commission">
-          {commission.toLocaleString('en-EN', {
-            currency: 'INR',
-            style: 'currency',
-          })}
-        </Commission>
-        <TimeContainer style={{ justifyContent: 'flex-start' }}>
-          <TimeLabel>Completed</TimeLabel>
-          <CompletedTimestamp splits={props.transaction.transactionDetails} />
-        </TimeContainer>
-      </SummaryContainer>
-    </Card>
+    <SummaryContainer>
+      <div />
+      <div />
+      <div />
+      <Customer>{customer.name}</Customer>
+      <Amount>
+        {amount.toLocaleString('en-EN', {
+          currency: 'INR',
+          style: 'currency',
+        })}
+      </Amount>
+      <Beneficiary>{beneficiary.name}</Beneficiary>
+      <div />
+      <TransactionDetailLine splits={props.transaction.transactionDetails} />
+      <div />
+      <PhoneCell
+        style={{
+          alignItems: 'top',
+          fontSize: '1.2rem',
+          justifyContent: 'flex-end',
+          padding: '0 0.8rem',
+        }}
+        phone={customer.phone}
+      />
+      <div />
+      <PhoneCell
+        style={{
+          alignItems: 'top',
+          fontSize: '1.2rem',
+          padding: '0 0.8rem',
+        }}
+        phone={beneficiary.phone}
+      />
+      <TimeContainer style={{ alignItems: 'flex-end' }}>
+        <TimeLabel>Created</TimeLabel>
+        <span>{moment(createTimestamp).format('lll')}</span>
+      </TimeContainer>
+      <Commission title="Commission">
+        {commission.toLocaleString('en-EN', {
+          currency: 'INR',
+          style: 'currency',
+        })}
+      </Commission>
+      <TimeContainer style={{ justifyContent: 'flex-start' }}>
+        <TimeLabel>Completed</TimeLabel>
+        <CompletedTimestamp splits={props.transaction.transactionDetails} />
+      </TimeContainer>
+    </SummaryContainer>
   )
 }
 
