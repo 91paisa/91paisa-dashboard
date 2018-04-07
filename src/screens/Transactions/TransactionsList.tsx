@@ -105,7 +105,7 @@ class TransactionsList extends Component<IProps, {}> {
 
   private handleRowClick = ({ rowData }: any) => {
     const nav = this.props.history
-    nav.push(nav.location.pathname + '/' + rowData.id)
+    nav.push(`/transactions/${rowData.id}/`)
   }
 
   private rowStyler = ({ index }: any) => {
