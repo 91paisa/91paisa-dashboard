@@ -84,7 +84,7 @@ const PhoneContainer = styled.div`
 const Container = styled.div`
   display: grid;
   height: 100vh;
-  grid-template-columns: 15rem 1fr;
+  grid-template-rows: 3rem 1fr;
 `
 const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
