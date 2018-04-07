@@ -73,7 +73,7 @@ class TransactionsList extends Component<IProps, {}> {
             />
             <Column
               label="Status"
-              width={200}
+              width={500}
               dataKey="amount"
               cellRenderer={this.handleStatus}
             />

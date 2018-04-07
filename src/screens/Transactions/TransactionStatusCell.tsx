@@ -1,25 +1,25 @@
-import * as React from 'react'
-import {
-  ISplitTransaction,
-  splitTransactionStatus,
-} from '../../api/transaction-api'
+import { default as React, Fragment } from 'react'
+import { ISplitTransaction } from '../../api/transaction-api'
+import Space, { SpaceEnum } from '../../components/Space'
+import SplitStatus from '../TransactionDetail/SplitStatus'
 
 interface IProps {
   splits: ISplitTransaction[]
 }
 
 const TransactionStatusCell: React.SFC<IProps> = props => {
-  const splitTransactionStatuses: string[] = props.splits.map(
-    tx => splitTransactionStatus[tx.status],
-  )
-  const statuses = Array.from(new Set(splitTransactionStatuses))
-
   return (
-    <div style={{ display: 'flex' }}>
-      {statuses.map(status => (
-        <p key={status} style={{ paddingRight: '1rem' }}>
-          {normalizeSplitTransactionStatus(status)}
-        </p>
+    <div
+      style={{
+        display: 'flex',
+        width: '100%',
+      }}
+    >
+      {props.splits.map((transaction: ISplitTransaction) => (
+        <Fragment>
+          <SplitStatus status={transaction.status} />
+          <Space width={SpaceEnum.s} />
+        </Fragment>
       ))}
     </div>
   )

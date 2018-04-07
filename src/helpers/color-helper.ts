@@ -1,9 +1,12 @@
 import { customerStatus } from '../api/customer-api'
+import { splitTransactionStatus } from '../api/transaction-api'
 import {
   alertPending,
   alertRed,
   dark,
+  fog,
   grey,
+  identity,
   positiveGreen,
 } from '../styles/colors'
 
@@ -21,4 +24,29 @@ export const getColorBasedOnCustomerStatus = (status: customerStatus) => {
     return alertPending
   }
   return dark
+}
+
+export const getSplitTransactionColor = (
+  status: splitTransactionStatus,
+): string => {
+  switch (status) {
+    case splitTransactionStatus.didNotTry:
+      return fog
+    case splitTransactionStatus.hold:
+    case splitTransactionStatus.commit:
+    case splitTransactionStatus.initiated:
+    case splitTransactionStatus.processing:
+      return alertPending
+    case splitTransactionStatus.holdDeclined:
+    case splitTransactionStatus.commitDeclined:
+    case splitTransactionStatus.failure:
+      return alertRed
+
+    case splitTransactionStatus.success:
+      return positiveGreen
+
+    case splitTransactionStatus.refundPending:
+    case splitTransactionStatus.refundSuccess:
+      return identity
+  }
 }
