@@ -1,27 +1,29 @@
 import styled from 'styled-components'
-import { alertRed, positiveGreen } from '../../styles/colors'
+import { alertRed, positiveGreen, white } from '../../styles/colors'
 
 const CommonButton = styled.a`
   display: inline-block;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  padding: 0.2rem 1.3rem;
+  border-radius: 9999px;
   border: 2px solid;
-  font-size: 1rem;
+  font-size: 100%;
   text-transform: capitalize;
   font-weight: 600;
   cursor: pointer;
   text-align: center;
   user-select: none;
-  letter-spacing: 0.12rem;
+  letter-spacing: 0.09rem;
   min-width: 7rem;
+  opacity: 0.88;
   &:hover {
-    transform: translateY(-1px);
+    opacity: 1;
   }
 `
 
 export const ApproveButton = CommonButton.extend`
+  background-color: ${positiveGreen};
+  color: ${white};
   border-color: ${positiveGreen};
-  color: ${positiveGreen};
 `
 export const RejectButton = CommonButton.extend`
   border-color: ${alertRed};
