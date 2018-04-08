@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { beneficiaryStatus, IBeneficiary } from '../../../api/customer-api'
+import Space, { SpaceEnum } from '../../../components/Space'
 import { alertRed, positiveGreen } from '../../../styles/colors'
 import PhoneCell from '../../Customers/PhoneCell'
 
@@ -18,6 +19,7 @@ const BeneficiaryItem: React.SFC<IProps> = props => (
       fontSize={{ fontSize: '1.4rem' }}
       phone={props.beneficiary.phone}
     />
+    <Space height={SpaceEnum.xs} />
     <Name>{props.beneficiary.name}</Name>
     <AccountData>
       {getSpacedAccount(props.beneficiary.account.toString())}
@@ -60,11 +62,8 @@ const Container = styled.div`
   border-radius: 0.5rem;
   border-color: ${(props: IContainerProps) =>
     props.status === beneficiaryStatus.verified ? positiveGreen : alertRed};
-  border-width: 1px;
+  border-width: 2px;
   border-style: solid;
-  &:hover {
-    box-shadow: inset 0 2px 4px hsla(0, 0%, 0%, 0.05);
-  }
 `
 
 export default BeneficiaryItem

@@ -1,6 +1,6 @@
 import { default as React } from 'react'
 import styled from 'styled-components'
-import { IBeneficiary } from '../../../api/customer-api'
+import { beneficiaryStatus, IBeneficiary } from '../../../api/customer-api'
 import Card from '../../../components/Card'
 import { grey } from '../../../styles/colors'
 import BeneficiaryItem from './BeneficiaryItem'
@@ -9,13 +9,13 @@ interface IProps {
   beneficiaries: IBeneficiary[]
 }
 
-const BeneficiariesList: React.SFC<IProps> = props => {
+const BeneficiariesList: React.SFC<IProps> = ({ beneficiaries }: IProps) => {
   return (
     <Card>
       <Title>Beneficiaries</Title>
       <FlexContainer>
-        {props.beneficiaries && props.beneficiaries.length ? (
-          props.beneficiaries.map(beneficiary => (
+        {beneficiaries && beneficiaries.length ? (
+          getSortedBeneficiaries(beneficiaries).map(beneficiary => (
             <BeneficiaryItem beneficiary={beneficiary} key={beneficiary.id} />
           ))
         ) : (
@@ -24,6 +24,18 @@ const BeneficiariesList: React.SFC<IProps> = props => {
       </FlexContainer>
     </Card>
   )
+}
+
+const getSortedBeneficiaries = (
+  beneficiaries: IBeneficiary[],
+): IBeneficiary[] => {
+  const verifiedBeneficiaries = beneficiaries.filter(
+    b => b.status === beneficiaryStatus.verified,
+  )
+  const unverifiedBeneficiaries = beneficiaries.filter(
+    b => b.status === beneficiaryStatus.unverified,
+  )
+  return verifiedBeneficiaries.concat(unverifiedBeneficiaries)
 }
 
 const EmptyView = () => <Empty>No beneficiary added</Empty>
