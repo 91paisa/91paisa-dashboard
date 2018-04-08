@@ -8,7 +8,7 @@ const Card = styled.div`
   background: ${white};
   flex-direction: column;
   padding-bottom: 1rem;
-  border-radius: 4px;
+  border-radius: 0.5rem;
   &:hover {
     box-shadow: 0 4px 8px hsla(0, 0%, 0%, 0.1);
   }

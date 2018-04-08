@@ -15,7 +15,7 @@ const Container = styled.div`
   display: flex;
   width: 70%;
   height: 3rem;
-  border-radius: 4px;
+  border-radius: 0.5rem;
   box-shadow: 0 2px 3px 0 hsla(0, 0%, 0%, 0.2);
   //box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
   transition-duration: 300ms;
@@ -33,7 +33,7 @@ const Input = styled.input`
   color: ${dark};
   width: 100%;
   height: 100%;
-  border-radius: 4px;
+  border-radius: 0.5rem;
   outline: none;
   font-size: 1rem;
   border: none;

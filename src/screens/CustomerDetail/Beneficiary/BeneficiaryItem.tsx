@@ -57,7 +57,7 @@ const Container = styled.div`
   display: inline;
   padding: 1rem;
   margin: 1rem 0 0 1rem;
-  border-radius: 4px;
+  border-radius: 0.5rem;
   border-color: ${(props: IContainerProps) =>
     props.status === beneficiaryStatus.verified ? positiveGreen : alertRed};
   border-width: 1px;

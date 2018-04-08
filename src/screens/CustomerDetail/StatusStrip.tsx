@@ -11,7 +11,7 @@ const StatusStrip: React.SFC<IProps> = props => {
     <div
       style={{
         background: getColorBasedOnCustomerStatus(props.status),
-        borderRadius: '4px 4px 0 0',
+        borderRadius: '0.5rem 0.5rem 0 0',
         height: '0.4rem',
         marginBottom: '0.8rem',
       }}
