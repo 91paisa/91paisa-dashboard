@@ -14,11 +14,13 @@ const SplitStatus: React.SFC<IProps> = ({ status }: IProps) => (
   </Container>
 )
 
-const Container: any = styled.span`
-  padding: 0.2rem 0.4rem;
+const Container: any = styled.p`
+  padding: 0.1rem 0.7rem;
   background: ${(props: any) => getSplitTransactionColor(props.status)};
   border-radius: 0.5rem;
+  display: inline;
   color: ${white};
+  font-size: 0.9rem;
   font-style: italic;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 `

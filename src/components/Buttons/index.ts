@@ -15,6 +15,7 @@ const CommonButton = styled.a`
   letter-spacing: 0.09rem;
   min-width: 7rem;
   opacity: 0.88;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
   &:hover {
     opacity: 1;
   }
@@ -24,6 +25,7 @@ export const ApproveButton = CommonButton.extend`
   background-color: ${positiveGreen};
   color: ${white};
   border-color: ${positiveGreen};
+  
 `
 export const RejectButton = CommonButton.extend`
   border-color: ${alertRed};

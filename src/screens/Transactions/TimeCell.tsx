@@ -1,16 +1,18 @@
 import moment from 'moment'
 import * as React from 'react'
 import styled from 'styled-components'
+import Space, { SpaceEnum } from '../../components/Space'
 
 interface IProps {
   time: string
+  space?: SpaceEnum
 }
 
-const TimeCell: React.SFC<IProps> = props => (
+const TimeCell: React.SFC<IProps> = ({ time, space }: IProps) => (
   <Container>
-    <p>{moment(props.time).format('LT')}</p>
-    <div style={{ padding: '0.3rem' }} />
-    <p>{moment(props.time).format('DD/MM/YYYY')}</p>
+    <p>{moment(time).format('LT')}</p>
+    <Space width={space} />
+    <p>{moment(time).format('DD/MM/YYYY')}</p>
   </Container>
 )
 
