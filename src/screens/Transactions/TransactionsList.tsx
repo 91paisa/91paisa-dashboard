@@ -90,14 +90,17 @@ class TransactionsList extends Component<IProps, {}> {
   private handleCustomerCell = ({ rowData }: any) => (
     <UserCell data={rowData.customer} />
   )
+
   private handleBeneficiaryCell = ({ rowData }: any) => (
     <UserCell data={rowData.beneficiary} />
   )
+
   private handleCreatedTimeStamp = ({ rowData }: any) => (
     <TimeCell time={rowData.createdTimestamp} />
   )
+
   private handleUpdatedTimeStamp = ({ rowData }: any) => (
-    <TimeCell time={rowData.updatedTimestamp} />
+    <TimeCell time={rowData.updateTimestamp} />
   )
   private handleStatus = ({ rowData }: any) => (
     <TransactionStatusCell splits={rowData.transactionDetails} />

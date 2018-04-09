@@ -15,7 +15,7 @@ const TransactionSummary: React.SFC<IProps> = props => {
   const {
     customer,
     beneficiary,
-    createTimestamp,
+    createdTimestamp,
     commission,
     amount,
   } = props.transaction
@@ -56,7 +56,7 @@ const TransactionSummary: React.SFC<IProps> = props => {
       />
       <TimeContainer style={{ alignItems: 'flex-end' }}>
         <TimeLabel>Created</TimeLabel>
-        <span>{moment(createTimestamp).format('lll')}</span>
+        <span>{moment(createdTimestamp).format('lll')}</span>
       </TimeContainer>
       <Commission title="Commission">
         {commission.toLocaleString('en-EN', {

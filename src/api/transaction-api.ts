@@ -54,7 +54,7 @@ export interface ITransaction {
     name: string
     phone: string
   }
-  createTimestamp: string
+  createdTimestamp: string
   updatedTimestamp: string
   transactionDetails?: ISplitTransaction[]
 }
@@ -80,7 +80,7 @@ export const getAllTransactionsAPI = (
           phone: _.beneficiary_phone,
         },
         commission: _.commission,
-        createTimestamp: _.created_at,
+        createdTimestamp: _.created_at,
         customer: {
           name: _.customer_name,
           phone: _.customer_phone,
