@@ -6,10 +6,11 @@ import Space, { SpaceEnum } from '../../components/Space'
 interface IProps {
   time: string
   space?: SpaceEnum
+  style?: any
 }
 
-const TimeCell: React.SFC<IProps> = ({ time, space }: IProps) => (
-  <Container>
+const TimeCell: React.SFC<IProps> = ({ time, space, style }: IProps) => (
+  <Container style={style}>
     <p>{moment(time).format('LT')}</p>
     <Space width={space} />
     <p>{moment(time).format('DD/MM/YYYY')}</p>

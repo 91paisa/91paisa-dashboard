@@ -22,8 +22,10 @@
     "build:beta": "REACT_APP_BASE_URL=beta react-scripts-ts build",
     "build:prod": "REACT_APP_BASE_URL=prod react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "deploy:release": "git push origin release && git push server release",
-    "deploy:production": "git push origin production && git push server production",
+    "deploy:release":
+      "git push origin release && git push server release && git checkout master",
+    "deploy:production":
+      "git push origin production && git push server production && git checkout master",
     "eject": "react-scripts-ts eject",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
@@ -52,10 +54,5 @@
     "ts-loader": "^3.5.0",
     "typescript": "^2.7.2"
   },
-  "moduleFileExtensions": [
-    "ts",
-    "tsx",
-    "js",
-    "json"
-  ]
+  "moduleFileExtensions": ["ts", "tsx", "js", "json"]
 }

@@ -1,9 +1,10 @@
-import moment from 'moment'
 import * as React from 'react'
 import styled from 'styled-components'
 import { ITransaction } from '../../api/transaction-api'
 import { graphite, positiveGreen } from '../../styles/colors'
+import { phone } from '../../styles/screenSize'
 import PhoneCell from '../Customers/PhoneCell'
+import TimeCell from '../Transactions/TimeCell'
 import CompletedTimestamp from './CompletedTimestamp'
 import TransactionDetailLine from './TransactionDetailLine'
 
@@ -29,6 +30,8 @@ const TransactionSummary: React.SFC<IProps> = props => {
       <Amount>
         {amount.toLocaleString('en-EN', {
           currency: 'INR',
+          maximumFractionDigits: 0,
+          minimumFractionDigits: 0,
           style: 'currency',
         })}
       </Amount>
@@ -39,7 +42,7 @@ const TransactionSummary: React.SFC<IProps> = props => {
       <PhoneCell
         style={{
           alignItems: 'top',
-          fontSize: '1.2rem',
+          fontSize: '1rem',
           justifyContent: 'flex-end',
           padding: '0 0.8rem',
         }}
@@ -49,14 +52,14 @@ const TransactionSummary: React.SFC<IProps> = props => {
       <PhoneCell
         style={{
           alignItems: 'top',
-          fontSize: '1.2rem',
+          fontSize: '1rem',
           padding: '0 0.8rem',
         }}
         phone={beneficiary.phone}
       />
       <TimeContainer style={{ alignItems: 'flex-end' }}>
         <TimeLabel>Created</TimeLabel>
-        <span>{moment(createdTimestamp).format('lll')}</span>
+        <TimeCell time={createdTimestamp} style={{ textAlign: 'right' }} />
       </TimeContainer>
       <Commission title="Commission">
         {commission.toLocaleString('en-EN', {
@@ -111,8 +114,12 @@ const SummaryContainer = styled.div`
   margin: 1rem auto 0 auto;
   grid-gap: 0.1rem;
   max-width: 60rem;
-  grid-template-rows: 0fr 1fr 0.2rem 1fr 0.5fr;
+  grid-template-rows: 0 1fr 0.2rem 1fr 0.5fr;
   grid-template-columns: repeat(3, 1fr);
+  @media (${phone}) {
+    grid-template-rows: 0 1fr 0.2rem 1fr 0.5fr;
+    grid-template-columns: 1fr 0.5fr 1fr;
+  }
 `
 
 export default TransactionSummary

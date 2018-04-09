@@ -1,15 +1,15 @@
 import { Component, default as React } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { lightGrey, primary, white } from '../../styles/colors'
+import { primary, white } from '../../styles/colors'
 
-class Sidebar extends Component {
+class NavBar extends Component {
   public render() {
     return (
       <Container>
-        <StyledLink exact={true} to={`/`}>
-          Dashboard
-        </StyledLink>
+        <LogoNavLink exact={true} to={`/`}>
+          91P
+        </LogoNavLink>
         <StyledLink to={`/customers`}>Customers</StyledLink>
         <StyledLink to={`/transactions`}>Transactions</StyledLink>
         <StyledLink to={`/settings`}>Settings</StyledLink>
@@ -19,9 +19,8 @@ class Sidebar extends Component {
 }
 
 const Container = styled.div`
-  display: flex;
   background: ${primary};
-  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.5);
+  display: flex;
 `
 
 const active = 'active'
@@ -29,19 +28,29 @@ const StyledLink = styled(NavLink)`
   list-style-type: none;
   color: ${white};
   display: block;
-  opacity: 0.7;
+  opacity: 0.5;
+  width: 8rem;
   line-height: 2;
-  padding: 0 1.5rem;
-  margin: 0.6rem 0.5rem;
+  text-align: center;
   font-size: 1rem;
-  font-weight: 500;
+  margin: auto 0;
+  font-weight: 600;
   text-decoration: none;
   &.${active} {
     opacity: 1;
-    border-bottom: solid 4px ${white};
   }
   &:hover {
-    border-bottom: solid 4px ${lightGrey};
+    opacity: 0.85;
   }
 `
-export default Sidebar
+
+const LogoNavLink = styled(NavLink)`
+  color: ${white};
+  font-family: 'American Typewriter';
+  font-weight: 800;
+  text-decoration: none;
+  padding: 0.5rem;
+  font-size: 1.4rem;
+  margin: auto 2rem auto 0.5rem;
+`
+export default NavBar

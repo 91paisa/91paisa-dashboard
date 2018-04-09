@@ -10,7 +10,7 @@ interface IProps {
 
 const PhoneCell: React.SFC<IProps> = props => (
   <div style={{ display: 'flex', alignItems: 'flex-end', ...props.style }}>
-    <CountryCode style={{ ...props.fontSize }}>+91</CountryCode>
+    <CountryCode style={{ ...props.fontSize }}>+91 </CountryCode>
     <Phone style={{ ...props.fontSize }}> {getSpacedPhone(props.phone)}</Phone>
   </div>
 )

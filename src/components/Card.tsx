@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import { white } from '../styles/colors'
+import { fog, white } from '../styles/colors'
+import { phone } from '../styles/screenSize'
 
 const Card = styled.div`
   box-shadow: 0 2px 4px hsla(0, 0%, 0%, 0.2);
@@ -9,10 +10,15 @@ const Card = styled.div`
   flex-direction: column;
   padding-bottom: 1rem;
   border-radius: 0.5rem;
+  border: none;
   &:hover {
     box-shadow: 0 4px 8px hsla(0, 0%, 0%, 0.1);
   }
   transition-duration: 300ms;
+  @media (${phone}) {
+    box-shadow: none;
+    border: 1px solid ${fog};
+  }
 `
 
 export default Card

@@ -7,7 +7,8 @@ import { getEkoBalance, getNodalBalance } from '../actions/balances-actions'
 import { getAllCustomers } from '../actions/customer-actions'
 import { getAllTransactions } from '../actions/transactions-actions'
 import { setHeadersApi } from '../api/set-headers-api'
-import Sidebar from '../components/Sidebar/Sidebar'
+import BottomBar from '../components/BottomBar/BottomBar'
+import NavBar from '../components/Sidebar/NavBar'
 import Content from './Content'
 
 interface IProps {
@@ -50,13 +51,15 @@ class Home extends Component<IProps, IState> {
       <Router>
         {this.state.width > 400 ? (
           <Container>
-            <Sidebar />
+            <NavBar />
             <Content />
           </Container>
         ) : (
           <PhoneContainer>
-            <Sidebar />
-            <Content />
+            <div style={{ marginBottom: '3.5rem' }}>
+              <Content />
+            </div>
+            <BottomBar />
           </PhoneContainer>
         )}
       </Router>
@@ -75,14 +78,12 @@ class Home extends Component<IProps, IState> {
 }
 
 const PhoneContainer = styled.div`
-  display: grid;
-  height: 100vh;
-  grid-template-rows: 2rem 1fr;
+  display: block;
 `
 const Container = styled.div`
   display: grid;
   height: 100vh;
-  grid-template-rows: 3rem 1fr;
+  grid-template-rows: 3.5rem 1fr;
 `
 const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
