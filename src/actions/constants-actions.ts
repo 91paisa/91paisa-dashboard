@@ -15,4 +15,5 @@ export enum balanceActions {
 
 export enum transactionActions {
   getAll = 'TRANSACTIONS_GET_ALL',
+  update = 'UPDATE_ACTION',
 }

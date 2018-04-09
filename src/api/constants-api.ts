@@ -21,6 +21,7 @@ export const CustomerPath = {
 
 export const TransactionPath = {
   all: `${basePath()}transaction/all/`,
+  updateAction: `${basePath()}transaction/action_update/`,
 }
 
 export const AuthPath = {

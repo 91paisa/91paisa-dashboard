@@ -15,8 +15,8 @@ const TransactionStatusCell: React.SFC<IProps> = props => {
         width: '100%',
       }}
     >
-      {props.splits.map((transaction: ISplitTransaction) => (
-        <Fragment>
+      {props.splits.map((transaction: ISplitTransaction, index) => (
+        <Fragment key={index}>
           <SplitStatus status={transaction.status} />
           <Space width={SpaceEnum.s} />
         </Fragment>

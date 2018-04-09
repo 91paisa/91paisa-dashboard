@@ -23,6 +23,14 @@ export enum splitTransactionStatus {
   refundSuccess,
 }
 
+export enum transactionActionEnum {
+  updating = -1,
+  notAvailable = 0,
+  available = 1,
+  approve = 2,
+  reject = 3,
+}
+
 export interface ISplitTransaction {
   id: string
   amount: number
@@ -32,6 +40,7 @@ export interface ISplitTransaction {
 }
 
 export interface ITransaction {
+  actionStatus: transactionActionEnum
   id: string
   type: transactionType
   mode: transactionMode
@@ -63,7 +72,8 @@ export const getAllTransactionsAPI = (
   return axios
     .post(TransactionPath.all, getAllTransactionsFormData(limit, offset))
     .then(res => {
-      return res.data.data.map((_: any) => ({
+      return res.data.data.map((_: any): ITransaction => ({
+        actionStatus: _.action_status,
         amount: _.amount,
         beneficiary: {
           name: _.beneficiary_name,
@@ -90,3 +100,25 @@ export const getAllTransactionsAPI = (
     })
     .catch(() => [])
 }
+
+const transactionActionFormData = (
+  transactionId: string,
+  action: transactionActionEnum,
+): FormData => {
+  const data = new FormData()
+  data.append('transaction', transactionId)
+  data.append('status', action.valueOf().toString())
+  return data
+}
+
+export const transactionActionAPI = (
+  transactionId: string,
+  action: transactionActionEnum,
+) =>
+  axios
+    .post(
+      TransactionPath.updateAction,
+      transactionActionFormData(transactionId, action),
+    )
+    .then(() => true)
+    .catch(() => false)

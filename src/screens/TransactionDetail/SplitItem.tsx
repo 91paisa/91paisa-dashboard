@@ -5,7 +5,7 @@ import {
   splitTransactionStatus,
 } from '../../api/transaction-api'
 import Space, { SpaceEnum } from '../../components/Space'
-import { alertPending, positiveGreen } from '../../styles/colors'
+import { getSplitTransactionColor } from '../../helpers/color-helper'
 import AmountCell from '../Transactions/AmountCell'
 import TimeCell from '../Transactions/TimeCell'
 import SplitStatus from './SplitStatus'
@@ -22,7 +22,7 @@ const SplitItem: React.SFC<IProps> = props => (
   <Container status={props.split.status}>
     <div style={{ marginRight: '2rem' }}>
       <AmountCell style={{ fontSize: '1.3rem' }} amount={props.split.amount} />
-      <Space height={SpaceEnum.xxs}/>
+      <Space height={SpaceEnum.xxs} />
       <TimeCell time={props.split.updatedTimestamp} />
     </div>
     <div style={{ textAlign: 'right', display: 'block' }}>
@@ -38,9 +38,7 @@ const Container = styled.div`
   margin: 1rem 0 0 1rem;
   border-radius: 0.5rem;
   border-color: ${(props: IContainerProps) =>
-    props.status === splitTransactionStatus.success
-      ? positiveGreen
-      : alertPending};
+    getSplitTransactionColor(props.status)};
   border-width: 2px;
   border-style: solid;
 `
