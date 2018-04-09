@@ -87,7 +87,7 @@ class TransactionActionButton extends Component<IProps> {
     const confirmation = confirm(
       'Are you sure you want to ' +
         transactionActionEnum[action] +
-        'this transaction?',
+        ' this transaction?',
     )
     if (confirmation) {
       // tslint:disable-next-line
