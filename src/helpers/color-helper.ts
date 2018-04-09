@@ -40,6 +40,7 @@ export const getSplitTransactionColor = (
     case splitTransactionStatus.holdDeclined:
     case splitTransactionStatus.commitDeclined:
     case splitTransactionStatus.failure:
+    case splitTransactionStatus.cancel:
       return alertRed
 
     case splitTransactionStatus.success:

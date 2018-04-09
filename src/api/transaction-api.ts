@@ -10,17 +10,18 @@ export enum transactionMode {
 }
 
 export enum splitTransactionStatus {
-  didNotTry,
-  hold,
-  commit,
-  holdDeclined,
-  commitDeclined,
-  initiated,
-  processing,
-  success,
-  failure,
-  refundPending,
-  refundSuccess,
+  didNotTry = 0,
+  hold = 1,
+  commit = 2,
+  holdDeclined = 3,
+  commitDeclined = 4,
+  initiated = 5,
+  processing = 6,
+  success = 7,
+  failure = 8,
+  refundPending = 9,
+  refundSuccess = 10,
+  cancel = 11,
 }
 
 export enum transactionActionEnum {
