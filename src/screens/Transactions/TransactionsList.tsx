@@ -2,7 +2,6 @@ import { Component, default as React } from 'react'
 import { RouteComponentProps } from 'react-router'
 import { AutoSizer, Column } from 'react-virtualized'
 import { ITransaction } from '../../api/transaction-api'
-import Card from '../../components/Card'
 import { lightGrey } from '../../styles/colors'
 import {
   evenRow,
@@ -23,66 +22,64 @@ interface IProps extends RouteComponentProps<IProps> {
 class TransactionsList extends Component<IProps, {}> {
   public render() {
     return (
-      <Card style={{ height: '66vh' }}>
-        <AutoSizer>
-          {({ width, height }: any) => (
-            <TableContainer
-              style={{
-                background: `${lightGrey}`,
-                borderRadius: 0,
-              }}
-              width={width}
-              height={height}
-              headerHeight={40}
-              rowHeight={88}
-              rowStyle={this.rowStyler}
-              onRowClick={this.handleRowClick}
-              overscanColumnCount={3}
-              rowCount={this.props.transactions.length}
-              rowGetter={({ index }: any) => this.props.transactions[index]}
-            >
+      <AutoSizer style={{ width: '100%' }}>
+        {({ width, height }: any) => (
+          <TableContainer
+            style={{
+              background: `${lightGrey}`,
+              borderRadius: 0,
+            }}
+            width={width}
+            height={height}
+            headerHeight={40}
+            rowHeight={88}
+            rowStyle={this.rowStyler}
+            onRowClick={this.handleRowClick}
+            overscanColumnCount={3}
+            rowCount={this.props.transactions.length}
+            rowGetter={({ index }: any) => this.props.transactions[index]}
+          >
+            <Column
+              label="Amount"
+              width={100}
+              dataKey="amount"
+              cellRenderer={this.handleAmountCell}
+            />
+            {!this.props.hideCustomerColumn && (
               <Column
-                label="Amount"
-                width={100}
-                dataKey="amount"
-                cellRenderer={this.handleAmountCell}
-              />
-              {!this.props.hideCustomerColumn && (
-                <Column
-                  label="Customer"
-                  width={140}
-                  dataKey="amount"
-                  cellRenderer={this.handleCustomerCell}
-                />
-              )}
-              <Column
-                label="Beneficiary"
+                label="Customer"
                 width={140}
                 dataKey="amount"
-                cellRenderer={this.handleBeneficiaryCell}
+                cellRenderer={this.handleCustomerCell}
               />
-              <Column
-                label="Created at"
-                width={140}
-                dataKey="amount"
-                cellRenderer={this.handleCreatedTimeStamp}
-              />
-              <Column
-                label="Updated at"
-                width={140}
-                dataKey="amount"
-                cellRenderer={this.handleUpdatedTimeStamp}
-              />
-              <Column
-                label="Status"
-                width={500}
-                dataKey="amount"
-                cellRenderer={this.handleStatus}
-              />
-            </TableContainer>
-          )}
-        </AutoSizer>
-      </Card>
+            )}
+            <Column
+              label="Beneficiary"
+              width={140}
+              dataKey="amount"
+              cellRenderer={this.handleBeneficiaryCell}
+            />
+            <Column
+              label="Created at"
+              width={140}
+              dataKey="amount"
+              cellRenderer={this.handleCreatedTimeStamp}
+            />
+            <Column
+              label="Updated at"
+              width={140}
+              dataKey="amount"
+              cellRenderer={this.handleUpdatedTimeStamp}
+            />
+            <Column
+              label="Status"
+              width={500}
+              dataKey="amount"
+              cellRenderer={this.handleStatus}
+            />
+          </TableContainer>
+        )}
+      </AutoSizer>
     )
   }
 

@@ -5,12 +5,10 @@ import { lightGrey, primary, white } from './colors'
 export const TableContainer = styled(Table as any)`
   outline: none;
   background: white;
-  box-shadow: 0 2px 4px hsla(0, 0%, 0%, 0.1);
 `
 
 export const headerRow = {
   background: primary,
-  boxShadow: '0 1px 2px hsla(0, 0%, 0%, 0.1)',
   color: white,
   letterSpacing: '2px',
 }

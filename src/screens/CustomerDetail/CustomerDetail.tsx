@@ -1,6 +1,7 @@
 import { Component, default as React, Fragment } from 'react'
 import styled from 'styled-components'
 import { ICustomer } from '../../api/customer-api'
+import Card from '../../components/Card'
 import BeneficiariesListContainer from './Beneficiary/BeneficiariesListContainer'
 import CustomerCard from './CustomerCard'
 import CustomerTransactionContainer from './CustomerTransactionsContainer'
@@ -22,7 +23,11 @@ class CustomerDetail extends Component<IProps, {}> {
               customerPhone={customer.phone}
               customerIndex={customerIndex}
             />
-            {customer.lastTransaction && <CustomerTransactionContainer />}
+            {customer.lastTransaction && (
+              <Card style={{ height: '64vh' }}>
+                <CustomerTransactionContainer />
+              </Card>
+            )}
           </Fragment>
         )}
       </Container>
