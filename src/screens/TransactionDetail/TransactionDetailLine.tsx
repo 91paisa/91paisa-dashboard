@@ -18,6 +18,9 @@ const TransactionDetailLine: React.SFC<IProps> = props => {
 }
 
 const getStatusColor = (splits: ISplitTransaction[]): string => {
+  if (!splits.length) {
+    return alertRed
+  }
   if (
     splits.filter(trx => trx.status !== splitTransactionStatus.success)
       .length === 0
