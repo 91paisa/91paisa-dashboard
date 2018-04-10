@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { dark, graphite } from '../../styles/colors'
+import { phone } from '../../styles/screenSize'
 
 interface IProps {
   phone: string
@@ -15,20 +16,23 @@ const PhoneCell: React.SFC<IProps> = props => (
   </div>
 )
 
-export function getSpacedPhone(phone: string): string {
+export function getSpacedPhone(phoneNumber: string): string {
   return (
-    phone.substring(0, 4) +
+    phoneNumber.substring(0, 4) +
     ' ' +
-    phone.substring(4, 7) +
+    phoneNumber.substring(4, 7) +
     ' ' +
-    phone.substring(7)
+    phoneNumber.substring(7)
   )
 }
 
 const CountryCode = styled.span`
   color: ${graphite};
   font-size: 1rem;
-  //padding-right: 4px;
+  padding-right: 4px;
+  @media (${phone}) {
+    padding-right: 2px;
+  }
 `
 
 const Phone = styled.span`

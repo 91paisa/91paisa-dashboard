@@ -2,6 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { ICustomer } from '../../api/customer-api'
 import Card from '../../components/Card'
+import Space, { SpaceEnum } from '../../components/Space'
 import { dark } from '../../styles/colors'
 import PhoneCell from '../Customers/PhoneCell'
 import StatusStrip from './StatusStrip'
@@ -18,8 +19,9 @@ const CustomerCard: React.SFC<IProps> = _ => {
     <Card>
       <StatusStrip status={_.customer.status} />
       <Name>{_.customer.name}</Name>
+      <Space height={SpaceEnum.m} />
       <PhoneCell
-        style={{ justifyContent: 'center' }}
+        style={{ justifyContent: 'center', fontSize: '1.4rem' }}
         phone={_.customer.phone}
       />
     </Card>

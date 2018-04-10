@@ -11,4 +11,8 @@ export const primary =
   process.env.REACT_APP_BASE_URL === 'prod' ? '#27B88F' : '#651FFF'
 export const primaryDark =
   process.env.REACT_APP_BASE_URL === 'prod' ? '#1a785c' : '#651FFF'
+export const primaryHover =
+  process.env.REACT_APP_BASE_URL === 'prod'
+    ? 'rgba(39,184,143,0.05)'
+    : 'rgba(101,31,255,0.05)'
 export const white = '#ffffff'

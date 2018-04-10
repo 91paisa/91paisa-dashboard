@@ -56,9 +56,7 @@ class Home extends Component<IProps, IState> {
           </Container>
         ) : (
           <PhoneContainer>
-            <div style={{ marginBottom: '3.5rem' }}>
-              <Content />
-            </div>
+            <Content />
             <BottomBar />
           </PhoneContainer>
         )}
@@ -78,11 +76,12 @@ class Home extends Component<IProps, IState> {
 }
 
 const PhoneContainer = styled.div`
-  display: block;
+  display: grid;
+  grid-template-rows: 1fr 3.5rem;
 `
 const Container = styled.div`
   display: grid;
-  height: 100vh;
+  height: 100%;
   grid-template-rows: 3.5rem 1fr;
 `
 const mapDispatchToProps = (dispatch: any) =>

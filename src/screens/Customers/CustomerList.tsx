@@ -1,136 +1,52 @@
 import { Component, default as React } from 'react'
 import { RouteComponentProps } from 'react-router'
-import { AutoSizer, Column } from 'react-virtualized'
+import { AutoSizer, List } from 'react-virtualized'
 import { ICustomer } from '../../api/customer-api'
-import {
-  evenRow,
-  headerRow,
-  oddRow,
-  TableContainer,
-} from '../../styles/table-styles'
-import LastTransactionCell from './LastTransactionCell'
-import PhoneCell from './PhoneCell'
-import StatusCircle from './StatusCircle'
+import { white } from '../../styles/colors'
+import CustomerListItem from './CustomerListItem'
 
 interface IProps extends RouteComponentProps<IProps> {
   customers: ICustomer[]
 }
 
 class CustomerList extends Component<IProps, {}> {
+  public componentDidMount() {
+    // tslint:disable-next-line
+    console.log(this.props.customers, 'hiii')
+  }
+
   public render() {
     return (
-      <div style={{ margin: '0 1%', height: '87vh' }}>
-        <AutoSizer style={{ width: '100%' }}>
-          {({ width, height }: any) => {
-            if (width >= 400) {
-              return this.desktopTable(width, height)
-            } else {
-              return this.phoneTable(width, height)
-            }
-          }}
+      <div style={{ width: '100%', height: '100%', background: white }}>
+        <AutoSizer>
+          {({ height, width }) => (
+            <List
+              height={height}
+              rowCount={this.props.customers.length}
+              rowHeight={76}
+              overscanColumnCount={3}
+              rowRenderer={this.rowRenderer}
+              width={width}
+            />
+          )}
         </AutoSizer>
       </div>
     )
   }
 
-  private phoneTable = (width: number, height: number) => {
-    return (
-      <TableContainer
-        width={width}
-        style={{
-          boxShadow: 'none',
-        }}
-        height={height}
-        headerHeight={0}
-        rowHeight={50}
-        rowStyle={this.rowStyler}
-        onRowClick={this.handleRowClick}
-        overscanColumnCount={5}
-        rowCount={this.props.customers.length}
-        rowGetter={({ index }: any) => this.props.customers[index]}
-      >
-        <Column
-          label="Status"
-          width={width / 7}
-          dataKey="mandateApproved"
-          cellRenderer={this.renderMandateCell}
-        />
-        <Column
-          label="Customer"
-          dataKey="status"
-          width={width - width / 7}
-          cellRenderer={this.renderCustomerDataCell}
-        />
-      </TableContainer>
-    )
-  }
-
-  private desktopTable = (width: number, height: number) => {
-    return (
-      <TableContainer
-        width={width}
-        height={height}
-        headerHeight={40}
-        rowHeight={60}
-        rowStyle={this.rowStyler}
-        onRowClick={this.handleRowClick}
-        overscanColumnCount={3}
-        rowCount={this.props.customers.length}
-        rowGetter={({ index }: any) => this.props.customers[index]}
-      >
-        <Column
-          label="Status"
-          width={100}
-          dataKey="mandateApproved"
-          cellRenderer={this.renderMandateCell}
-        />
-        <Column
-          label="Phone"
-          width={190}
-          dataKey="phone"
-          cellRenderer={this.renderPhoneCell}
-        />
-        <Column label="Name" width={300} dataKey="name" />
-        <Column
-          label="Last Transaction"
-          width={400}
-          dataKey="lastTransaction"
-          cellRenderer={this.renderLastTransactionCell}
-        />
-      </TableContainer>
-    )
-  }
-
-  private handleRowClick = ({ rowData }: any) => {
-    const nav = this.props.history
-    nav.push(nav.location.pathname + '/' + rowData.phone)
-  }
-
-  private renderMandateCell = ({ rowData }: any) => (
-    <StatusCircle status={rowData.status} />
+  private rowRenderer = ({
+    key,
+    index,
+    isScrolling,
+    isVisible,
+    style,
+  }: any) => (
+    <CustomerListItem
+      style={style}
+      customer={this.props.customers[index]}
+      key={key}
+    />
   )
-
-  private renderCustomerDataCell = ({ rowData }: any) => (
-    <div>
-      <p>{rowData.name}</p>
-      <PhoneCell phone={rowData.phone} />
-    </div>
-  )
-
-  private renderLastTransactionCell = ({ rowData }: any) => (
-    <LastTransactionCell lastTransaction={rowData.lastTransaction} />
-  )
-
-  private renderPhoneCell = ({ rowData }: any) => (
-    <PhoneCell phone={rowData.phone} />
-  )
-
-  private rowStyler = ({ index }: any) => {
-    if (index < 0) {
-      return headerRow
-    }
-    return index % 2 === 0 ? evenRow : oddRow
-  }
 }
 
 export default CustomerList
