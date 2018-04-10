@@ -36,7 +36,6 @@ const Container = styled.div`
 const PhoneContainer = styled.div`
   display: block;
   box-sizing: content-box;
-  padding-bottom: 3.5rem;
   height: 100vh;
   overflow: scroll;
   grid-template-columns: 20rem 1px 1fr;

@@ -76,12 +76,12 @@ class Home extends Component<IProps, IState> {
 }
 
 const PhoneContainer = styled.div`
-  display: grid;
-  grid-template-rows: 1fr 3.5rem;
+  display: block;
 `
 const Container = styled.div`
   display: grid;
-  height: 100%;
+  height: 100vh;
+  overflow: no-content;
   grid-template-rows: 3.5rem 1fr;
 `
 const mapDispatchToProps = (dispatch: any) =>

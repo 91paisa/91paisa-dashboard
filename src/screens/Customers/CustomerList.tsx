@@ -21,7 +21,7 @@ class CustomerList extends Component<IProps, {}> {
         <AutoSizer>
           {({ height, width }) => (
             <List
-              height={height}
+              height={height - 52} // ~3.5rem
               rowCount={this.props.customers.length}
               rowHeight={76}
               overscanColumnCount={3}
@@ -41,11 +41,9 @@ class CustomerList extends Component<IProps, {}> {
     isVisible,
     style,
   }: any) => (
-    <CustomerListItem
-      style={style}
-      customer={this.props.customers[index]}
-      key={key}
-    />
+    <div key={key}>
+      <CustomerListItem style={style} customer={this.props.customers[index]} />
+    </div>
   )
 }
 

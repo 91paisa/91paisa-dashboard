@@ -21,7 +21,7 @@ class BottomBar extends Component {
 }
 const OuterContainer = styled.div`
   display: block;
-  overflow: auto;
+  overflow: no-content;
   position: fixed;
   bottom: 0;
   left: 0;

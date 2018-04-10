@@ -9,16 +9,15 @@ import StatusCircle from './StatusCircle'
 interface IProps {
   customer: ICustomer
   style: any
-  key: any
 }
 class CustomerListItem extends React.Component<IProps> {
   public shouldComponentUpdate() {
     return false
   }
   public render() {
-    const { style, key, customer } = this.props
+    const { style, customer } = this.props
     return (
-      <Container style={style} key={key}>
+      <Container style={style}>
         <CustomerDetailLink to={`/customers/${customer.phone}`}>
           <StatusContainer>
             <StatusCircle status={customer.status} />
