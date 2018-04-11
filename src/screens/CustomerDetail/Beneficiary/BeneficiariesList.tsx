@@ -2,6 +2,7 @@ import { default as React } from 'react'
 import styled from 'styled-components'
 import { beneficiaryStatus, IBeneficiary } from '../../../api/customer-api'
 import Card from '../../../components/Card'
+import CardTitle from '../../../components/CardTitle'
 import { grey } from '../../../styles/colors'
 import BeneficiaryItem from './BeneficiaryItem'
 
@@ -12,7 +13,7 @@ interface IProps {
 const BeneficiariesList: React.SFC<IProps> = ({ beneficiaries }: IProps) => {
   return (
     <Card>
-      <Title>Beneficiaries</Title>
+      <CardTitle>Beneficiaries</CardTitle>
       <FlexContainer>
         {beneficiaries && beneficiaries.length ? (
           getSortedBeneficiaries(beneficiaries).map(beneficiary => (
@@ -47,10 +48,6 @@ const Empty = styled.p`
   justify-content: center;
   color: ${grey};
   font-weight: 600;
-`
-const Title = styled.p`
-  font-size: 1.3rem;
-  padding: 1rem 0 0 1rem;
 `
 const FlexContainer = styled.div`
   display: flex;

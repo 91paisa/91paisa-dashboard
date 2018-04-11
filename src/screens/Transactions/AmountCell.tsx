@@ -10,6 +10,8 @@ const AmountCell: React.SFC<IProps> = props => (
   <Container style={props.style}>
     {props.amount.toLocaleString('en-EN', {
       currency: 'INR',
+      maximumFractionDigits: 0,
+      minimumFractionDigits: 0,
       style: 'currency',
     })}
   </Container>

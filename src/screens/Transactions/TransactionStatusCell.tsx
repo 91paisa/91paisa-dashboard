@@ -4,7 +4,7 @@ import Space, { SpaceEnum } from '../../components/Space'
 import SplitStatus from '../TransactionDetail/SplitStatus'
 
 interface IProps {
-  splits: ISplitTransaction[]
+  splits: ISplitTransaction[] | undefined
 }
 
 const TransactionStatusCell: React.SFC<IProps> = props => {
@@ -15,12 +15,13 @@ const TransactionStatusCell: React.SFC<IProps> = props => {
         width: '100%',
       }}
     >
-      {props.splits.map((transaction: ISplitTransaction, index) => (
-        <Fragment key={index}>
-          <SplitStatus status={transaction.status} />
-          <Space width={SpaceEnum.s} />
-        </Fragment>
-      ))}
+      {props.splits &&
+        props.splits.map((transaction: ISplitTransaction, index) => (
+          <Fragment key={index}>
+            <SplitStatus status={transaction.status} />
+            <Space width={SpaceEnum.s} />
+          </Fragment>
+        ))}
     </div>
   )
 }
