@@ -2,6 +2,7 @@ import { default as React } from 'react'
 import styled from 'styled-components'
 import { ISplitTransaction } from '../../api/transaction-api'
 import Card from '../../components/Card'
+import CardTitle from '../../components/CardTitle'
 import { grey } from '../../styles/colors'
 import SplitItem from './SplitItem'
 
@@ -12,14 +13,14 @@ interface IProps {
 const SplitList: React.SFC<IProps> = props => {
   return (
     <Card>
-      <Title>Splits</Title>
-      <FlexContainer>
+      <CardTitle>Splits</CardTitle>
+      <GridContainer>
         {props.splits && props.splits.length ? (
           props.splits.map(trx => <SplitItem split={trx} key={trx.id} />)
         ) : (
           <EmptyView />
         )}
-      </FlexContainer>
+      </GridContainer>
     </Card>
   )
 }
@@ -34,12 +35,11 @@ const Empty = styled.p`
   color: ${grey};
   font-weight: 600;
 `
-const Title = styled.p`
-  font-size: 1.3rem;
-  padding: 1rem 0 0 1rem;
-`
-const FlexContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+
+const GridContainer = styled.div`
+  display: grid;
+  padding: 1rem 1rem 0 1rem;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(14.5rem, 1fr));
 `
 export default SplitList

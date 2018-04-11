@@ -14,7 +14,7 @@ const BeneficiariesList: React.SFC<IProps> = ({ beneficiaries }: IProps) => {
   return (
     <Card>
       <CardTitle>Beneficiaries</CardTitle>
-      <FlexContainer>
+      <GridContainer>
         {beneficiaries && beneficiaries.length ? (
           getSortedBeneficiaries(beneficiaries).map(beneficiary => (
             <BeneficiaryItem beneficiary={beneficiary} key={beneficiary.id} />
@@ -22,7 +22,7 @@ const BeneficiariesList: React.SFC<IProps> = ({ beneficiaries }: IProps) => {
         ) : (
           <EmptyView />
         )}
-      </FlexContainer>
+      </GridContainer>
     </Card>
   )
 }
@@ -49,8 +49,10 @@ const Empty = styled.p`
   color: ${grey};
   font-weight: 600;
 `
-const FlexContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+const GridContainer = styled.div`
+  display: grid;
+  padding: 1rem 1rem 0 1rem;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(14.5rem, 1fr));
 `
 export default BeneficiariesList

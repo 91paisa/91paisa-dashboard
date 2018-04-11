@@ -20,7 +20,7 @@ interface IContainerProps {
 
 const SplitItem: React.SFC<IProps> = props => (
   <Container status={props.split.status}>
-    <div style={{ marginRight: '2rem' }}>
+    <div>
       <AmountCell style={{ fontSize: '1.3rem' }} amount={props.split.amount} />
       <Space height={SpaceEnum.xxs} />
       <TimeCell time={props.split.updatedTimestamp} />
@@ -35,7 +35,7 @@ const SplitItem: React.SFC<IProps> = props => (
 const Container = styled.div`
   display: flex;
   padding: 1rem;
-  margin: 1rem 0 0 1rem;
+  justify-content: space-between;
   border-radius: 0.5rem;
   border-color: ${(props: IContainerProps) =>
     getSplitTransactionColor(props.status)};
