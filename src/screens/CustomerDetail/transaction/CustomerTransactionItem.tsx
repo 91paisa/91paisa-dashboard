@@ -50,7 +50,7 @@ const Container = styled(Link)`
   color: ${dark};
   grid-template-columns:
     minmax(100px, 0.5fr) minmax(140px, 0.7fr) minmax(100px, 0.5fr)
-    minmax(100px, 3fr);
+    minmax(100px, 2fr);
   height: 100%;
   @media (${phone}) {
     grid-template-columns: 0.6fr 1fr 0.5fr -1;
