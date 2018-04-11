@@ -19,13 +19,14 @@
   },
   "scripts": {
     "start": "REACT_APP_BASE_URL=local react-scripts-ts start",
+    "ssh:add":"ssh-add .ssh/91-paisa-dashboard.pem",
     "build:beta": "REACT_APP_BASE_URL=beta react-scripts-ts build",
     "build:prod": "REACT_APP_BASE_URL=prod react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "deploy:release":
-      "git push origin release && git push server release && git checkout master",
+      "ssh:add && git push origin release && git push server release && git checkout master",
     "deploy:production":
-      "git push origin production && git push server production && git checkout master",
+      "ssh:add && git push origin production && git push server production && git checkout master",
     "eject": "react-scripts-ts eject",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
