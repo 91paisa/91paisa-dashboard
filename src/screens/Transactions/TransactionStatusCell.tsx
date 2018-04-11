@@ -1,6 +1,10 @@
 import { default as React, Fragment } from 'react'
 import { ISplitTransaction } from '../../api/transaction-api'
 import Space, { SpaceEnum } from '../../components/Space'
+import {
+  getSplitsWithCount,
+  ISplitsWithCount,
+} from '../../helpers/transaction-helper'
 import SplitStatus from '../TransactionDetail/SplitStatus'
 
 interface IProps {
@@ -16,12 +20,17 @@ const TransactionStatusCell: React.SFC<IProps> = props => {
       }}
     >
       {props.splits &&
-        props.splits.map((transaction: ISplitTransaction, index) => (
-          <Fragment key={index}>
-            <SplitStatus status={transaction.status} />
-            <Space width={SpaceEnum.s} />
-          </Fragment>
-        ))}
+        getSplitsWithCount(props.splits).map(
+          (splitWithCount: ISplitsWithCount, index) => (
+            <Fragment key={index}>
+              <SplitStatus
+                status={splitWithCount.status}
+                count={splitWithCount.count}
+              />
+              <Space width={SpaceEnum.s} />
+            </Fragment>
+          ),
+        )}
     </div>
   )
 }

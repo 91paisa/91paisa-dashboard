@@ -2,6 +2,7 @@ import { Component, default as React } from 'react'
 import { RouteComponentProps } from 'react-router'
 import { AutoSizer, List } from 'react-virtualized'
 import { ICustomer } from '../../api/customer-api'
+import { remToPx } from '../../helpers/unit-helper'
 import { white } from '../../styles/colors'
 import CustomerListItem from './CustomerListItem'
 import Search from './Search'
@@ -11,11 +12,6 @@ interface IProps extends RouteComponentProps<IProps> {
 }
 
 class CustomerList extends Component<IProps, {}> {
-  public componentDidMount() {
-    // tslint:disable-next-line
-    console.log(this.props.customers, 'hiii')
-  }
-
   public render() {
     return (
       <div style={{ width: '100%', height: '100%', background: white }}>
@@ -23,9 +19,9 @@ class CustomerList extends Component<IProps, {}> {
         <AutoSizer>
           {({ height, width }) => (
             <List
-              height={height - 52} // ~3.5rem
+              height={height - remToPx(8)}
               rowCount={this.props.customers.length}
-              rowHeight={76}
+              rowHeight={remToPx(5.6)}
               overscanColumnCount={3}
               rowRenderer={this.rowRenderer}
               width={width}
