@@ -43,7 +43,7 @@ const EmptyView = () => <Empty>No beneficiary added</Empty>
 const Empty = styled.p`
   text-align: center;
   display: inline-block;
-  font-size: 2rem;
+  font-size: 1rem;
   padding: 1rem;
   justify-content: center;
   color: ${grey};

@@ -4,6 +4,7 @@ import { AutoSizer, List } from 'react-virtualized'
 import { ICustomer } from '../../api/customer-api'
 import { white } from '../../styles/colors'
 import CustomerListItem from './CustomerListItem'
+import Search from './Search'
 
 interface IProps extends RouteComponentProps<IProps> {
   customers: ICustomer[]
@@ -18,6 +19,7 @@ class CustomerList extends Component<IProps, {}> {
   public render() {
     return (
       <div style={{ width: '100%', height: '100%', background: white }}>
+        <Search />
         <AutoSizer>
           {({ height, width }) => (
             <List

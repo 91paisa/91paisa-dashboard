@@ -11,9 +11,6 @@ interface IProps {
   style: any
 }
 class CustomerListItem extends React.Component<IProps> {
-  public shouldComponentUpdate() {
-    return false
-  }
   public render() {
     const { style, customer } = this.props
     return (

@@ -14,6 +14,9 @@ export interface IReduxState {
   }
   customers: ICustomer[]
   transactions: ITransaction[]
+  search: {
+    customer: string
+  }
 }
 
 const state: IReduxState = {
@@ -34,6 +37,9 @@ const state: IReduxState = {
     },
   },
   customers: [],
+  search: {
+    customer: '',
+  },
   transactions: [],
 }
 export default state

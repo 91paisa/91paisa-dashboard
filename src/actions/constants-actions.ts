@@ -17,3 +17,7 @@ export enum transactionActions {
   getAll = 'TRANSACTIONS_GET_ALL',
   update = 'UPDATE_ACTION',
 }
+
+export enum searchActions {
+  customer = 'CUSTOMER_SEARCH',
+}
