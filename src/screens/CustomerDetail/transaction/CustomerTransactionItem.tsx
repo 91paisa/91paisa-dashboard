@@ -4,7 +4,12 @@ import styled from 'styled-components'
 import { ITransaction } from '../../../api/transaction-api'
 import Space, { SpaceEnum } from '../../../components/Space'
 import { dark, primaryHover } from '../../../styles/colors'
-import { isPhoneOrTable, phone } from '../../../styles/screenSize'
+import {
+  isDesktop,
+  isPhoneOrTable,
+  isTablet,
+  phone,
+} from '../../../styles/screenSize'
 import PhoneCell from '../../Customers/PhoneCell'
 import AmountCell from '../../Transactions/AmountCell'
 import TimeCell from '../../Transactions/TimeCell'
@@ -27,7 +32,7 @@ class CustomerTransactionItem extends React.Component<IProps> {
           {!isPhoneOrTable() && <Space height={SpaceEnum.s} />}
           <PhoneCell phone={transaction.beneficiary.phone} />
         </div>
-        {!isPhoneOrTable() && (
+        {(isTablet() || isDesktop()) && (
           <TimeCell time={transaction.createdTimestamp} space={SpaceEnum.s} />
         )}
         <TransactionStatusCell
@@ -56,7 +61,7 @@ const Container = styled(Link)`
     minmax(100px, 2fr);
   height: 100%;
   @media (${phone}) {
-    grid-template-columns: 0.6fr 1fr 0.5fr -1;
+    grid-template-columns: minmax(100px, 0.5fr) minmax(140px, 0.7fr);
   }
   &:hover {
     background: ${primaryHover};

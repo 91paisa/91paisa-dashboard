@@ -1,8 +1,6 @@
 import * as React from 'react'
-import {
-  ISplitTransaction,
-  splitTransactionStatus,
-} from '../../api/transaction-api'
+import { ISplitTransaction } from '../../api/transaction-api'
+import { isTransactionComplete } from '../../helpers/transaction-helper'
 import TimeCell from '../Transactions/TimeCell'
 
 interface IProps {
@@ -11,10 +9,7 @@ interface IProps {
 
 const CompletedTimestamp: React.SFC<IProps> = ({ splits }: IProps) => {
   if (splits && splits.length > 0) {
-    if (
-      splits.filter(split => split.status !== splitTransactionStatus.success)
-        .length === 0
-    ) {
+    if (isTransactionComplete(splits)) {
       return <TimeCell time={splits[splits.length - 1].updatedTimestamp} />
     }
   }

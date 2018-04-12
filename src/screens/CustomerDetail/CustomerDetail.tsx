@@ -34,7 +34,7 @@ class CustomerDetail extends Component<IProps, {}> {
 
 const OuterContainer = styled.div`
   width: 100%;
-  overflow: auto;
+  overflow: scroll;
 `
 
 const InnerContainer = styled.div`

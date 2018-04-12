@@ -1,7 +1,7 @@
-import moment from 'moment'
 import * as React from 'react'
 import styled from 'styled-components'
 import Space, { SpaceEnum } from '../../components/Space'
+import { getDDMMYYYY, getLT } from '../../helpers/time-helper'
 
 interface IProps {
   time: string
@@ -11,9 +11,9 @@ interface IProps {
 
 const TimeCell: React.SFC<IProps> = ({ time, space, style }: IProps) => (
   <Container style={style}>
-    <p>{moment(time).format('LT')}</p>
+    <p>{getLT(time)}</p>
     <Space width={space} height={space} />
-    <p>{moment(time).format('DD/MM/YYYY')}</p>
+    <p>{getDDMMYYYY(time)}</p>
   </Container>
 )
 

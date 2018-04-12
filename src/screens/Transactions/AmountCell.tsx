@@ -6,7 +6,8 @@ interface IProps {
   style?: any
 }
 
-const AmountCell: React.SFC<IProps> = props => (
+const
+  AmountCell: React.SFC<IProps> = props => (
   <Container style={props.style}>
     {props.amount.toLocaleString('en-EN', {
       currency: 'INR',

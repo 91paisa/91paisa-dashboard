@@ -8,7 +8,7 @@ import CustomersContainer from './Customers/CustomersContainer'
 import Dashboard from './Dashboard/Dashboard'
 import SettingsContainer from './Settings/SettingsContainer'
 import TransactionDetailContainer from './TransactionDetail/TransactionDetailContainer'
-import TransactionsContainer from './Transactions/TransactionsContainer'
+import TransactionsListContainer from './Transactions/TranasctionsListContainer'
 
 const Content = () => (
   <OuterContainer>
@@ -25,7 +25,7 @@ const Content = () => (
       <Route
         exact={true}
         path={'/transactions'}
-        component={TransactionsContainer}
+        component={TransactionsListContainer}
       />
       <Route
         path={'/transactions/:transactionId'}

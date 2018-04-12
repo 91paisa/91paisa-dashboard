@@ -43,3 +43,10 @@ export const getModeEmoji = (mode: transactionMode): any => {
       return '🏎'
   }
 }
+
+export const  isTransactionComplete=(splits: ISplitTransaction[]) =>{
+  return (
+    splits.filter(split => split.status !== splitTransactionStatus.success)
+      .length === 0
+  )
+}

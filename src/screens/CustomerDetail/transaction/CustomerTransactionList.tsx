@@ -5,22 +5,27 @@ import { ITransaction } from '../../../api/transaction-api'
 import Card from '../../../components/Card'
 import CardTitle from '../../../components/CardTitle'
 import Space, { SpaceEnum } from '../../../components/Space'
+import { remToPx } from '../../../helpers/unit-helper'
 import { lightGrey, white } from '../../../styles/colors'
 import { isPhoneOrTable } from '../../../styles/screenSize'
+import TransactionItem from '../../Transactions/TransactionItem'
 import CustomerTransactionItem from './CustomerTransactionItem'
 
 interface IProps {
   transactions: ITransaction[]
+  ludicrousMode?: boolean
 }
 
 class CustomerTransactionList extends React.Component<IProps> {
   public render() {
-    const { transactions } = this.props
+    const { transactions, ludicrousMode } = this.props
     return (
       <Container>
         <Card>
-          <CardTitle>Transactions</CardTitle>
-          <Space height={SpaceEnum.m} />
+          <>
+            {!ludicrousMode && <CardTitle>Transactions</CardTitle>}
+            <Space height={SpaceEnum.m} />
+          </>
           <WindowScroller>
             {({ height, width, isScrolling, onChildScroll, scrollTop }) => (
               <List
@@ -30,7 +35,7 @@ class CustomerTransactionList extends React.Component<IProps> {
                 isScrolling={isScrolling}
                 onScroll={onChildScroll}
                 rowCount={transactions.length}
-                rowHeight={isPhoneOrTable() ? 70 : 88}
+                rowHeight={this.getRowHeight()}
                 rowRenderer={this.rowRenderer}
                 width={width}
               />
@@ -41,6 +46,8 @@ class CustomerTransactionList extends React.Component<IProps> {
     )
   }
 
+  private getRowHeight = () => (isPhoneOrTable() ? remToPx(7) : remToPx(6))
+
   private rowRenderer = ({
     key,
     index,
@@ -49,7 +56,11 @@ class CustomerTransactionList extends React.Component<IProps> {
     style,
   }: any) => (
     <BackgroundContainer key={key} style={style} index={index}>
-      <CustomerTransactionItem transaction={this.props.transactions[index]} />
+      {this.props.ludicrousMode ? (
+        <TransactionItem transaction={this.props.transactions[index]} />
+      ) : (
+        <CustomerTransactionItem transaction={this.props.transactions[index]} />
+      )}
     </BackgroundContainer>
   )
 }

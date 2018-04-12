@@ -1,18 +1,8 @@
 import { Component, default as React } from 'react'
 import { RouteComponentProps } from 'react-router'
-import { AutoSizer, Column } from 'react-virtualized'
+import styled from 'styled-components'
 import { ITransaction } from '../../api/transaction-api'
-import { lightGrey } from '../../styles/colors'
-import {
-  evenRow,
-  headerRow,
-  oddRow,
-  TableContainer,
-} from '../../styles/table-styles'
-import AmountCell from './AmountCell'
-import TimeCell from './TimeCell'
-import TransactionStatusCell from './TransactionStatusCell'
-import UserCell from './UserCell'
+import CustomerTransactionList from '../CustomerDetail/transaction/CustomerTransactionList'
 
 interface IProps extends RouteComponentProps<IProps> {
   hideCustomerColumn?: boolean
@@ -22,104 +12,26 @@ interface IProps extends RouteComponentProps<IProps> {
 class TransactionsList extends Component<IProps, {}> {
   public render() {
     return (
-      <AutoSizer style={{ width: '100%' }}>
-        {({ width, height }: any) => (
-          <TableContainer
-            style={{
-              background: `${lightGrey}`,
-              borderRadius: 0,
-            }}
-            width={width}
-            height={height}
-            headerHeight={40}
-            rowHeight={88}
-            rowStyle={this.rowStyler}
-            onRowClick={this.handleRowClick}
-            overscanColumnCount={3}
-            rowCount={this.props.transactions.length}
-            rowGetter={({ index }: any) => this.props.transactions[index]}
-          >
-            <Column
-              label="Amount"
-              width={100}
-              dataKey="amount"
-              cellRenderer={this.handleAmountCell}
-            />
-            {!this.props.hideCustomerColumn && (
-              <Column
-                label="Customer"
-                width={140}
-                dataKey="amount"
-                cellRenderer={this.handleCustomerCell}
-              />
-            )}
-            <Column
-              label="Beneficiary"
-              width={140}
-              dataKey="amount"
-              cellRenderer={this.handleBeneficiaryCell}
-            />
-            <Column
-              label="Created at"
-              width={140}
-              dataKey="amount"
-              cellRenderer={this.handleCreatedTimeStamp}
-            />
-            <Column
-              label="Updated at"
-              width={140}
-              dataKey="amount"
-              cellRenderer={this.handleUpdatedTimeStamp}
-            />
-            <Column
-              label="Status"
-              width={500}
-              dataKey="amount"
-              cellRenderer={this.handleStatus}
-            />
-          </TableContainer>
-        )}
-      </AutoSizer>
+      <OuterContainer>
+        <InnerContainer>
+          <CustomerTransactionList
+            transactions={this.props.transactions}
+            ludicrousMode={true}
+          />
+        </InnerContainer>
+      </OuterContainer>
     )
-  }
-
-  private handleAmountCell = ({ rowData }: any) => (
-    <AmountCell amount={rowData.amount} />
-  )
-
-  private handleCustomerCell = ({ rowData }: any) => (
-    <UserCell data={rowData.customer} />
-  )
-
-  private handleBeneficiaryCell = ({ rowData }: any) => (
-    <UserCell data={rowData.beneficiary} />
-  )
-
-  private handleCreatedTimeStamp = ({ rowData }: any) => (
-    <TimeCell time={rowData.createdTimestamp} />
-  )
-
-  private handleUpdatedTimeStamp = ({ rowData }: any) => (
-    <TimeCell time={rowData.updateTimestamp} />
-  )
-  private handleStatus = ({ rowData }: any) => (
-    <TransactionStatusCell
-      splits={rowData.transactionDetails}
-      nodal={rowData.nodal}
-    />
-  )
-
-  private handleRowClick = ({ rowData }: any) => {
-    const nav = this.props.history
-    nav.push(`/transactions/${rowData.id}/`)
-  }
-
-  private rowStyler = ({ index }: any) => {
-    if (index < 0) {
-      return headerRow
-    }
-    return index % 2 === 0 ? evenRow : oddRow
   }
 }
 
+const InnerContainer = styled.div`
+  max-width: 88rem;
+  margin: 0 auto;
+`
+
+const OuterContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+`
 export default TransactionsList
