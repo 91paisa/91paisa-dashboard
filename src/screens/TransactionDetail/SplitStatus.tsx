@@ -1,12 +1,12 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { splitTransactionStatus } from '../../api/transaction-api'
+import { nodalStatusEnum, splitTransactionStatus } from '../../api/transaction-api'
 import { getSplitTransactionColor } from '../../helpers/color-helper'
 import { white } from '../../styles/colors'
 import { normalizeSplitTransactionStatus } from '../Transactions/TransactionStatusCell'
 
 interface IProps {
-  status: splitTransactionStatus
+  status: splitTransactionStatus| nodalStatusEnum
   count?: number
 }
 const SplitStatus: React.SFC<IProps> = ({ status, count }: IProps) => (

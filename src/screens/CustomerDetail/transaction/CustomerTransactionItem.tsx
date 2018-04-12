@@ -30,7 +30,10 @@ class CustomerTransactionItem extends React.Component<IProps> {
         {!isPhoneOrTable() && (
           <TimeCell time={transaction.createdTimestamp} space={SpaceEnum.s} />
         )}
-        <TransactionStatusCell splits={transaction.transactionDetails} />
+        <TransactionStatusCell
+          splits={transaction.transactionDetails}
+          nodal={transaction.nodal}
+        />
       </Container>
     )
   }

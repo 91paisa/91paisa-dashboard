@@ -1,5 +1,5 @@
 import { customerStatus } from '../api/customer-api'
-import { splitTransactionStatus } from '../api/transaction-api'
+import { nodalStatusEnum, splitTransactionStatus } from '../api/transaction-api'
 import {
   alertPending,
   alertRed,
@@ -8,6 +8,7 @@ import {
   grey,
   identity,
   positiveGreen,
+  white,
 } from '../styles/colors'
 
 export const getColorBasedOnCustomerStatus = (status: customerStatus) => {
@@ -49,5 +50,23 @@ export const getSplitTransactionColor = (
     case splitTransactionStatus.refundPending:
     case splitTransactionStatus.refundSuccess:
       return identity
+  }
+}
+
+export const getNodalTransactionColor = (status: nodalStatusEnum): string => {
+  switch (status) {
+    case nodalStatusEnum.notInitiated:
+      return fog
+    case nodalStatusEnum.paymentArrived:
+      return positiveGreen
+    case nodalStatusEnum.dispute:
+    case nodalStatusEnum.failed:
+      return alertRed
+    case nodalStatusEnum.authorized:
+      return identity
+    case nodalStatusEnum.initiates:
+      return alertPending
+    case nodalStatusEnum.noop:
+      return white
   }
 }

@@ -39,7 +39,7 @@ export enum nodalStatusEnum {
   initiates = 1,
   authorized = 2,
   failed = 3,
-  captureSuccess = 4,
+  paymentArrived = 4,
   dispute = 5,
 }
 
@@ -49,6 +49,11 @@ export interface ISplitTransaction {
   status: splitTransactionStatus
   createdTimestamp: string
   updatedTimestamp: string
+}
+
+export interface INodal {
+  id: string
+  status: nodalStatusEnum
 }
 
 export interface ITransaction {
@@ -69,10 +74,7 @@ export interface ITransaction {
   createdTimestamp: string
   updatedTimestamp: string
   transactionDetails?: ISplitTransaction[]
-  nodal: {
-    id: string
-    status: nodalStatusEnum
-  }
+  nodal: INodal
 }
 
 const getAllTransactionsFormData = (limit: number, offset: number) => {

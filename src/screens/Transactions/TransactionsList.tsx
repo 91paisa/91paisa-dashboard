@@ -103,7 +103,10 @@ class TransactionsList extends Component<IProps, {}> {
     <TimeCell time={rowData.updateTimestamp} />
   )
   private handleStatus = ({ rowData }: any) => (
-    <TransactionStatusCell splits={rowData.transactionDetails} />
+    <TransactionStatusCell
+      splits={rowData.transactionDetails}
+      nodal={rowData.nodal}
+    />
   )
 
   private handleRowClick = ({ rowData }: any) => {
