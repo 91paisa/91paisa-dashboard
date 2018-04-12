@@ -34,6 +34,7 @@ export enum transactionActionEnum {
 }
 
 export enum nodalStatusEnum {
+  internalError = -2,
   noop = -1,
   notInitiated = 0,
   initiates = 1,
@@ -110,7 +111,7 @@ export const getAllTransactionsAPI = (
         mode: _.transaction_mode,
         nodal: {
           id: getNodalId(_),
-          status: getNodalStatus(_),
+          status: getNodalStatus(_, _.action_status),
         },
         transactionDetails: _.eko_transactions.map(($: any) => ({
           amount: $.amount,
@@ -126,9 +127,15 @@ export const getAllTransactionsAPI = (
     .catch(() => [])
 }
 
-const getNodalStatus = (_: any) => {
+const getNodalStatus = (_: any, actionStatus: transactionActionEnum) => {
   if (_.razorpay_payment_status.Valid) {
     return _.razorpay_payment_status.Int64 as nodalStatusEnum
+  }
+  if (
+    !_.razorpay_payment_status.Valid &&
+    actionStatus === transactionActionEnum.approve
+  ) {
+    return nodalStatusEnum.internalError
   }
   return nodalStatusEnum.noop
 }

@@ -61,6 +61,7 @@ export const getNodalTransactionColor = (status: nodalStatusEnum): string => {
       return positiveGreen
     case nodalStatusEnum.dispute:
     case nodalStatusEnum.failed:
+    case nodalStatusEnum.internalError:
       return alertRed
     case nodalStatusEnum.authorized:
       return identity
