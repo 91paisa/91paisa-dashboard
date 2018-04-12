@@ -21,7 +21,7 @@ class CustomerListItem extends React.Component<IProps> {
           </StatusContainer>
           <InnerContainer>
             <Name>{customer.name}</Name>
-            <Space height={SpaceEnum.s} />
+            <Space height={SpaceEnum.xxs} />
             <PhoneCell phone={customer.phone} />
           </InnerContainer>
         </CustomerDetailLink>
@@ -50,7 +50,7 @@ const CustomerDetailLink = styled(Link)`
 const Name = styled.p`
   color: ${dark};
   text-transform: capitalize;
-  font-size: 1.1rem;
+  font-size: 1rem;
 `
 
 const Container: any = styled.div`

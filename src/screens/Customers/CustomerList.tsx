@@ -21,7 +21,7 @@ class CustomerList extends Component<IProps, {}> {
             <List
               height={height - remToPx(8)}
               rowCount={this.props.customers.length}
-              rowHeight={remToPx(5.6)}
+              rowHeight={remToPx(4.6)}
               overscanColumnCount={3}
               rowRenderer={this.rowRenderer}
               width={width}

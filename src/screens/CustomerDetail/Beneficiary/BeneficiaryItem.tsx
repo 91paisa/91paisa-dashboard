@@ -16,7 +16,7 @@ interface IContainerProps {
 const BeneficiaryItem: React.SFC<IProps> = props => (
   <Container status={props.beneficiary.status}>
     <PhoneCell
-      fontSize={{ fontSize: '1.4rem' }}
+      fontSize={{ fontSize: '1.2rem' }}
       phone={props.beneficiary.phone}
     />
     <Space height={SpaceEnum.xs} />
@@ -47,12 +47,12 @@ export function getSpacedIFSC(ifsc: string): string {
 }
 
 const Name = styled.p`
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   padding-bottom: 0.4rem;
 `
 const AccountData = styled.p`
   font-family: monospace, 'Museo Sans', 'Open Sans', Helvetica;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   padding-bottom: 0.4rem;
 `
 const Container = styled.div`

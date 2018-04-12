@@ -20,7 +20,7 @@ class CustomerTransactionItem extends React.Component<IProps> {
       <Container to={`/transactions/${transaction.id}`}>
         <AmountCell
           amount={transaction.amount}
-          style={{ fontSize: '1.5rem' }}
+          style={{ fontSize: '1.3rem' }}
         />
         <div>
           <Name>{transaction.beneficiary.name}</Name>
@@ -40,7 +40,7 @@ class CustomerTransactionItem extends React.Component<IProps> {
 }
 const Name = styled.p`
   text-transform: capitalize;
-  font-size: 1.1rem;
+  font-size: 1rem;
 `
 
 const Container = styled(Link)`

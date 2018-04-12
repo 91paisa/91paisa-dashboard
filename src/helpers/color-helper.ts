@@ -4,7 +4,7 @@ import {
   alertPending,
   alertRed,
   dark,
-  fog,
+  graphite,
   grey,
   identity,
   positiveGreen,
@@ -32,7 +32,7 @@ export const getSplitTransactionColor = (
 ): string => {
   switch (status) {
     case splitTransactionStatus.didNotTry:
-      return fog
+      return graphite
     case splitTransactionStatus.hold:
     case splitTransactionStatus.commit:
     case splitTransactionStatus.initiated:
@@ -56,7 +56,7 @@ export const getSplitTransactionColor = (
 export const getNodalTransactionColor = (status: nodalStatusEnum): string => {
   switch (status) {
     case nodalStatusEnum.notInitiated:
-      return fog
+      return graphite
     case nodalStatusEnum.paymentArrived:
       return positiveGreen
     case nodalStatusEnum.dispute:

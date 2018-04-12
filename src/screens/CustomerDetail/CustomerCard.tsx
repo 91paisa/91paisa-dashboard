@@ -21,15 +21,16 @@ const CustomerCard: React.SFC<IProps> = _ => {
       <Name>{_.customer.name}</Name>
       <Space height={SpaceEnum.m} />
       <PhoneCell
-        style={{ justifyContent: 'center', fontSize: '1.4rem' }}
+        style={{ justifyContent: 'center' }}
         phone={_.customer.phone}
+        fontSize={'1.3rem'}
       />
     </Card>
   )
 }
 
 const Name = styled.h1`
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 500;
   text-align: center;
   color: ${dark};

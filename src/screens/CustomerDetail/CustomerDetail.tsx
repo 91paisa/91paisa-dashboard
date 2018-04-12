@@ -1,4 +1,4 @@
-import { Component, default as React, Fragment } from 'react'
+import { Component, default as React } from 'react'
 import styled from 'styled-components'
 import { ICustomer } from '../../api/customer-api'
 import BeneficiariesListContainer from './Beneficiary/BeneficiariesListContainer'
@@ -17,14 +17,14 @@ class CustomerDetail extends Component<IProps, {}> {
       <OuterContainer>
         <InnerContainer>
           {customer && (
-            <Fragment>
+            <>
               <CustomerCard customer={customer} />
               <BeneficiariesListContainer
                 customerPhone={customer.phone}
                 customerIndex={customerIndex}
               />
               {customer.lastTransaction && <CustomerTransactionContainer />}
-            </Fragment>
+            </>
           )}
         </InnerContainer>
       </OuterContainer>
