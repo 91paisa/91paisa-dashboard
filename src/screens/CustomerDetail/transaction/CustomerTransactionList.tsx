@@ -32,7 +32,6 @@ class CustomerTransactionList extends React.Component<IProps> {
                 rowCount={transactions.length}
                 rowHeight={isPhoneOrTable() ? 70 : 88}
                 rowRenderer={this.rowRenderer}
-                scrollTop={scrollTop}
                 width={width}
               />
             )}
