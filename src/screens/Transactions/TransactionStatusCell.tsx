@@ -41,7 +41,7 @@ const TransactionStatusCell: React.SFC<IProps> = ({
       {nodal.status !== nodalStatusEnum.noop && (
         <>
           <NodalStatus status={nodal.status} />
-          <Space width={SpaceEnum.l} />
+          <Space width={SpaceEnum.s} />
         </>
       )}
 
