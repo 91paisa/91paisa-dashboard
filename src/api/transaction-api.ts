@@ -6,7 +6,8 @@ export enum transactionType {
 }
 
 export enum transactionMode {
-  cash = 'CASH',
+  neft = 'NEFT',
+  imps = 'IMPS',
 }
 
 export enum splitTransactionStatus {
@@ -30,6 +31,16 @@ export enum transactionActionEnum {
   available = 1,
   approve = 2,
   reject = 3,
+}
+
+export enum nodalStatusEnum {
+  noop = -1,
+  notInitiated = 0,
+  initiates = 1,
+  authorized = 2,
+  failed = 3,
+  captureSuccess = 4,
+  dispute = 5,
 }
 
 export interface ISplitTransaction {
@@ -58,6 +69,10 @@ export interface ITransaction {
   createdTimestamp: string
   updatedTimestamp: string
   transactionDetails?: ISplitTransaction[]
+  nodal: {
+    id: string
+    status: nodalStatusEnum
+  }
 }
 
 const getAllTransactionsFormData = (limit: number, offset: number) => {
@@ -66,6 +81,9 @@ const getAllTransactionsFormData = (limit: number, offset: number) => {
   data.append('offset', `${offset}`)
   return data
 }
+
+const getNodalId = (_: any) => _.razorpay_payment_id.String
+
 export const getAllTransactionsAPI = (
   limit: number = 1000,
   offset: number = 0,
@@ -88,6 +106,10 @@ export const getAllTransactionsAPI = (
         },
         id: _.transaction_id,
         mode: _.transaction_mode,
+        nodal: {
+          id: getNodalId(_),
+          status: getNodalStatus(_),
+        },
         transactionDetails: _.eko_transactions.map(($: any) => ({
           amount: $.amount,
           createdTimestamp: $.created_at,
@@ -100,6 +122,13 @@ export const getAllTransactionsAPI = (
       }))
     })
     .catch(() => [])
+}
+
+const getNodalStatus = (_: any) => {
+  if (_.razorpay_payment_status.Valid) {
+    return _.razorpay_payment_status.Int64 as nodalStatusEnum
+  }
+  return nodalStatusEnum.noop
 }
 
 const transactionActionFormData = (
