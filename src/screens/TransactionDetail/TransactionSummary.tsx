@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { ITransaction } from '../../api/transaction-api'
+import { getModeEmoji } from '../../helpers/transaction-helper'
 import { graphite, positiveGreen } from '../../styles/colors'
 import { phone } from '../../styles/screenSize'
 import PhoneCell from '../Customers/PhoneCell'
@@ -19,59 +20,66 @@ const TransactionSummary: React.SFC<IProps> = props => {
     createdTimestamp,
     commission,
     amount,
+    mode,
   } = props.transaction
 
   return (
-    <SummaryContainer>
-      <div />
-      <div />
-      <div />
-      <Customer>{customer.name}</Customer>
-      <Amount>
-        {amount.toLocaleString('en-EN', {
-          currency: 'INR',
-          maximumFractionDigits: 0,
-          minimumFractionDigits: 0,
-          style: 'currency',
-        })}
-      </Amount>
-      <Beneficiary>{beneficiary.name}</Beneficiary>
-      <div />
-      <TransactionDetailLine splits={props.transaction.transactionDetails} />
-      <div />
-      <PhoneCell
-        style={{
-          alignItems: 'top',
-          fontSize: '1rem',
-          justifyContent: 'flex-end',
-          padding: '0 0.8rem',
-        }}
-        phone={customer.phone}
-      />
-      <div />
-      <PhoneCell
-        style={{
-          alignItems: 'top',
-          fontSize: '1rem',
-          padding: '0 0.8rem',
-        }}
-        phone={beneficiary.phone}
-      />
-      <TimeContainer style={{ alignItems: 'flex-end' }}>
-        <TimeLabel>Created</TimeLabel>
-        <TimeCell time={createdTimestamp} style={{ textAlign: 'right' }} />
-      </TimeContainer>
-      <Commission title="Commission">
-        {commission.toLocaleString('en-EN', {
-          currency: 'INR',
-          style: 'currency',
-        })}
-      </Commission>
-      <TimeContainer style={{ justifyContent: 'flex-start' }}>
-        <TimeLabel>Completed</TimeLabel>
-        <CompletedTimestamp splits={props.transaction.transactionDetails} />
-      </TimeContainer>
-    </SummaryContainer>
+    <>
+      <SummaryContainer>
+        <div />
+        <div />
+        <div />
+        <Customer>{customer.name}</Customer>
+        <Amount>
+          {amount.toLocaleString('en-EN', {
+            currency: 'INR',
+            maximumFractionDigits: 0,
+            minimumFractionDigits: 0,
+            style: 'currency',
+          })}
+        </Amount>
+        <Beneficiary>{beneficiary.name}</Beneficiary>
+        <div />
+        <TransactionDetailLine splits={props.transaction.transactionDetails} />
+        <div />
+        <PhoneCell
+          style={{
+            alignItems: 'top',
+            fontSize: '1rem',
+            justifyContent: 'flex-end',
+            padding: '0 0.8rem',
+          }}
+          phone={customer.phone}
+        />
+        <div />
+        <PhoneCell
+          style={{
+            alignItems: 'top',
+            fontSize: '1rem',
+            padding: '0 0.8rem',
+          }}
+          phone={beneficiary.phone}
+        />
+        <TimeContainer style={{ alignItems: 'flex-end' }}>
+          <TimeLabel>Created</TimeLabel>
+          <TimeCell time={createdTimestamp} style={{ textAlign: 'right' }} />
+        </TimeContainer>
+        <Commission title="Commission">
+          {commission.toLocaleString('en-EN', {
+            currency: 'INR',
+            style: 'currency',
+          })}
+        </Commission>
+        <TimeContainer style={{ justifyContent: 'flex-start' }}>
+          <TimeLabel>Completed</TimeLabel>
+          <CompletedTimestamp splits={props.transaction.transactionDetails} />
+        </TimeContainer>
+      </SummaryContainer>
+      <Mode mode={mode}>
+        <Emoji>{getModeEmoji(mode)}</Emoji>
+        {mode}
+      </Mode>
+    </>
   )
 }
 
@@ -120,6 +128,23 @@ const SummaryContainer = styled.div`
     grid-template-rows: 0 1fr 0.2rem 1fr 0.5fr;
     grid-template-columns: 1fr 0.5fr 1fr;
   }
+`
+
+const Emoji = styled.span`
+  font-size: 1.5rem;
+  padding-right: 1rem;
+`
+
+const Mode: any = styled.p`
+  text-transform: uppercase;
+  color: ${graphite};
+  border-radius: 0.2rem;
+  margin: auto;
+  font-weight: 700;
+  padding: 0.2rem 0.4rem 0.2rem 0.2rem;
+  border-color: ${graphite};
+  border-width: 1px;
+  border-style: solid;
 `
 
 export default TransactionSummary

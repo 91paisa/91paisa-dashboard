@@ -1,6 +1,7 @@
 import {
   ISplitTransaction,
   splitTransactionStatus,
+  transactionMode,
 } from '../api/transaction-api'
 
 export interface ISplitsWithCount {
@@ -32,4 +33,13 @@ export const getSplitsWithCount = (
     })
   }
   return []
+}
+
+export const getModeEmoji = (mode: transactionMode): any => {
+  switch (mode) {
+    case transactionMode.neft:
+      return '🐌'
+    case transactionMode.imps:
+      return '🏎'
+  }
 }
