@@ -66,7 +66,7 @@ const Logo = styled.p`
   text-decoration: none;
   transform: skew(12deg);
   transition-duration: 300ms;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   &:hover {
     transform: skew(0deg);
   }
