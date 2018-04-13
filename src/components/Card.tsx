@@ -11,7 +11,6 @@ const Card = styled.div`
   padding-bottom: 1rem;
   border: 1px solid ${fog};
   border-radius: 0.5rem;
-  max-width: 88em;
   &:hover {
     box-shadow: 0 2px 4px hsla(0, 0%, 0%, 0.1);
   }

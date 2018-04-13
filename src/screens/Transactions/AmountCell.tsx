@@ -6,19 +6,20 @@ interface IProps {
   style?: any
 }
 
-const
-  AmountCell: React.SFC<IProps> = props => (
+const AmountCell: React.SFC<IProps> = props => (
   <Container style={props.style}>
-    {props.amount.toLocaleString('en-EN', {
-      currency: 'INR',
-      maximumFractionDigits: 0,
-      minimumFractionDigits: 0,
-      style: 'currency',
-    })}
+    <p style={{ fontSize: '0.5rem', paddingBottom: '0.5rem' }}>₹</p>
+    <p>
+      {props.amount.toLocaleString('en-EN', {
+        maximumFractionDigits: 0,
+        minimumFractionDigits: 0,
+      })}
+    </p>
   </Container>
 )
 
-const Container = styled.p`
+const Container = styled.div`
+  display: flex;
   font-size: 1.1rem;
 `
 

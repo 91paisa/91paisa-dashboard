@@ -21,6 +21,7 @@ class NavBar extends Component {
 const Container = styled.div`
   background: ${primary};
   display: flex;
+  user-select: none;
 `
 
 const active = 'active'

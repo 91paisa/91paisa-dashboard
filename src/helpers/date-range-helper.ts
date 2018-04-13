@@ -19,6 +19,8 @@ export const getMinMaxDateRange = (
   return undefined
 }
 
+export const getDateToday = () => moment().format('YYYY-MM-DD')
+
 const getDailyRange = (numbers: number[]) =>
   numbers.map((n: number) => {
     const date = moment()
