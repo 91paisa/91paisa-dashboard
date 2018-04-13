@@ -12,6 +12,7 @@ class NavBar extends Component {
         </LogoNavLinkContainer>
         <StyledLink to={`/customers`}>Customers</StyledLink>
         <StyledLink to={`/transactions`}>Transactions</StyledLink>
+        <StyledLink to={`/logs`}>Logs</StyledLink>
         <StyledLink to={`/settings`}>Settings</StyledLink>
       </Container>
     )
@@ -30,11 +31,10 @@ const StyledLink = styled(NavLink)`
   color: ${white};
   display: block;
   color: ${primaryLight};
-  width: 8rem;
   line-height: 2;
+  margin: auto 1rem;
   text-align: center;
   font-size: 1rem;
-  margin: auto 0;
   font-weight: 700;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   text-decoration: none;
