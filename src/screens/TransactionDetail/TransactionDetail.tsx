@@ -2,6 +2,7 @@ import { Component, default as React } from 'react'
 import styled from 'styled-components'
 import { ITransaction } from '../../api/transaction-api'
 import Card from '../../components/Card'
+import Space, { SpaceEnum } from '../../components/Space'
 import SplitList from './SplitList'
 import TransactionActionButton from './TransactionActionButton'
 import TransactionSummary from './TransactionSummary'
@@ -18,20 +19,32 @@ class TransactionDetail extends Component<IProps> {
       return <div />
     }
     return (
-      <Container>
-        <Card>
-          <TransactionSummary transaction={transaction} />
-          <TransactionActionButton transaction={transaction} />
-        </Card>
-        <SplitList splits={transaction.transactionDetails} />
-      </Container>
+      <OuterContainer>
+        <InnerContainer>
+          <Card>
+            <TransactionSummary transaction={transaction} />
+            <TransactionActionButton transaction={transaction} />
+          </Card>
+          <SplitList splits={transaction.transactionDetails} />
+          <>
+            <Space height={SpaceEnum.xxxl} />
+            <Space height={SpaceEnum.xxxl} />
+          </>
+        </InnerContainer>
+      </OuterContainer>
     )
   }
 }
 
-const Container = styled.div`
+const InnerContainer = styled.div`
   max-width: 80rem;
   margin: 0 auto;
+`
+
+const OuterContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: auto;
 `
 
 export default TransactionDetail
