@@ -57,7 +57,7 @@ export const getNodalTransactionColor = (status: nodalStatusEnum): string => {
   switch (status) {
     case nodalStatusEnum.notInitiated:
       return graphite
-    case nodalStatusEnum.paymentArrived:
+    case nodalStatusEnum.credited:
       return positiveGreen
     case nodalStatusEnum.dispute:
     case nodalStatusEnum.failed:

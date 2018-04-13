@@ -40,7 +40,7 @@ export enum nodalStatusEnum {
   initiates = 1,
   authorized = 2,
   failed = 3,
-  paymentArrived = 4,
+  credited = 4,
   dispute = 5,
 }
 
