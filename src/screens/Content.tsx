@@ -32,7 +32,7 @@ const Content = () => (
         path={'/transactions/:transactionId'}
         component={TransactionDetailContainer}
       />
-      <Route exact={true} path={'/logs'} component={LogsContainer} />
+      <Route path={'/logs'} component={LogsContainer} />
       <Route path={'/settings'} component={SettingsContainer} />
       <Route render={() => <div>No Page Found</div>} />
     </Switch>

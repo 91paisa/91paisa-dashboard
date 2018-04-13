@@ -1,9 +1,11 @@
 import * as React from 'react'
+import { RouteComponentProps, withRouter } from 'react-router'
+import LogsNavigation from './LogsNavigation'
 
-class LogsContainer extends React.Component {
+class LogsContainer extends React.Component<RouteComponentProps<{}>> {
   public render() {
-    return <div>logs</div>
+    return <LogsNavigation />
   }
 }
 
-export default LogsContainer
+export default withRouter(LogsContainer as any)

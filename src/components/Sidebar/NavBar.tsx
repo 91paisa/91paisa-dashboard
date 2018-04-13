@@ -10,10 +10,10 @@ class NavBar extends Component {
         <LogoNavLinkContainer exact={true} to={`/`}>
           <Logo>91P</Logo>
         </LogoNavLinkContainer>
-        <StyledLink to={`/customers`}>Customers</StyledLink>
-        <StyledLink to={`/transactions`}>Transactions</StyledLink>
-        <StyledLink to={`/logs`}>Logs</StyledLink>
-        <StyledLink to={`/settings`}>Settings</StyledLink>
+        <StyledLink to={`/customers/`}>Customers</StyledLink>
+        <StyledLink to={`/transactions/`}>Transactions</StyledLink>
+        <StyledLink to={`/logs/`}>Logs</StyledLink>
+        <StyledLink to={`/settings/`}>Settings</StyledLink>
       </Container>
     )
   }
