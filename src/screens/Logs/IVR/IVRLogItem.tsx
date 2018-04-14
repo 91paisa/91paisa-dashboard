@@ -1,9 +1,10 @@
 import moment from 'moment'
 import * as React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { IIVRLogs } from '../../../api/logs-api'
 import { getDDMMYYYY, getLT } from '../../../helpers/time-helper'
-import { fog } from '../../../styles/colors'
+import { dark, fog } from '../../../styles/colors'
 import PhoneCell from '../../Customers/PhoneCell'
 import AmountCell from '../../Transactions/AmountCell'
 
@@ -24,17 +25,28 @@ const IVRLogItem: React.SFC<IProps> = ({ log }: IProps) => (
       <To>for</To>
       <p>{getCallDuration(log.createdTimestamp, log.updatedTimestamp)}</p>
     </p>
-    {log.amount ? <AmountCell amount={log.amount} /> : <p />}
+    {log.transaction ? (
+      <HoverLink to={`/transactions/${log.transaction.id}/`}>
+        <AmountCell amount={log.transaction.amount} />
+      </HoverLink>
+    ) : (
+      <p />
+    )}
 
-    <div style={{ display: 'flex' }}>
-      <PhoneCell phone={log.customerPhone} />
-      {log.beneficiaryPhone && (
-        <>
-          <To> to</To>
-          <PhoneCell phone={log.beneficiaryPhone} />
-        </>
-      )}
-    </div>
+    <HoverLink to={`/customers/${log.customer.phone}/`}>
+      <Name>{log.customer.name}</Name>
+    </HoverLink>
+    <HoverLink to={`/customers/${log.customer.phone}/`}>
+      <div style={{ display: 'flex' }}>
+        <PhoneCell phone={log.customer.phone} />
+        {log.beneficiaryPhone && (
+          <>
+            <To> to</To>
+            <PhoneCell phone={log.beneficiaryPhone} />
+          </>
+        )}
+      </div>
+    </HoverLink>
   </Container>
 )
 
@@ -43,6 +55,10 @@ const getCallDuration = (start: string, end: string) => {
   const endDate = moment(end)
   return Math.floor(moment.duration(endDate.diff(startDate)).asSeconds()) + 's'
 }
+
+const Name = styled.p`
+  font-weight: bold;
+`
 
 const To = styled.span`
   font-style: italic;
@@ -54,6 +70,22 @@ const Container = styled.div`
   display: grid;
   align-items: center;
   height: 100%;
-  grid-template-columns: 15rem 7rem 1fr;
+  grid-template-columns: 16rem 8rem 11rem 1fr;
+`
+
+const HoverLink = styled(Link)`
+  color: ${dark};
+  &:hover {
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    &:after {
+      margin: auto 0;
+      padding-left: 0.8rem;
+      font-size: 0.8rem;
+      content: '🔗';
+    }
+  }
+  height: 100%;
+  align-items: center;
+  display: flex;
 `
 export default IVRLogItem
