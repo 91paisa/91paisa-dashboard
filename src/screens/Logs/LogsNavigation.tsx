@@ -11,14 +11,15 @@ import {
   primary,
   white,
 } from '../../styles/colors'
-import { phone } from '../../styles/screenSize'
 import IVRLogsContainer from './IVR/IVRLogsContainer'
 import NodalLogsContainer from './Nodal/NodalLogsContainer'
 import ReviewerLogsContainer from './Reviewer/ReviewerLogsContainer'
 
 class LogsNavigation extends React.Component<RouteComponentProps<{}>> {
   public componentDidMount() {
-    this.props.history.replace('/logs/nodal')
+    if (this.props.location.pathname === '/logs/') {
+      this.props.history.replace('/logs/nodal')
+    }
   }
 
   public componentWillUpdate(newProp: RouteComponentProps<{}>) {
@@ -27,7 +28,7 @@ class LogsNavigation extends React.Component<RouteComponentProps<{}>> {
 
   public render() {
     return (
-      <>
+      <Container>
         <TabsOuterContainer>
           <TabsContainer>
             <LogTab to={'/logs/nodal'}>Nodal</LogTab>
@@ -42,7 +43,7 @@ class LogsNavigation extends React.Component<RouteComponentProps<{}>> {
             <Route path={'/logs/reviewer'} component={ReviewerLogsContainer} />
           </switch>
         </ContentContainer>
-      </>
+      </Container>
     )
   }
 
@@ -89,16 +90,17 @@ const LogTab = styled(NavLink)`
 const ContentContainer = styled(Card)`
   border-bottom: 1px ${fog} solid;
   max-width: 88rem;
-  height: 94%;
-  margin: 0 auto;
+  margin: 0 auto 1rem auto;
   border-top: none;
   border-radius: 0 0 0.5rem 0.5rem;
   &:hover {
     box-shadow: none;
   }
-  @media (${phone}) {
-    border-radius: 0;
-  }
+`
+
+const Container = styled.div`
+  overflow: auto;
+  height: 100%;
 `
 
 export default withRouter(LogsNavigation)

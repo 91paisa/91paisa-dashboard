@@ -28,3 +28,7 @@ export const AuthPath = {
   login: `${basePath()}reviewer/login/`,
   logout: `${basePath()}reviewer/logout/`,
 }
+
+export const LogsPath = {
+  ivr: `${basePath()}logs/ivr/`,
+}
