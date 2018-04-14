@@ -5,6 +5,7 @@ import { getModeEmoji } from '../../helpers/transaction-helper'
 import { graphite, positiveGreen } from '../../styles/colors'
 import { phone } from '../../styles/screenSize'
 import PhoneCell from '../Customers/PhoneCell'
+import AmountCell from '../Transactions/AmountCell'
 import TimeCell from '../Transactions/TimeCell'
 import CompletedTimestamp from './CompletedTimestamp'
 import TransactionDetailLine from './TransactionDetailLine'
@@ -30,14 +31,15 @@ const TransactionSummary: React.SFC<IProps> = props => {
         <div />
         <div />
         <Customer>{customer.name}</Customer>
-        <Amount>
-          {amount.toLocaleString('en-EN', {
-            currency: 'INR',
-            maximumFractionDigits: 0,
-            minimumFractionDigits: 0,
-            style: 'currency',
-          })}
-        </Amount>
+        <AmountCell
+          amount={amount}
+          style={{
+            alignSelf: 'center',
+            fontSize: '1.4rem',
+            fontWeight: 'bold',
+            justifyContent: 'center',
+          }}
+        />
         <Beneficiary>{beneficiary.name}</Beneficiary>
         <div />
         <TransactionDetailLine splits={props.transaction.transactionDetails} />
@@ -98,12 +100,6 @@ const Commission = styled.p`
   font-size: 1.3rem;
   align-content: stretch;
   color: ${positiveGreen};
-  text-align: center;
-`
-
-const Amount = styled.p`
-  font-weight: 600;
-  font-size: 1.4rem;
   text-align: center;
 `
 

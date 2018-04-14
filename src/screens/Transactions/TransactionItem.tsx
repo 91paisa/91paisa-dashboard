@@ -76,7 +76,7 @@ class TransactionItem extends React.Component<IProps> {
     nodal: INodal,
   ) => (
     <TabletContainer to={`/transactions/${id}`}>
-      <AmountCell style={{ fontWeight: '600' }} amount={amount} />
+      <AmountCell style={{ fontWeight: 'bold' }} amount={amount} />
       <div>
         <div
           style={{

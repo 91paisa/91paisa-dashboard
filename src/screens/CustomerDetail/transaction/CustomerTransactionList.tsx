@@ -34,10 +34,12 @@ class CustomerTransactionList extends React.Component<IProps> {
                 autoWidth={true}
                 isScrolling={isScrolling}
                 onScroll={onChildScroll}
+                overscanColumnCount={5}
                 rowCount={transactions.length}
                 rowHeight={this.getRowHeight()}
                 rowRenderer={this.rowRenderer}
                 width={width}
+                scrollTop={scrollTop}
               />
             )}
           </WindowScroller>
