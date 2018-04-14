@@ -1,22 +1,21 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { fetchIVRLogsAPI, IIVRLogs } from '../../../api/logs-api'
 import { fog } from '../../../styles/colors'
 import IVRLogsList from './IVRLogsList'
 
 interface IState {
-  data: IIVRLogs[]
+  // data: IIVRLogs[]
   loadMore: boolean
 }
 class IVRLogsContainer extends React.Component<{}, IState> {
   public state = {
-    data: [],
+    // data: [],
     loadMore: true,
   }
   public componentDidMount() {
-    if (this.state.loadMore && this.state.data.length === 0) {
-      fetchIVRLogsAPI(0).then(data => this.setState({ data }))
-    }
+    // if (this.state.loadMore && this.state.data.length === 0) {
+    //   fetchIVRLogsAPI(0).then(data => this.setState({ data }))
+    // }
   }
   public render() {
     return (
@@ -24,7 +23,7 @@ class IVRLogsContainer extends React.Component<{}, IState> {
         <ActionContainer>
           <input placeholder={'search by customer phone number '} />
         </ActionContainer>
-        <IVRLogsList data={this.state.data} />
+        <IVRLogsList/>
       </>
     )
   }

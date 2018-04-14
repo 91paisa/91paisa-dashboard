@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Route, RouteComponentProps, withRouter } from 'react-router'
+import { Route, RouteComponentProps, Switch, withRouter } from 'react-router'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import Card from '../../components/Card'
@@ -37,11 +37,11 @@ class LogsNavigation extends React.Component<RouteComponentProps<{}>> {
           </TabsContainer>
         </TabsOuterContainer>
         <ContentContainer>
-          <switch>
+          <Switch>
             <Route path={'/logs/nodal'} component={NodalLogsContainer} />
             <Route path={'/logs/ivr'} component={IVRLogsContainer} />
             <Route path={'/logs/reviewer'} component={ReviewerLogsContainer} />
-          </switch>
+          </Switch>
         </ContentContainer>
       </Container>
     )

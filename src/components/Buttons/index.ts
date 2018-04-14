@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { alertRed, positiveGreen, white } from '../../styles/colors'
 
-const CommonButton = styled.a`
+const CommonButton = styled.button`
   display: inline-block;
   padding: 0.2rem 1.3rem;
   border-radius: 9999px;
@@ -15,7 +15,7 @@ const CommonButton = styled.a`
   letter-spacing: 0.09rem;
   min-width: 7rem;
   opacity: 0.88;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   &:hover {
     opacity: 1;
   }
@@ -25,9 +25,12 @@ export const ApproveButton = CommonButton.extend`
   background-color: ${positiveGreen};
   color: ${white};
   border-color: ${positiveGreen};
-  
 `
 export const RejectButton = CommonButton.extend`
   border-color: ${alertRed};
   color: ${alertRed};
+`
+
+export const PaginationButton = CommonButton.extend`
+  outline: none;
 `

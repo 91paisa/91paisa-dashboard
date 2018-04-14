@@ -11,9 +11,24 @@ import AmountCell from '../../Transactions/AmountCell'
 interface IProps {
   log: IIVRLogs
 }
+
+function getAmountCell(log: IIVRLogs) {
+  if (log.transaction.id && log.transaction.amount) {
+    return (
+      <HoverLink to={`/transactions/${log.transaction.id}/`}>
+        <AmountCell amount={log.transaction.amount} />
+      </HoverLink>
+    )
+  }
+  if (log.transaction.amount) {
+    return <AmountCell amount={log.transaction.amount} />
+  }
+  return <p />
+}
+
 const IVRLogItem: React.SFC<IProps> = ({ log }: IProps) => (
   <Container>
-    <p
+    <div
       style={{ paddingLeft: '1rem', display: 'flex' }}
       title={`${getLT(log.createdTimestamp)} ${getDDMMYYYY(
         log.createdTimestamp,
@@ -24,15 +39,8 @@ const IVRLogItem: React.SFC<IProps> = ({ log }: IProps) => (
         .fromNow()}
       <To>for</To>
       <p>{getCallDuration(log.createdTimestamp, log.updatedTimestamp)}</p>
-    </p>
-    {log.transaction ? (
-      <HoverLink to={`/transactions/${log.transaction.id}/`}>
-        <AmountCell amount={log.transaction.amount} />
-      </HoverLink>
-    ) : (
-      <p />
-    )}
-
+    </div>
+    {getAmountCell(log)}
     <HoverLink to={`/customers/${log.customer.phone}/`}>
       <Name>{log.customer.name}</Name>
     </HoverLink>
@@ -57,7 +65,7 @@ const getCallDuration = (start: string, end: string) => {
 }
 
 const Name = styled.p`
-  font-weight: bold;
+  font-weight: 600;
 `
 
 const To = styled.span`

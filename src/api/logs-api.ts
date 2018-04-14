@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { LogsPath } from './constants-api'
-const FETCH_LIMIT = 30
+export const LOG_FETCH_LIMIT = 40
 export interface IIVRLogs {
   beneficiaryPhone?: string
   customer: {
@@ -10,9 +10,9 @@ export interface IIVRLogs {
   id: string
   createdTimestamp: string
   updatedTimestamp: string
-  transaction?: {
-    amount: number
-    id: string
+  transaction: {
+    amount?: number
+    id?: string
   }
 }
 
@@ -30,20 +30,9 @@ const ivrLogsFormData = (
   return data
 }
 
-function getTransaction(log: any) {
-  const transactionID = log.transaction_id.String
-  if (transactionID) {
-    return {
-      amount: log.amount.Int64,
-      id: transactionID,
-    }
-  }
-  return undefined
-}
-
 export const fetchIVRLogsAPI = (offset: number, customerPhone?: string) =>
   axios
-    .post(LogsPath.ivr, ivrLogsFormData(FETCH_LIMIT, offset, customerPhone))
+    .post(LogsPath.ivr, ivrLogsFormData(LOG_FETCH_LIMIT, offset, customerPhone))
     .then((r): IIVRLogs[] => {
       const data = r.data.data
       return data.map((log: any): IIVRLogs => ({
@@ -54,7 +43,10 @@ export const fetchIVRLogsAPI = (offset: number, customerPhone?: string) =>
           phone: log.caller,
         },
         id: log.call_sid,
-        transaction: getTransaction(log),
+        transaction: {
+          amount: log.amount.Int64,
+          id: log.transaction_id.String,
+        },
         updatedTimestamp: log.updated_at,
       }))
     })
