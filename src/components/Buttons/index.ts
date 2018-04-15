@@ -11,6 +11,7 @@ const CommonButton = styled.button`
   font-weight: 600;
   cursor: pointer;
   text-align: center;
+  background: ${white};
   user-select: none;
   letter-spacing: 0.09rem;
   min-width: 7rem;
@@ -33,4 +34,5 @@ export const RejectButton = CommonButton.extend`
 
 export const PaginationButton = CommonButton.extend`
   outline: none;
+  min-width: 10rem;
 `
