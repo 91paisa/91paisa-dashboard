@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { IIVRLogs } from '../../../api/logs-api'
 import { getDDMMYYYY, getLT } from '../../../helpers/time-helper'
-import { dark, fog } from '../../../styles/colors'
+import { dark, fog, graphite } from '../../../styles/colors'
 import PhoneCell from '../../Customers/PhoneCell'
 import AmountCell from '../../Transactions/AmountCell'
 
@@ -21,7 +21,12 @@ function getAmountCell(log: IIVRLogs) {
     )
   }
   if (log.transaction.amount) {
-    return <AmountCell amount={log.transaction.amount} />
+    return (
+      <AmountCell
+        style={{ color: graphite, fontWeight: 500 }}
+        amount={log.transaction.amount}
+      />
+    )
   }
   return <p />
 }
