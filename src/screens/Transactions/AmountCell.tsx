@@ -1,6 +1,5 @@
 import { CSSProperties, default as React } from 'react'
 import styled from 'styled-components'
-import { graphite } from '../../styles/colors'
 
 interface IProps {
   amount: number
@@ -11,9 +10,9 @@ const AmountCell: React.SFC<IProps> = props => (
   <Container style={props.style}>
     <p
       style={{
-        color: graphite,
         fontSize: '66%',
         marginTop: '-0.7%',
+        opacity: 0.7,
       }}
     >
       ₹
