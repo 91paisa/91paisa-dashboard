@@ -16,6 +16,7 @@ const CommonButton = styled.button`
   letter-spacing: 0.09rem;
   min-width: 7rem;
   opacity: 0.88;
+  outline: none;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   &:hover {
     opacity: 1;
@@ -33,6 +34,5 @@ export const RejectButton = CommonButton.extend`
 `
 
 export const PaginationButton = CommonButton.extend`
-  outline: none;
   min-width: 10rem;
 `

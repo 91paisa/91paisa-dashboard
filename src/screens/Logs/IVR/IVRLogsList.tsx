@@ -20,12 +20,26 @@ interface IState {
   offset: number
 }
 
-class IVRLogsList extends React.Component<{}, IState> {
+interface IProps {
+  customerPhone: string | undefined
+  handleCustomerPhoneToSearch: (customerPhone: string) => void
+}
+
+class IVRLogsList extends React.Component<IProps, IState> {
   public state = {
     data: [],
     last: false,
     loading: false,
     offset: 0,
+  }
+
+  public componentWillReceiveProps(newProps: IProps) {
+    if (
+      !newProps.customerPhone ||
+      (newProps.customerPhone && newProps.customerPhone.length === 10)
+    ) {
+      this.clearAndFetch()
+    }
   }
 
   public componentDidMount() {
@@ -70,20 +84,28 @@ class IVRLogsList extends React.Component<{}, IState> {
       return
     }
     this.setState({ loading: true }, () => {
-      fetchIVRLogsAPI(this.state.offset).then(data => {
-        this.setState({ data: [], last: true }, () => {
-          this.setState(
-            {
-              data: data.length === 0 ? this.state.data : data,
-              last: data.length === 0 || data.length < LOG_FETCH_LIMIT,
-              loading: false,
-              offset: this.state.offset + data.length,
-            },
-            () => this.forceUpdate(),
-          )
-        })
-      })
+      fetchIVRLogsAPI(this.state.offset, this.props.customerPhone).then(
+        data => {
+          this.setState({ data: [], last: true }, () => {
+            this.setState(
+              {
+                data: data.length === 0 ? this.state.data : data,
+                last: data.length === 0 || data.length < LOG_FETCH_LIMIT,
+                loading: false,
+                offset: this.state.offset + data.length,
+              },
+              () => this.forceUpdate(),
+            )
+          })
+        },
+      )
     })
+  }
+
+  private clearAndFetch = () => {
+    this.setState({ offset: 0, last: false, loading: false, data: [] }, () =>
+      this.getData(),
+    )
   }
 
   private getRowHeight = () => (isPhoneOrTable() ? remToPx(4.5) : remToPx(3.5))
@@ -114,7 +136,10 @@ class IVRLogsList extends React.Component<{}, IState> {
     }
     return (
       <BackgroundContainer key={key} style={style} index={index}>
-        <IVRLogItem log={data[index]} />
+        <IVRLogItem
+          log={data[index]}
+          customerPhoneToSearch={this.props.handleCustomerPhoneToSearch}
+        />
       </BackgroundContainer>
     )
   }

@@ -10,6 +10,7 @@ import AmountCell from '../../Transactions/AmountCell'
 
 interface IProps {
   log: IIVRLogs
+  customerPhoneToSearch: (customerPhone: string) => void
 }
 
 function getAmountCell(log: IIVRLogs) {
@@ -31,7 +32,10 @@ function getAmountCell(log: IIVRLogs) {
   return <p />
 }
 
-const IVRLogItem: React.SFC<IProps> = ({ log }: IProps) => (
+const IVRLogItem: React.SFC<IProps> = ({
+  log,
+  customerPhoneToSearch,
+}: IProps) => (
   <Container>
     <div
       style={{ paddingLeft: '1rem', display: 'flex' }}
@@ -46,9 +50,11 @@ const IVRLogItem: React.SFC<IProps> = ({ log }: IProps) => (
       <p>{getCallDuration(log.createdTimestamp, log.updatedTimestamp)}</p>
     </div>
     {getAmountCell(log)}
-    <HoverLink to={`/customers/${log.customer.phone}/`}>
+    <HoverSearchLogLink
+      onClick={() => customerPhoneToSearch(log.customer.phone)}
+    >
       <Name>{log.customer.name}</Name>
-    </HoverLink>
+    </HoverSearchLogLink>
     <HoverLink to={`/customers/${log.customer.phone}/`}>
       <div style={{ display: 'flex' }}>
         <PhoneCell phone={log.customer.phone} />
@@ -100,5 +106,21 @@ const HoverLink = styled(Link)`
   height: 100%;
   align-items: center;
   display: flex;
+`
+
+const HoverSearchLogLink = styled.div`
+  display: flex;
+  height: 100%;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    &:after {
+      margin: auto 0;
+      padding-left: 0.8rem;
+      font-size: 0.8rem;
+      content: '🔗';
+    }
+  }
 `
 export default IVRLogItem

@@ -1,16 +1,33 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { fog } from '../../../styles/colors'
+import IVRLogSearch from './IVRLogSearch'
 import IVRLogsList from './IVRLogsList'
 
 class IVRLogsContainer extends React.Component<{}> {
+  public state = {
+    customerPhone: '',
+  }
   public render() {
     return (
       <>
-        <ActionContainer />
-        <IVRLogsList />
+        <ActionContainer>
+          <IVRLogSearch
+            searchLogs={this.handleCustomerPhoneSearch}
+            searchText={this.state.customerPhone}
+          />
+        </ActionContainer>
+        <IVRLogsList
+          customerPhone={this.state.customerPhone}
+          handleCustomerPhoneToSearch={this.handleCustomerPhoneSearch}
+        />
       </>
     )
+  }
+  private handleCustomerPhoneSearch = (
+    customerPhoneToSearch: string | undefined,
+  ) => {
+    this.setState({ customerPhone: customerPhoneToSearch })
   }
 }
 
