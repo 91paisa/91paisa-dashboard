@@ -30,7 +30,7 @@ class CustomerTransactionList extends React.Component<IProps> {
             {({ height, width, isScrolling, onChildScroll, scrollTop }) => (
               <List
                 autoHeight={true}
-                height={height}
+                height={this.getRowHeight() * transactions.length}
                 autoWidth={true}
                 isScrolling={isScrolling}
                 onScroll={onChildScroll}
