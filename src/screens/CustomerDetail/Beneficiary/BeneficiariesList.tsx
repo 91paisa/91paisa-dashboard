@@ -51,7 +51,6 @@ const Empty = styled.p`
 `
 const GridContainer = styled.div`
   display: grid;
-  padding: 1rem 1rem 0 1rem;
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(14.5rem, 1fr));
 `

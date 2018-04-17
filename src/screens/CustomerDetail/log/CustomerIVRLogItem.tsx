@@ -38,7 +38,7 @@ const Container = styled.div`
   display: grid;
   align-items: center;
   height: 100%;
-  grid-template-columns: 16rem 9rem 12rem 1fr;
+  grid-template-columns: 1fr 1fr 2fr;
 `
 
 export default CustomerIVRLogItem

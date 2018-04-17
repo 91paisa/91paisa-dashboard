@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { ICustomer } from '../../api/customer-api'
 import Card from '../../components/Card'
 import Space, { SpaceEnum } from '../../components/Space'
+import { getColorBasedOnCustomerStatus } from '../../helpers/color-helper'
 import { dark } from '../../styles/colors'
 import PhoneCell from '../Customers/PhoneCell'
 import StatusStrip from './StatusStrip'
@@ -11,23 +12,29 @@ interface IProps {
   customer: ICustomer | undefined
 }
 
-const CustomerCard: React.SFC<IProps> = _ => {
-  if (_.customer === undefined) {
+const CustomerCard: React.SFC<IProps> = ({ customer }: IProps) => {
+  if (customer === undefined) {
     return <div />
   }
   return (
-    <Card>
-      <StatusStrip status={_.customer.status} />
-      <Name>{_.customer.name}</Name>
+    <Container status={customer.status}>
+      <StatusStrip status={customer.status} />
+      <Name>{customer.name}</Name>
       <Space height={SpaceEnum.m} />
       <PhoneCell
         style={{ justifyContent: 'center' }}
-        phone={_.customer.phone}
+        phone={customer.phone}
         fontSize={'1.3rem'}
       />
-    </Card>
+    </Container>
   )
 }
+
+const Container: any = Card.extend`
+  padding: 0 0 1rem 0;
+  border-top: ${(props: any) =>
+    getColorBasedOnCustomerStatus(props.status) + ' 1px solid'};
+`
 
 const Name = styled.h1`
   font-size: 1.3rem;

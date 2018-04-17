@@ -1,6 +1,7 @@
 import { Component, default as React } from 'react'
 import styled from 'styled-components'
 import { ICustomer } from '../../api/customer-api'
+import Space, { SpaceEnum } from '../../components/Space'
 import BeneficiariesListContainer from './Beneficiary/BeneficiariesListContainer'
 import CustomerCard from './CustomerCard'
 import CustomerIVRLogContainer from './log/CustomerIVRLogContainer'
@@ -29,6 +30,10 @@ class CustomerDetail extends Component<IProps, {}> {
             </>
           )}
         </InnerContainer>
+        <>
+          <Space height={SpaceEnum.xxxl} />
+          <Space height={SpaceEnum.xxxl} />
+        </>
       </OuterContainer>
     )
   }

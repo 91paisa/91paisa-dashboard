@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { ITransaction } from '../../../api/transaction-api'
 import Card from '../../../components/Card'
 import CardTitle from '../../../components/CardTitle'
-import Space, { SpaceEnum } from '../../../components/Space'
 import { remToPx } from '../../../helpers/unit-helper'
 import { lightGrey, white } from '../../../styles/colors'
 import { isPhoneOrTable } from '../../../styles/screenSize'
@@ -20,31 +19,26 @@ class CustomerTransactionList extends React.Component<IProps> {
   public render() {
     const { transactions, ludicrousMode } = this.props
     return (
-      <>
-        <Card>
-          <>
-            {!ludicrousMode && <CardTitle>Transactions</CardTitle>}
-            <Space height={SpaceEnum.m} />
-          </>
-          <WindowScroller>
-            {({ height, width, isScrolling, onChildScroll, scrollTop }) => (
-              <List
-                autoHeight={true}
-                height={this.getRowHeight() * transactions.length}
-                autoWidth={true}
-                isScrolling={isScrolling}
-                onScroll={onChildScroll}
-                overscanColumnCount={5}
-                rowCount={transactions.length}
-                rowHeight={this.getRowHeight()}
-                rowRenderer={this.rowRenderer}
-                width={width}
-                scrollTop={scrollTop}
-              />
-            )}
-          </WindowScroller>
-        </Card>
-      </>
+      <Card>
+        {!ludicrousMode && <CardTitle>Transactions</CardTitle>}
+        <WindowScroller>
+          {({ height, width, isScrolling, onChildScroll, scrollTop }) => (
+            <List
+              autoHeight={true}
+              height={this.getRowHeight() * transactions.length}
+              autoWidth={true}
+              isScrolling={isScrolling}
+              onScroll={onChildScroll}
+              overscanColumnCount={5}
+              rowCount={transactions.length}
+              rowHeight={this.getRowHeight()}
+              rowRenderer={this.rowRenderer}
+              width={width}
+              scrollTop={scrollTop}
+            />
+          )}
+        </WindowScroller>
+      </Card>
     )
   }
 
