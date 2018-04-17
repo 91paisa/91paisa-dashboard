@@ -6,8 +6,9 @@ import { updateTransaction, updating } from '../../actions/transactions-actions'
 import { ITransaction, transactionActionEnum } from '../../api/transaction-api'
 import { ApproveButton, RejectButton } from '../../components/Buttons'
 import Space, { SpaceEnum } from '../../components/Space'
+import { isAdmin } from '../../helpers/reviewer-helper'
 import { IReduxState } from '../../store/initial-state'
-import { alertRed, positiveGreen } from '../../styles/colors'
+import { alertPending, alertRed, positiveGreen } from '../../styles/colors'
 
 interface IProps {
   transaction: ITransaction
@@ -38,11 +39,25 @@ class TransactionActionButton extends Component<IProps> {
       return this.handleRejectedActionStatus()
     }
 
+    if (!isAdmin()) {
+      return this.handleNotAdminStatus()
+    }
+
     return (
       <Container>
         <ApproveButton onClick={this.handleApprove}>Approve</ApproveButton>
         <Space width={SpaceEnum.xxl} />
         <RejectButton onClick={this.handleReject}>Reject</RejectButton>
+      </Container>
+    )
+  }
+
+  private handleNotAdminStatus() {
+    return (
+      <Container>
+        <p style={{ color: alertPending, fontWeight: 600 }}>
+          Waiting for reviewer's approval
+        </p>
       </Container>
     )
   }
@@ -106,6 +121,7 @@ const Container = styled.div`
 
 const StatusText: any = styled.p`
   font-style: italic;
+  font-weight: 600;
   color: ${(props: any) =>
     props.actionStatus === transactionActionEnum.approve
       ? positiveGreen

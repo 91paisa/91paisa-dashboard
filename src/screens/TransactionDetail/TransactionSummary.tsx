@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { ITransaction } from '../../api/transaction-api'
 import { getModeEmoji } from '../../helpers/transaction-helper'
-import { graphite, positiveGreen } from '../../styles/colors'
+import { fog, graphite } from '../../styles/colors'
 import { phone } from '../../styles/screenSize'
 import PhoneCell from '../Customers/PhoneCell'
 import AmountCell from '../Transactions/AmountCell'
@@ -78,7 +78,7 @@ const TransactionSummary: React.SFC<IProps> = props => {
         </TimeContainer>
       </SummaryContainer>
       <Mode mode={mode}>
-        <Emoji>{getModeEmoji(mode)}</Emoji>
+        {getModeEmoji(mode)}
         {mode}
       </Mode>
     </>
@@ -99,7 +99,7 @@ const TimeContainer = styled.div`
 const Commission = styled.p`
   font-size: 1.3rem;
   align-content: stretch;
-  color: ${positiveGreen};
+  color: ${graphite};
   text-align: center;
 `
 
@@ -126,21 +126,18 @@ const SummaryContainer = styled.div`
   }
 `
 
-const Emoji = styled.span`
-  font-size: 1.5rem;
-  padding-right: 1rem;
-`
-
 const Mode: any = styled.p`
   text-transform: uppercase;
   color: ${graphite};
-  border-radius: 0.2rem;
+  border-radius: 0.5rem;
   margin: auto;
+  font-size: 0.8rem;
   font-weight: 700;
-  padding: 0.2rem 0.4rem 0.2rem 0.2rem;
-  border-color: ${graphite};
+  padding: 0 0.2rem;
+  border-color: ${fog};
+  letter-spacing: 0.2rem;
   border-width: 1px;
-  border-style: solid;
+  border-style: dashed;
 `
 
 export default TransactionSummary
