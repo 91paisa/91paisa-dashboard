@@ -2,8 +2,8 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { nodalStatusEnum } from '../../api/transaction-api'
 import { getNodalTransactionColor } from '../../helpers/color-helper'
+import { normalizeEnumKey } from '../../helpers/transaction-helper'
 import { white } from '../../styles/colors'
-import { normalizeSplitTransactionStatus } from '../Transactions/TransactionStatusCell'
 
 interface IProps {
   status: nodalStatusEnum
@@ -11,7 +11,7 @@ interface IProps {
 const NodalStatus: React.SFC<IProps> = ({ status }: IProps) => (
   <Container status={status}>
     <Label status={status}>Nodal</Label>
-    <Text>{normalizeSplitTransactionStatus(nodalStatusEnum[status])}</Text>
+    <Text>{normalizeEnumKey(nodalStatusEnum[status])}</Text>
   </Container>
 )
 

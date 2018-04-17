@@ -5,8 +5,8 @@ import {
   splitTransactionStatus,
 } from '../../api/transaction-api'
 import { getSplitTransactionColor } from '../../helpers/color-helper'
+import { normalizeEnumKey } from '../../helpers/transaction-helper'
 import { white } from '../../styles/colors'
-import { normalizeSplitTransactionStatus } from '../Transactions/TransactionStatusCell'
 
 interface IProps {
   status: splitTransactionStatus | nodalStatusEnum
@@ -15,7 +15,7 @@ interface IProps {
 const SplitStatus: React.SFC<IProps> = ({ status, count }: IProps) => (
   <Container status={status}>
     <Text>
-      {normalizeSplitTransactionStatus(splitTransactionStatus[status])}
+      {normalizeEnumKey(splitTransactionStatus[status])}
     </Text>
     {count && count > 1 && <Count status={status}>{count}</Count>}
   </Container>

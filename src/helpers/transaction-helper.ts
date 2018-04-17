@@ -50,3 +50,12 @@ export const  isTransactionComplete=(splits: ISplitTransaction[]) =>{
       .length === 0
   )
 }
+
+export const normalizeEnumKey = (status: string) => {
+  return status.split('').map(char => {
+    if (char === char.toUpperCase()) {
+      return ` ${char.toLowerCase()}`
+    }
+    return char
+  })
+}

@@ -65,13 +65,4 @@ const Container = styled.div`
   padding-right: 0.5rem;
 `
 
-export const normalizeSplitTransactionStatus = (status: string) => {
-  return status.split('').map(char => {
-    if (char === char.toUpperCase()) {
-      return ` ${char.toLowerCase()}`
-    }
-    return char
-  })
-}
-
 export default TransactionStatusCell
