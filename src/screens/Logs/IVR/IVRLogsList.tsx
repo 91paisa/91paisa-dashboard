@@ -70,8 +70,6 @@ class IVRLogsList extends React.Component<IProps, IState> {
 
   private getPreviousData = () => {
     const offset = Math.max(this.state.offset - 2 * LOG_FETCH_LIMIT, 0)
-    // tslint:disable-next-line
-    console.log('new offset', offset)
     this.setState({ offset, last: false }, () => this.getData())
   }
 

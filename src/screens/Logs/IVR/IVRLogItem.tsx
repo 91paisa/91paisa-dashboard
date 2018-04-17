@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { IIVRLogs } from '../../../api/logs-api'
 import { getDDMMYYYY, getLT } from '../../../helpers/time-helper'
-import { dark, fog, graphite } from '../../../styles/colors'
+import { dark, fog, graphite, white } from '../../../styles/colors'
 import PhoneCell from '../../Customers/PhoneCell'
 import AmountCell from '../../Transactions/AmountCell'
 
@@ -16,9 +16,11 @@ interface IProps {
 function getAmountCell(log: IIVRLogs) {
   if (log.transaction.id && log.transaction.amount) {
     return (
-      <HoverLink to={`/transactions/${log.transaction.id}/`}>
-        <AmountCell amount={log.transaction.amount} />
-      </HoverLink>
+      <HoverTooltip tooltip={'transaction 🔗'}>
+        <Link to={`/transactions/${log.transaction.id}/`}>
+          <AmountCell amount={log.transaction.amount} />
+        </Link>
+      </HoverTooltip>
     )
   }
   if (log.transaction.amount) {
@@ -50,13 +52,17 @@ const IVRLogItem: React.SFC<IProps> = ({
       <p>{getCallDuration(log.createdTimestamp, log.updatedTimestamp)}</p>
     </div>
     {getAmountCell(log)}
-    <HoverSearchLogLink
+    <HoverTooltip
+      tooltip={'filter search 🔍'}
       onClick={() => customerPhoneToSearch(log.customer.phone)}
     >
       <Name>{log.customer.name}</Name>
-    </HoverSearchLogLink>
-    <HoverLink to={`/customers/${log.customer.phone}/`}>
-      <div style={{ display: 'flex' }}>
+    </HoverTooltip>
+    <HoverTooltip tooltip={'customer profile 🔗'}>
+      <Link
+        style={{ display: 'flex' }}
+        to={`/customers/${log.customer.phone}/`}
+      >
         <PhoneCell phone={log.customer.phone} />
         {log.beneficiaryPhone && (
           <>
@@ -64,8 +70,8 @@ const IVRLogItem: React.SFC<IProps> = ({
             <PhoneCell phone={log.beneficiaryPhone} />
           </>
         )}
-      </div>
-    </HoverLink>
+      </Link>
+    </HoverTooltip>
   </Container>
 )
 
@@ -89,18 +95,24 @@ const Container = styled.div`
   display: grid;
   align-items: center;
   height: 100%;
-  grid-template-columns: 16rem 8rem 11rem 1fr;
+  grid-template-columns: 16rem 9rem 12rem 1fr;
 `
 
-const HoverLink = styled(Link)`
+const HoverTooltip: any = styled.div`
   color: ${dark};
   &:hover {
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     &:after {
-      margin: auto 0;
-      padding-left: 0.8rem;
+      margin: auto 0.3rem;
+      padding: 0 0.8rem;
+      border-radius: 0.5rem;
       font-size: 0.8rem;
-      content: '🔗';
+      opacity: 0.9;
+      background: ${graphite};
+      box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+      color: ${white};
+      z-index: 99999;
+      content: '${(props: any) => props.tooltip}';
     }
   }
   height: 100%;
@@ -108,19 +120,4 @@ const HoverLink = styled(Link)`
   display: flex;
 `
 
-const HoverSearchLogLink = styled.div`
-  display: flex;
-  height: 100%;
-  align-items: center;
-  cursor: pointer;
-  &:hover {
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    &:after {
-      margin: auto 0;
-      padding-left: 0.8rem;
-      font-size: 0.8rem;
-      content: '🔗';
-    }
-  }
-`
 export default IVRLogItem
