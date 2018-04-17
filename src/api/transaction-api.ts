@@ -11,6 +11,7 @@ export enum transactionMode {
 }
 
 export enum splitTransactionStatus {
+  insufficientBalance = -1,
   didNotTry = 0,
   hold = 1,
   commit = 2,

@@ -32,6 +32,7 @@ export const getSplitTransactionColor = (
 ): string => {
   switch (status) {
     case splitTransactionStatus.didNotTry:
+    case splitTransactionStatus.insufficientBalance:
       return graphite
     case splitTransactionStatus.hold:
     case splitTransactionStatus.commit:

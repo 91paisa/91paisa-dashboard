@@ -4,6 +4,7 @@ import {
   INodal,
   ISplitTransaction,
   nodalStatusEnum,
+  splitTransactionStatus,
 } from '../../api/transaction-api'
 import Space, { SpaceEnum } from '../../components/Space'
 import {
@@ -32,6 +33,10 @@ function splitStatusContainer(splits: ISplitTransaction[]) {
   )
 }
 
+const insufficientBalance = () => (
+  <SplitStatus status={splitTransactionStatus.insufficientBalance} />
+)
+
 const TransactionStatusCell: React.SFC<IProps> = ({
   splits,
   nodal,
@@ -45,7 +50,9 @@ const TransactionStatusCell: React.SFC<IProps> = ({
         </>
       )}
 
-      {splits && splitStatusContainer(splits)}
+      {splits && splits.length > 0
+        ? splitStatusContainer(splits)
+        : insufficientBalance()}
     </Container>
   )
 }
