@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { ICustomer } from '../../api/customer-api'
 import BeneficiariesListContainer from './Beneficiary/BeneficiariesListContainer'
 import CustomerCard from './CustomerCard'
+import CustomerIVRLogContainer from './log/CustomerIVRLogContainer'
 import CustomerTransactionContainer from './transaction/CustomerTransactionsContainer'
 
 interface IProps {
@@ -24,6 +25,7 @@ class CustomerDetail extends Component<IProps, {}> {
                 customerIndex={customerIndex}
               />
               {customer.lastTransaction && <CustomerTransactionContainer />}
+              <CustomerIVRLogContainer customerPhone={customer.phone} />
             </>
           )}
         </InnerContainer>

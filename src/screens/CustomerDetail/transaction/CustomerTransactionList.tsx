@@ -20,7 +20,7 @@ class CustomerTransactionList extends React.Component<IProps> {
   public render() {
     const { transactions, ludicrousMode } = this.props
     return (
-      <Container>
+      <>
         <Card>
           <>
             {!ludicrousMode && <CardTitle>Transactions</CardTitle>}
@@ -44,7 +44,7 @@ class CustomerTransactionList extends React.Component<IProps> {
             )}
           </WindowScroller>
         </Card>
-      </Container>
+      </>
     )
   }
 
@@ -72,7 +72,4 @@ const BackgroundContainer: any = styled.div`
   border-bottom: ${lightGrey};
 `
 
-const Container = styled.div`
-  margin-bottom: 10rem;
-`
 export default CustomerTransactionList

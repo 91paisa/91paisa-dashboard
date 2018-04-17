@@ -1,6 +1,11 @@
 import axios from 'axios'
 import { LogsPath } from './constants-api'
 export const LOG_FETCH_LIMIT = 40
+export interface IVRTransaction {
+  amount?: number
+  id?: string
+}
+
 export interface IIVRLogs {
   beneficiaryPhone?: string
   customer: {
@@ -10,10 +15,7 @@ export interface IIVRLogs {
   id: string
   createdTimestamp: string
   updatedTimestamp: string
-  transaction: {
-    amount?: number
-    id?: string
-  }
+  transaction: IVRTransaction
 }
 
 const ivrLogsFormData = (

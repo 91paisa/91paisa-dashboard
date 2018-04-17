@@ -11,6 +11,7 @@ import Space, { SpaceEnum } from '../../../components/Space'
 import { remToPx } from '../../../helpers/unit-helper'
 import { lightGrey, white } from '../../../styles/colors'
 import { isPhoneOrTable } from '../../../styles/screenSize'
+import CustomerIVRLogItem from '../../CustomerDetail/log/CustomerIVRLogItem'
 import IVRLogItem from './IVRLogItem'
 
 interface IState {
@@ -21,8 +22,9 @@ interface IState {
 }
 
 interface IProps {
+  forCustomerDetail?: boolean
   customerPhone: string | undefined
-  handleCustomerPhoneToSearch: (customerPhone: string) => void
+  handleCustomerPhoneToSearch?: (customerPhone: string) => void
 }
 
 class IVRLogsList extends React.Component<IProps, IState> {
@@ -134,10 +136,14 @@ class IVRLogsList extends React.Component<IProps, IState> {
     }
     return (
       <BackgroundContainer key={key} style={style} index={index}>
-        <IVRLogItem
-          log={data[index]}
-          customerPhoneToSearch={this.props.handleCustomerPhoneToSearch}
-        />
+        {this.props.forCustomerDetail ? (
+          <CustomerIVRLogItem log={data[index]} />
+        ) : (
+          <IVRLogItem
+            log={data[index]}
+            customerPhoneToSearch={this.props.handleCustomerPhoneToSearch}
+          />
+        )}
       </BackgroundContainer>
     )
   }
