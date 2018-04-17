@@ -22,7 +22,7 @@ const IVRLogItem: React.SFC<IProps> = ({
       createdTimestamp={log.createdTimestamp}
       updatedTimestamp={log.updatedTimestamp}
     />
-    <IVRAmountCell {...log.transaction} />
+    <IVRAmountCell transaction={log.transaction} />
     <HoverTooltip
       tooltip={'filter search 🔍'}
       onClick={() => {

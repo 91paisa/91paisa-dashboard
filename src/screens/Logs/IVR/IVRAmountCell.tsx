@@ -1,32 +1,32 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
+import { RouteComponentProps, withRouter } from 'react-router'
 import { IVRTransaction } from '../../../api/logs-api'
 import HoverTooltip from '../../../components/HoverTooltip'
 import { graphite } from '../../../styles/colors'
 import AmountCell from '../../Transactions/AmountCell'
-
-const IVRAmountCell: React.SFC<IVRTransaction> = ({
-  amount,
-  id,
-}: IVRTransaction) => {
-  if (id && amount) {
+interface IProps extends RouteComponentProps<{}> {
+  transaction: IVRTransaction
+}
+const IVRAmountCell: React.SFC<IProps> = ({ transaction, history }: IProps) => {
+  if (transaction.id && transaction.amount) {
     return (
-      <HoverTooltip tooltip={'transaction 🔗'}>
-        <Link to={`/transactions/${id}/`}>
-          <AmountCell amount={amount} />
-        </Link>
+      <HoverTooltip
+        tooltip={'transaction 🔗'}
+        onClick={() => history.push(`/transactions/${transaction.id}/`)}
+      >
+        <AmountCell amount={transaction.amount} />
       </HoverTooltip>
     )
   }
-  if (amount) {
+  if (transaction.amount) {
     return (
       <AmountCell
         style={{ color: graphite, fontWeight: 500 }}
-        amount={amount}
+        amount={transaction.amount}
       />
     )
   }
   return <p />
 }
 
-export default IVRAmountCell
+export default withRouter(IVRAmountCell)

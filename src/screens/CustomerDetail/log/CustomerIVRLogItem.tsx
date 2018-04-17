@@ -16,7 +16,7 @@ const CustomerIVRLogItem: React.SFC<IProps> = ({ log }: IProps) => (
       createdTimestamp={log.createdTimestamp}
       updatedTimestamp={log.updatedTimestamp}
     />
-    <IVRAmountCell {...log.transaction} />
+    <IVRAmountCell transaction={log.transaction} />
     {log.beneficiaryPhone && (
       <div style={{ display: 'flex' }}>
         <span
