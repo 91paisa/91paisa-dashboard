@@ -1,8 +1,7 @@
 import * as React from 'react'
-import styled from 'styled-components'
 import { fetchIVRLogsAPI, IIVRLog } from '../../../api/logs-api'
 import { getRowHeightForIVRLogItem } from '../../../helpers/unit-helper'
-import { fog } from '../../../styles/colors'
+import { ActionContainer } from '../LogStyles'
 import IVRLogItem from './IVRLogItem'
 import IVRLogSearch from './IVRLogSearch'
 import LogsList from './LogsList'
@@ -40,12 +39,5 @@ class IVRLogsContainer extends React.Component<{}> {
     this.setState({ customerPhone: customerPhoneToSearch })
   }
 }
-
-const ActionContainer = styled.div`
-  display: flex;
-  padding: 0.5rem;
-  align-items: center;
-  border-bottom: 1px solid ${fog};
-`
 
 export default IVRLogsContainer

@@ -15,3 +15,7 @@ export const isAdmin = () => {
   }
   return false
 }
+
+export const getGithubId = (reviewerId: string) => {
+  return 5713737
+}
