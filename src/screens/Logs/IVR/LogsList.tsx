@@ -20,7 +20,8 @@ interface IState {
 interface IProps {
   searchFilter: string // for api to access
   children: (log: IIVRLog) => void // for render props
-  api: (offset: number, filter?: string) => Promise<IIVRLog[]> // api function
+  updateSearchFilter?: (search: string) => void
+  api: (offset: number, filter?: string) => Promise<IIVRLog[]> //  api function
 }
 
 class LogsList extends React.Component<IProps, IState> {
