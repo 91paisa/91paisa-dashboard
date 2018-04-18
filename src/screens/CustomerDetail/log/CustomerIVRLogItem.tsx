@@ -2,6 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { IIVRLogs } from '../../../api/logs-api'
 import { fog } from '../../../styles/colors'
+import { phone } from '../../../styles/screenSize'
 import PhoneCell from '../../Customers/PhoneCell'
 import IVRAmountCell from '../../Logs/IVR/IVRAmountCell'
 import IVRDurationCell from '../../Logs/IVR/IVRDurationCell'
@@ -38,7 +39,10 @@ const Container = styled.div`
   display: grid;
   align-items: center;
   height: 100%;
-  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-columns: 15rem 8rem 14rem;
+  @media (${phone}) {
+    grid-template-columns: 1fr 0.5fr 1fr;
+  }
 `
 
 export default CustomerIVRLogItem

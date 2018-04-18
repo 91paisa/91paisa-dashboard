@@ -6,6 +6,7 @@ import {
   getDDMMYYYY,
   getLT,
 } from '../../../helpers/time-helper'
+import { dark } from '../../../styles/colors'
 
 interface IProps {
   createdTimestamp: string
@@ -17,7 +18,7 @@ const IVRDurationCell: React.SFC<IProps> = ({
   updatedTimestamp,
 }: IProps) => (
   <div
-    style={{ paddingLeft: '1rem', display: 'flex' }}
+    style={{ paddingLeft: '1rem', display: 'flex', color: dark }}
     title={`${getLT(createdTimestamp)} ${getDDMMYYYY(createdTimestamp)}`}
   >
     {moment(createdTimestamp)

@@ -1,5 +1,12 @@
 import styled from 'styled-components'
-import { alertRed, positiveGreen, white } from '../../styles/colors'
+import {
+  alertRed,
+  fog,
+  graphite,
+  lightGrey,
+  positiveGreen,
+  white,
+} from '../../styles/colors'
 
 const CommonButton = styled.button`
   display: inline-block;
@@ -33,6 +40,30 @@ export const RejectButton = CommonButton.extend`
   color: ${alertRed};
 `
 
-export const PaginationButton = CommonButton.extend`
-  min-width: 10rem;
+export const PaginationButtonPrevious = CommonButton.extend`
+  line-height: 1.4rem;
+  min-width: 2rem;
+  color: ${graphite};
+  opacity: 1;
+  border: 1px solid ${fog};
+  border-radius: 0.5rem 0 0 0.5rem;
+  &:disabled {
+    background: ${white};
+    cursor: not-allowed;
+    color: ${lightGrey};
+    text-shadow: none;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  &:after {
+    content: '⬅';
+  }
+`
+
+export const PaginationButtonNext = PaginationButtonPrevious.extend`
+  border-radius: 0 0.5rem 0.5rem 0;
+  &:after {
+    content: '➡';
+  }
 `

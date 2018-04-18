@@ -1,6 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import { IIVRLogs } from '../../../api/logs-api'
 import { fog } from '../../../styles/colors'
+import IVRLogItem from './IVRLogItem'
 import IVRLogSearch from './IVRLogSearch'
 import IVRLogsList from './IVRLogsList'
 
@@ -13,20 +15,25 @@ class IVRLogsContainer extends React.Component<{}> {
       <>
         <ActionContainer>
           <IVRLogSearch
-            searchLogs={this.handleCustomerPhoneSearch}
-            searchText={this.state.customerPhone}
+            search={this.updateCustomerPhone}
+            updateSearchText={this.state.customerPhone}
           />
         </ActionContainer>
         <IVRLogsList
-          customerPhone={this.state.customerPhone}
-          handleCustomerPhoneToSearch={this.handleCustomerPhoneSearch}
-        />
+          searchFilter={this.state.customerPhone}
+          updateSearchFilter={this.updateCustomerPhone}
+        >
+          {(log: IIVRLogs) => (
+            <IVRLogItem
+              log={log}
+              updateSearchFilter={this.updateCustomerPhone}
+            />
+          )}
+        </IVRLogsList>
       </>
     )
   }
-  private handleCustomerPhoneSearch = (
-    customerPhoneToSearch: string | undefined,
-  ) => {
+  private updateCustomerPhone = (customerPhoneToSearch: string) => {
     this.setState({ customerPhone: customerPhoneToSearch })
   }
 }

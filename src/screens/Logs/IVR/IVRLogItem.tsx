@@ -10,13 +10,10 @@ import IVRDurationCell from './IVRDurationCell'
 
 interface IProps {
   log: IIVRLogs
-  customerPhoneToSearch?: (customerPhone: string) => void
+  updateSearchFilter: (customerPhone: string) => void
 }
 
-const IVRLogItem: React.SFC<IProps> = ({
-  log,
-  customerPhoneToSearch,
-}: IProps) => (
+const IVRLogItem: React.SFC<IProps> = ({ log, updateSearchFilter }: IProps) => (
   <Container>
     <IVRDurationCell
       createdTimestamp={log.createdTimestamp}
@@ -26,9 +23,7 @@ const IVRLogItem: React.SFC<IProps> = ({
     <HoverTooltip
       tooltip={'filter search 🔍'}
       onClick={() => {
-        if (customerPhoneToSearch) {
-          return customerPhoneToSearch(log.customer.phone)
-        }
+        return updateSearchFilter(log.customer.phone)
       }}
     >
       <Name>{log.customer.name}</Name>

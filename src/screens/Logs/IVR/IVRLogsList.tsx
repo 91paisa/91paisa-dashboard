@@ -6,13 +6,13 @@ import {
   IIVRLogs,
   LOG_FETCH_LIMIT,
 } from '../../../api/logs-api'
-import { PaginationButton } from '../../../components/Buttons'
-import Space, { SpaceEnum } from '../../../components/Space'
+import {
+  PaginationButtonNext,
+  PaginationButtonPrevious,
+} from '../../../components/Buttons'
 import { remToPx } from '../../../helpers/unit-helper'
-import { lightGrey, white } from '../../../styles/colors'
+import { fog, lightGrey, white } from '../../../styles/colors'
 import { isPhoneOrTable } from '../../../styles/screenSize'
-import CustomerIVRLogItem from '../../CustomerDetail/log/CustomerIVRLogItem'
-import IVRLogItem from './IVRLogItem'
 
 interface IState {
   data: IIVRLogs[]
@@ -22,9 +22,9 @@ interface IState {
 }
 
 interface IProps {
-  forCustomerDetail?: boolean
-  customerPhone: string | undefined
-  handleCustomerPhoneToSearch?: (customerPhone: string) => void
+  searchFilter: string
+  updateSearchFilter?: (search: string) => void
+  children: (log: IIVRLogs) => void
 }
 
 class IVRLogsList extends React.Component<IProps, IState> {
@@ -36,12 +36,7 @@ class IVRLogsList extends React.Component<IProps, IState> {
   }
 
   public componentWillReceiveProps(newProps: IProps) {
-    // tslint:disable-next-line
-    console.log(newProps)
-    if (
-      !newProps.customerPhone ||
-      (newProps.customerPhone && newProps.customerPhone.length === 10)
-    ) {
+    if (this.props.searchFilter !== newProps.searchFilter) {
       this.clearAndFetch()
     }
   }
@@ -86,21 +81,19 @@ class IVRLogsList extends React.Component<IProps, IState> {
       return
     }
     this.setState({ loading: true }, () => {
-      fetchIVRLogsAPI(this.state.offset, this.props.customerPhone).then(
-        data => {
-          this.setState({ data: [], last: true }, () => {
-            this.setState(
-              {
-                data: data.length === 0 ? this.state.data : data,
-                last: data.length === 0 || data.length < LOG_FETCH_LIMIT,
-                loading: false,
-                offset: this.state.offset + data.length,
-              },
-              () => this.forceUpdate(),
-            )
-          })
-        },
-      )
+      fetchIVRLogsAPI(this.state.offset, this.props.searchFilter).then(data => {
+        this.setState({ data: [], last: true }, () => {
+          this.setState(
+            {
+              data: data.length === 0 ? this.state.data : data,
+              last: data.length === 0 || data.length < LOG_FETCH_LIMIT,
+              loading: false,
+              offset: this.state.offset + data.length,
+            },
+            () => this.forceUpdate(),
+          )
+        })
+      })
     })
   }
 
@@ -123,29 +116,20 @@ class IVRLogsList extends React.Component<IProps, IState> {
     if (index === data.length) {
       return (
         <PaginationContainer key={key} style={style}>
-          <PaginationButton
+          <PaginationButtonPrevious
             disabled={offset <= LOG_FETCH_LIMIT}
             onClick={() => this.getPreviousData()}
-          >
-            ⬅ Previous
-          </PaginationButton>
-          <Space width={SpaceEnum.l} />
-          <PaginationButton disabled={last} onClick={() => this.getNextData()}>
-            Next ➡
-          </PaginationButton>
+          />
+          <PaginationButtonNext
+            disabled={last}
+            onClick={() => this.getNextData()}
+          />
         </PaginationContainer>
       )
     }
     return (
       <BackgroundContainer key={key} style={style} index={index}>
-        {this.props.forCustomerDetail ? (
-          <CustomerIVRLogItem log={data[index]} />
-        ) : (
-          <IVRLogItem
-            log={data[index]}
-            customerPhoneToSearch={this.props.handleCustomerPhoneToSearch}
-          />
-        )}
+        {this.props.children(data[index])}
       </BackgroundContainer>
     )
   }
@@ -154,11 +138,12 @@ class IVRLogsList extends React.Component<IProps, IState> {
 const BackgroundContainer: any = styled.div`
   background: ${(props: any) => (props.index % 2 === 0 ? lightGrey : white)};
   border-bottom: ${lightGrey};
+  color: ${fog};
 `
 
 const PaginationContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 `
 export default IVRLogsList
