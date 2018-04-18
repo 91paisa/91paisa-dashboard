@@ -36,6 +36,8 @@ class IVRLogsList extends React.Component<IProps, IState> {
   }
 
   public componentWillReceiveProps(newProps: IProps) {
+    // tslint:disable-next-line
+    console.log(newProps)
     if (
       !newProps.customerPhone ||
       (newProps.customerPhone && newProps.customerPhone.length === 10)
