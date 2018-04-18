@@ -1,11 +1,7 @@
 import * as React from 'react'
 import { List, WindowScroller } from 'react-virtualized'
 import styled from 'styled-components'
-import {
-  fetchIVRLogsAPI,
-  IIVRLogs,
-  LOG_FETCH_LIMIT,
-} from '../../../api/logs-api'
+import { IIVRLog, LOG_FETCH_LIMIT } from '../../../api/logs-api'
 import {
   PaginationButtonNext,
   PaginationButtonPrevious,
@@ -15,19 +11,19 @@ import { fog, lightGrey, white } from '../../../styles/colors'
 import { isPhoneOrTable } from '../../../styles/screenSize'
 
 interface IState {
-  data: IIVRLogs[]
+  data: IIVRLog[]
   last: boolean
   loading: boolean
   offset: number
 }
 
 interface IProps {
-  searchFilter: string
-  updateSearchFilter?: (search: string) => void
-  children: (log: IIVRLogs) => void
+  searchFilter: string // for api to access
+  children: (log: IIVRLog) => void // for render props
+  api: (offset: number, filter?: string) => Promise<IIVRLog[]> // api function
 }
 
-class IVRLogsList extends React.Component<IProps, IState> {
+class LogsList extends React.Component<IProps, IState> {
   public state = {
     data: [],
     last: false,
@@ -81,7 +77,7 @@ class IVRLogsList extends React.Component<IProps, IState> {
       return
     }
     this.setState({ loading: true }, () => {
-      fetchIVRLogsAPI(this.state.offset, this.props.searchFilter).then(data => {
+      this.props.api(this.state.offset, this.props.searchFilter).then(data => {
         this.setState({ data: [], last: true }, () => {
           this.setState(
             {
@@ -146,4 +142,4 @@ const PaginationContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
 `
-export default IVRLogsList
+export default LogsList

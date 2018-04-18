@@ -6,7 +6,7 @@ export interface IVRTransaction {
   id?: string
 }
 
-export interface IIVRLogs {
+export interface IIVRLog {
   beneficiaryPhone?: string
   customer: {
     name?: string
@@ -35,9 +35,9 @@ const ivrLogsFormData = (
 export const fetchIVRLogsAPI = (offset: number, customerPhone?: string) =>
   axios
     .post(LogsPath.ivr, ivrLogsFormData(LOG_FETCH_LIMIT, offset, customerPhone))
-    .then((r): IIVRLogs[] => {
+    .then((r): IIVRLog[] => {
       const data = r.data.data
-      return data.map((log: any): IIVRLogs => ({
+      return data.map((log: any): IIVRLog => ({
         beneficiaryPhone: log.beneficiary_phone.String,
         createdTimestamp: log.created_at,
         customer: {

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { IIVRLogs } from '../../../api/logs-api'
+import { IIVRLog } from '../../../api/logs-api'
 import HoverTooltip from '../../../components/HoverTooltip'
 import { fog } from '../../../styles/colors'
 import PhoneCell from '../../Customers/PhoneCell'
@@ -9,7 +9,7 @@ import IVRAmountCell from './IVRAmountCell'
 import IVRDurationCell from './IVRDurationCell'
 
 interface IProps {
-  log: IIVRLogs
+  log: IIVRLog
   updateSearchFilter: (customerPhone: string) => void
 }
 

@@ -1,10 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { IIVRLogs } from '../../../api/logs-api'
+import { fetchIVRLogsAPI, IIVRLog } from '../../../api/logs-api'
 import { fog } from '../../../styles/colors'
 import IVRLogItem from './IVRLogItem'
 import IVRLogSearch from './IVRLogSearch'
-import IVRLogsList from './IVRLogsList'
+import LogsList from './LogsList'
 
 class IVRLogsContainer extends React.Component<{}> {
   public state = {
@@ -19,17 +19,18 @@ class IVRLogsContainer extends React.Component<{}> {
             updateSearchText={this.state.customerPhone}
           />
         </ActionContainer>
-        <IVRLogsList
+        <LogsList
+          api={fetchIVRLogsAPI}
           searchFilter={this.state.customerPhone}
           updateSearchFilter={this.updateCustomerPhone}
         >
-          {(log: IIVRLogs) => (
+          {(log: IIVRLog) => (
             <IVRLogItem
               log={log}
               updateSearchFilter={this.updateCustomerPhone}
             />
           )}
-        </IVRLogsList>
+        </LogsList>
       </>
     )
   }

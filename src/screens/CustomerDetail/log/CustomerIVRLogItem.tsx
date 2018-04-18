@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { IIVRLogs } from '../../../api/logs-api'
+import { IIVRLog } from '../../../api/logs-api'
 import { fog } from '../../../styles/colors'
 import { phone } from '../../../styles/screenSize'
 import PhoneCell from '../../Customers/PhoneCell'
@@ -8,7 +8,7 @@ import IVRAmountCell from '../../Logs/IVR/IVRAmountCell'
 import IVRDurationCell from '../../Logs/IVR/IVRDurationCell'
 
 interface IProps {
-  log: IIVRLogs
+  log: IIVRLog
 }
 
 const CustomerIVRLogItem: React.SFC<IProps> = ({ log }: IProps) => (
