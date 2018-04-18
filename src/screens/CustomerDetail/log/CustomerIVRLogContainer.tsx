@@ -2,6 +2,7 @@ import * as React from 'react'
 import { fetchIVRLogsAPI } from '../../../api/logs-api'
 import Card from '../../../components/Card'
 import CardTitle from '../../../components/CardTitle'
+import { getRowHeightForIVRLogItem } from '../../../helpers/unit-helper'
 import LogsList from '../../Logs/IVR/LogsList'
 import CustomerIVRLogItem from './CustomerIVRLogItem'
 interface IProps {
@@ -12,7 +13,11 @@ const CustomerIVRLogContainer: React.SFC<IProps> = ({
 }: IProps) => (
   <Card>
     <CardTitle>Call Logs</CardTitle>
-    <LogsList searchFilter={customerPhone} api={fetchIVRLogsAPI}>
+    <LogsList
+      rowHeight={getRowHeightForIVRLogItem()}
+      searchFilter={customerPhone}
+      api={fetchIVRLogsAPI}
+    >
       {log => <CustomerIVRLogItem log={log} />}
     </LogsList>
   </Card>

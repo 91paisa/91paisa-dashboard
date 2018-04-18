@@ -18,7 +18,7 @@ import ReviewerLogsContainer from './Reviewer/ReviewerLogsContainer'
 class LogsNavigation extends React.Component<RouteComponentProps<{}>> {
   public componentDidMount() {
     if (this.props.location.pathname === '/logs/') {
-      this.props.history.replace('/logs/nodal')
+      this.props.history.replace('/logs/reviewer')
     }
   }
 
@@ -31,16 +31,16 @@ class LogsNavigation extends React.Component<RouteComponentProps<{}>> {
       <Container>
         <TabsOuterContainer>
           <TabsContainer>
-            <LogTab to={'/logs/nodal'}>Nodal</LogTab>
-            <LogTab to={'/logs/ivr'}>IVR</LogTab>
             <LogTab to={'/logs/reviewer'}>Reviewer</LogTab>
+            <LogTab to={'/logs/ivr'}>IVR</LogTab>
+            <LogTab to={'/logs/nodal'}>Nodal</LogTab>
           </TabsContainer>
         </TabsOuterContainer>
         <ContentContainer>
           <Switch>
+            <Route path={'/logs/reviewer'} component={ReviewerLogsContainer} />
             <Route path={'/logs/nodal'} component={NodalLogsContainer} />
             <Route path={'/logs/ivr'} component={IVRLogsContainer} />
-            <Route path={'/logs/reviewer'} component={ReviewerLogsContainer} />
           </Switch>
         </ContentContainer>
       </Container>

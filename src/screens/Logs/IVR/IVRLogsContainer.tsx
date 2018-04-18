@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { fetchIVRLogsAPI, IIVRLog } from '../../../api/logs-api'
+import { getRowHeightForIVRLogItem } from '../../../helpers/unit-helper'
 import { fog } from '../../../styles/colors'
 import IVRLogItem from './IVRLogItem'
 import IVRLogSearch from './IVRLogSearch'
@@ -20,6 +21,7 @@ class IVRLogsContainer extends React.Component<{}> {
           />
         </ActionContainer>
         <LogsList
+          rowHeight={getRowHeightForIVRLogItem()}
           api={fetchIVRLogsAPI}
           searchFilter={this.state.customerPhone}
           updateSearchFilter={this.updateCustomerPhone}

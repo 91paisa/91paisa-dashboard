@@ -6,9 +6,7 @@ import {
   PaginationButtonNext,
   PaginationButtonPrevious,
 } from '../../../components/Buttons'
-import { remToPx } from '../../../helpers/unit-helper'
 import { fog, lightGrey, white } from '../../../styles/colors'
-import { isPhoneOrTable } from '../../../styles/screenSize'
 
 interface IState {
   data: IIVRLog[]
@@ -22,6 +20,7 @@ interface IProps {
   children: (log: IIVRLog) => void // for render props
   updateSearchFilter?: (search: string) => void
   api: (offset: number, filter?: string) => Promise<IIVRLog[]> //  api function
+  rowHeight: number
 }
 
 class LogsList extends React.Component<IProps, IState> {
@@ -49,12 +48,12 @@ class LogsList extends React.Component<IProps, IState> {
         {({ height, width, isScrolling, onChildScroll, scrollTop }) => (
           <List
             autoHeight={true}
-            height={(data.length + 1) * this.getRowHeight()}
+            height={(data.length + 1) * this.props.rowHeight}
             autoWidth={true}
             isScrolling={isScrolling}
             onScroll={onChildScroll}
             rowCount={data.length + 1}
-            rowHeight={this.getRowHeight()}
+            rowHeight={this.props.rowHeight}
             rowRenderer={this.rowRenderer}
             width={width}
             scrollTop={scrollTop}
@@ -99,8 +98,6 @@ class LogsList extends React.Component<IProps, IState> {
       this.getData(),
     )
   }
-
-  private getRowHeight = () => (isPhoneOrTable() ? remToPx(4.5) : remToPx(3.5))
 
   private rowRenderer = ({
     key,
