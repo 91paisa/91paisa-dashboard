@@ -34,7 +34,7 @@ class IVRLogsContainer extends React.Component<{}> {
       </>
     )
   }
-  private updateCustomerPhone = (customerPhoneToSearch: string) => {
+  private updateCustomerPhone = (customerPhoneToSearch: any) => {
     this.setState({ customerPhone: customerPhoneToSearch })
   }
 }

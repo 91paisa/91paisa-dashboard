@@ -2,6 +2,7 @@ import axios from 'axios'
 import { LogsPath } from './constants-api'
 
 export const LOG_FETCH_LIMIT = 40
+export type searchFilterType = string | reviewerActionEnum
 
 export interface IVRTransaction {
   amount?: number
@@ -34,9 +35,15 @@ const ivrLogsFormData = (
   return data
 }
 
-export const fetchIVRLogsAPI = (offset: number, customerPhone?: any) =>
+export const fetchIVRLogsAPI = (
+  offset: number,
+  customerPhone?: searchFilterType,
+) =>
   axios
-    .post(LogsPath.ivr, ivrLogsFormData(LOG_FETCH_LIMIT, offset, customerPhone))
+    .post(
+      LogsPath.ivr,
+      ivrLogsFormData(LOG_FETCH_LIMIT, offset, customerPhone as string),
+    )
     .then((r): IIVRLog[] => {
       const data = r.data.data
       return data.map((log: any): IIVRLog => ({
@@ -96,7 +103,7 @@ export interface IReviewLog {
 const reviewerLogsFormData = (
   limit: number,
   offset: number,
-  filter: string | reviewerActionEnum,
+  filter?: searchFilterType,
 ) => {
   const data = new FormData()
   data.append('limit', limit.toString())
@@ -104,7 +111,7 @@ const reviewerLogsFormData = (
   if (typeof filter === 'string') {
     data.append('reviewer', filter)
   } else {
-    if (filter !== reviewerActionEnum.all) {
+    if (filter && filter !== reviewerActionEnum.all) {
       data.append('activity', filter.toString())
     }
   }
@@ -133,8 +140,8 @@ const formatReviewerLogResponse = (data: any): IReviewLog[] => {
 
 export const fetchReviewerLogsAPI = (
   offset: number,
-  filter: string | reviewerActionEnum,
-) =>
+  filter?: string | reviewerActionEnum,
+): Promise<IReviewLog[]> =>
   axios
     .post(
       LogsPath.reviewer,

@@ -1,7 +1,10 @@
 import * as React from 'react'
 import { List, WindowScroller } from 'react-virtualized'
 import styled from 'styled-components'
-import { IIVRLog, LOG_FETCH_LIMIT } from '../../api/logs-api'
+import {
+  LOG_FETCH_LIMIT,
+  searchFilterType,
+} from '../../api/logs-api'
 import {
   PaginationButtonNext,
   PaginationButtonPrevious,
@@ -16,10 +19,10 @@ interface IState<T> {
 }
 
 interface IProps<T> {
-  searchFilter: any // for api to access
-  children: (log: IIVRLog) => void // for render props
-  updateSearchFilter?: (search: string) => void
-  api: (offset: number, filter?: string) => Promise<T[]> //  api function
+  searchFilter: searchFilterType // for api to access
+  children: (log: T) => void // for render props
+  updateSearchFilter?: (search: searchFilterType) => void
+  api: (offset: number, filter?: searchFilterType) => Promise<T[]> //  api function
   rowHeight: number
 }
 
@@ -77,19 +80,21 @@ class LogList<T> extends React.Component<IProps<T>, IState<T>> {
       return
     }
     this.setState({ loading: true }, () => {
-      this.props.api(this.state.offset, this.props.searchFilter).then(data => {
-        this.setState({ data: [], last: true }, () => {
-          this.setState(
-            {
-              data: data.length === 0 ? this.state.data : data,
-              last: data.length === 0 || data.length < LOG_FETCH_LIMIT,
-              loading: false,
-              offset: this.state.offset + data.length,
-            },
-            () => this.forceUpdate(),
-          )
+      this.props
+        .api(this.state.offset, this.props.searchFilter)
+        .then((data: T[]) => {
+          this.setState({ data: [], last: true }, () => {
+            this.setState(
+              {
+                data: data.length === 0 ? this.state.data : data,
+                last: data.length === 0 || data.length < LOG_FETCH_LIMIT,
+                loading: false,
+                offset: this.state.offset + data.length,
+              },
+              () => this.forceUpdate(),
+            )
+          })
         })
-      })
     })
   }
 

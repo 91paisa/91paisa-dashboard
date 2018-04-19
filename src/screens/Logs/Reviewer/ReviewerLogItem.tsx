@@ -1,8 +1,11 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import { IReviewLog } from '../../../api/logs-api'
 import Avatar from '../../../components/Avatar'
-
-class ReviewerLogItem extends React.Component {
+interface IProps {
+  log: IReviewLog
+}
+class ReviewerLogItem extends React.Component<IProps> {
   public render() {
     return (
       <Container>
@@ -21,6 +24,9 @@ class ReviewerLogItem extends React.Component {
 
 const Container = styled.div`
   display: flex;
+  align-items: center;
+  height: 100%;
+  color: #000;
   margin-bottom: 1rem;
 `
 
