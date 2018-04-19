@@ -108,34 +108,71 @@ const reviewerLogsFormData = (
   const data = new FormData()
   data.append('limit', limit.toString())
   data.append('offset', offset.toString())
-  if (typeof filter === 'string') {
-    data.append('reviewer', filter)
-  } else {
-    if (filter && filter !== reviewerActionEnum.all) {
-      data.append('activity', filter.toString())
-    }
-  }
   return data
 }
 
 const formatReviewerLogResponse = (data: any): IReviewLog[] => {
   const log1: IReviewLog = {
     action: reviewerActionEnum.login,
-    createdTimestamp: '12',
+    createdTimestamp: '2018-04-19T13:55:00+00:00',
     reviewer: {
       id: 'abc',
     },
     updatedTimestamp: '13',
   }
   const log2: IReviewLog = {
-    action: reviewerActionEnum.login,
-    createdTimestamp: '12',
+    action: reviewerActionEnum.c_verify,
+    beneficiary: {
+      id: '9760025511',
+      name: 'Ben',
+    },
+    createdTimestamp: '2018-04-19T13:55:00+00:00',
+    customer: {
+      id: '9760025555',
+      name: 'Droan Malik',
+    },
     reviewer: {
       id: 'abc',
     },
     updatedTimestamp: '13',
   }
-  return [log1, log2]
+  const log3: IReviewLog = {
+    action: reviewerActionEnum.b_otp,
+    beneficiary: {
+      id: '9760025511',
+      name: 'Ben',
+    },
+    createdTimestamp: '2018-04-19T13:55:00+00:00',
+    customer: {
+      id: '9760025555',
+      name: 'Droan Malik',
+    },
+    reviewer: {
+      id: 'abc',
+    },
+    updatedTimestamp: '13',
+  }
+  const log4: IReviewLog = {
+    action: reviewerActionEnum.tx_rejected,
+    beneficiary: {
+      id: '9760025511',
+      name: 'Ben',
+    },
+    createdTimestamp: '2018-04-18T13:25:00+00:00',
+    customer: {
+      id: '9760025555',
+      name: 'Droan Malik',
+    },
+    reviewer: {
+      id: 'abc',
+    },
+    transaction: {
+      amount: 1000,
+      id: 'a25ecd3a-dd8a-4e80-9969-3ad49fe35ab7',
+    },
+    updatedTimestamp: '13',
+  }
+  return [log1, log2, log3, log4]
 }
 
 export const fetchReviewerLogsAPI = (

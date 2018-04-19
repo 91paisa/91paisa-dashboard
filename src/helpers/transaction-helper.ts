@@ -44,7 +44,7 @@ export const getModeEmoji = (mode: transactionMode): any => {
   }
 }
 
-export const  isTransactionComplete=(splits: ISplitTransaction[]) =>{
+export const isTransactionComplete = (splits: ISplitTransaction[]) => {
   return (
     splits.filter(split => split.status !== splitTransactionStatus.success)
       .length === 0
@@ -53,8 +53,12 @@ export const  isTransactionComplete=(splits: ISplitTransaction[]) =>{
 
 export const normalizeEnumKey = (status: string) => {
   return status.split('').map(char => {
+    if (char === '_') {
+      return ' '
+    }
     if (char === char.toUpperCase()) {
-      return ` ${char.toLowerCase()}`
+      const space = ` `
+      return `${space}${char.toLowerCase()}`
     }
     return char
   })

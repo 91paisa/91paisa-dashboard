@@ -21,7 +21,7 @@ class ReviewerLogContainer extends React.Component {
         <ReviewerLogList
           searchFilter={this.state.filter}
           api={fetchReviewerLogsAPI}
-          rowHeight={remToPx(10)}
+          rowHeight={remToPx(6)}
         >
           {log => <ReviewerLogItem log={log} />}
         </ReviewerLogList>
