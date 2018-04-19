@@ -1,30 +1,30 @@
 import * as React from 'react'
+import { reviewerActionEnum } from '../../../api/logs-api'
 import { ActionContainer } from '../LogStyles'
+import FilterReviewerLogs from './FilterReviewerLogs'
 import ReviewerLogItem from './ReviewerLogItem'
 
 class ReviewerLogsContainer extends React.Component {
   public state = {
-    filter: '',
+    filter: reviewerActionEnum.all,
   }
   public render() {
     return (
       <>
         <ActionContainer>
-          <div>
-            Filter:
-            <select>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-            </select>
-          </div>
+          <FilterReviewerLogs
+            filter={this.updateFilter}
+            updateFilter={this.state.filter}
+          />
         </ActionContainer>
         <ReviewerLogItem />
         <ReviewerLogItem />
         <ReviewerLogItem />
       </>
     )
+  }
+  private updateFilter = (filter: reviewerActionEnum) => {
+    this.setState({ filter })
   }
 }
 export default ReviewerLogsContainer

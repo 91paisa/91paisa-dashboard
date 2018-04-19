@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { LogsPath } from './constants-api'
+
 export const LOG_FETCH_LIMIT = 40
+
 export interface IVRTransaction {
   amount?: number
   id?: string
@@ -52,3 +54,47 @@ export const fetchIVRLogsAPI = (offset: number, customerPhone?: string) =>
         updatedTimestamp: log.updated_at,
       }))
     })
+
+export enum reviewerActionEnum {
+  all = -1,
+  login = 0,
+  unauth = 2,
+  c_create = 3,
+  c_verify = 4,
+  c_otp = 5,
+  c_update = 6,
+  c_nodalId = 7,
+  c_mandate = 8,
+  b_create = 9,
+  b_verify = 10,
+  b_otp = 11,
+  tx_approved = 12,
+  tx_rejected = 13,
+}
+
+const reviewerLogsFormData = (
+  limit: number,
+  offset: number,
+  filter: string | reviewerActionEnum,
+) => {
+  const data = new FormData()
+  data.append('limit', limit.toString())
+  data.append('offset', offset.toString())
+  if (typeof filter === 'string') {
+    data.append('reviewer', filter)
+  } else {
+    if (filter !== reviewerActionEnum.all) {
+      data.append('activity', filter.toString())
+    }
+  }
+  return data
+}
+
+export const fetchReviewerLogsAPI = (
+  offset: number,
+  filter: string | reviewerActionEnum,
+) =>
+  axios.post(
+    LogsPath.reviewer,
+    reviewerLogsFormData(LOG_FETCH_LIMIT, offset, filter),
+  )

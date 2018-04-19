@@ -31,4 +31,5 @@ export const AuthPath = {
 
 export const LogsPath = {
   ivr: `${basePath()}logs/ivr/`,
+  reviewer: `${basePath()}logs/reviewer/`,
 }
