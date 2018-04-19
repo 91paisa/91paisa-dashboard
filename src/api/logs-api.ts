@@ -34,7 +34,7 @@ const ivrLogsFormData = (
   return data
 }
 
-export const fetchIVRLogsAPI = (offset: number, customerPhone?: string) =>
+export const fetchIVRLogsAPI = (offset: number, customerPhone?: any) =>
   axios
     .post(LogsPath.ivr, ivrLogsFormData(LOG_FETCH_LIMIT, offset, customerPhone))
     .then((r): IIVRLog[] => {
@@ -72,6 +72,27 @@ export enum reviewerActionEnum {
   tx_rejected = 13,
 }
 
+export interface IReviewLog {
+  action: reviewerActionEnum
+  createdTimestamp: string
+  updatedTimestamp: string
+  reviewer: {
+    id: string
+  }
+  customer?: {
+    id: string
+    name?: string
+  }
+  beneficiary?: {
+    id: string
+    name: string
+  }
+  transaction?: {
+    id: string
+    amount: number
+  }
+}
+
 const reviewerLogsFormData = (
   limit: number,
   offset: number,
@@ -90,11 +111,34 @@ const reviewerLogsFormData = (
   return data
 }
 
+const formatReviewerLogResponse = (data: any): IReviewLog[] => {
+  const log1: IReviewLog = {
+    action: reviewerActionEnum.login,
+    createdTimestamp: '12',
+    reviewer: {
+      id: 'abc',
+    },
+    updatedTimestamp: '13',
+  }
+  const log2: IReviewLog = {
+    action: reviewerActionEnum.login,
+    createdTimestamp: '12',
+    reviewer: {
+      id: 'abc',
+    },
+    updatedTimestamp: '13',
+  }
+  return [log1, log2]
+}
+
 export const fetchReviewerLogsAPI = (
   offset: number,
   filter: string | reviewerActionEnum,
 ) =>
-  axios.post(
-    LogsPath.reviewer,
-    reviewerLogsFormData(LOG_FETCH_LIMIT, offset, filter),
-  )
+  axios
+    .post(
+      LogsPath.reviewer,
+      reviewerLogsFormData(LOG_FETCH_LIMIT, offset, filter),
+    )
+    .then(r => formatReviewerLogResponse(r.data.data))
+    .catch(err => formatReviewerLogResponse('aa'))

@@ -9,7 +9,7 @@ interface IProps {
   updateFilter: reviewerActionEnum
 }
 
-class FilterReviewerLogs extends React.Component<IProps> {
+class ReviewerLogFilter extends React.Component<IProps> {
   public state = {
     filter: reviewerActionEnum.all,
   }
@@ -72,4 +72,4 @@ const Container = styled.div`
   border-radius: 0.5rem;
 `
 
-export default FilterReviewerLogs
+export default ReviewerLogFilter

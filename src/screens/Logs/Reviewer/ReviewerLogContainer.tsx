@@ -1,10 +1,8 @@
 import * as React from 'react'
 import { reviewerActionEnum } from '../../../api/logs-api'
 import { ActionContainer } from '../LogStyles'
-import FilterReviewerLogs from './FilterReviewerLogs'
-import ReviewerLogItem from './ReviewerLogItem'
-
-class ReviewerLogsContainer extends React.Component {
+import ReviewerLogFilter from './ReviewerLogFilter'
+class ReviewerLogContainer extends React.Component {
   public state = {
     filter: reviewerActionEnum.all,
   }
@@ -12,14 +10,18 @@ class ReviewerLogsContainer extends React.Component {
     return (
       <>
         <ActionContainer>
-          <FilterReviewerLogs
+          <ReviewerLogFilter
             filter={this.updateFilter}
             updateFilter={this.state.filter}
           />
         </ActionContainer>
-        <ReviewerLogItem />
-        <ReviewerLogItem />
-        <ReviewerLogItem />
+        {/*<LogsList*/}
+        {/*searchFilter={'this.state.filter'}*/}
+        {/*api={fetchReviewerLogsAPI}*/}
+        {/*rowHeight={remToPx(10)}*/}
+        {/*>*/}
+        {/*{(log: any) => <ReviewerLogItem />}*/}
+        {/*</LogsList>*/}
       </>
     )
   }
@@ -27,4 +29,4 @@ class ReviewerLogsContainer extends React.Component {
     this.setState({ filter })
   }
 }
-export default ReviewerLogsContainer
+export default ReviewerLogContainer

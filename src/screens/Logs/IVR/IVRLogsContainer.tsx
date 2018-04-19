@@ -3,9 +3,8 @@ import { fetchIVRLogsAPI, IIVRLog } from '../../../api/logs-api'
 import { getRowHeightForIVRLogItem } from '../../../helpers/unit-helper'
 import { ActionContainer } from '../LogStyles'
 import IVRLogItem from './IVRLogItem'
+import IVRLogList from './IVRLogList'
 import IVRLogSearch from './IVRLogSearch'
-import LogsList from './LogsList'
-
 class IVRLogsContainer extends React.Component<{}> {
   public state = {
     customerPhone: '',
@@ -19,7 +18,7 @@ class IVRLogsContainer extends React.Component<{}> {
             updateSearchText={this.state.customerPhone}
           />
         </ActionContainer>
-        <LogsList
+        <IVRLogList
           rowHeight={getRowHeightForIVRLogItem()}
           api={fetchIVRLogsAPI}
           searchFilter={this.state.customerPhone}
@@ -31,7 +30,7 @@ class IVRLogsContainer extends React.Component<{}> {
               updateSearchFilter={this.updateCustomerPhone}
             />
           )}
-        </LogsList>
+        </IVRLogList>
       </>
     )
   }

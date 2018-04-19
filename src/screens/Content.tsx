@@ -6,7 +6,7 @@ import { isPhoneOrTable } from '../styles/screenSize'
 import CustomerDetailContainer from './CustomerDetail/CustomerDetailContainer'
 import CustomersContainer from './Customers/CustomersContainer'
 import Dashboard from './Dashboard/Dashboard'
-import LogsContainer from './Logs/LogsContainer'
+import LogsNavigation from './Logs/LogsNavigation'
 import SettingsContainer from './Settings/SettingsContainer'
 import TransactionDetailContainer from './TransactionDetail/TransactionDetailContainer'
 import TransactionsListContainer from './Transactions/TranasctionsListContainer'
@@ -32,7 +32,7 @@ const Content = () => (
         path={'/transactions/:transactionId'}
         component={TransactionDetailContainer}
       />
-      <Route path={'/logs'} component={LogsContainer} />
+      <Route path={'/logs'} component={LogsNavigation} />
       <Route path={'/settings'} component={SettingsContainer} />
       <Route render={() => <div>No Page Found</div>} />
     </Switch>

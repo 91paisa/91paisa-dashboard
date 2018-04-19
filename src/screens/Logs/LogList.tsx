@@ -1,29 +1,29 @@
 import * as React from 'react'
 import { List, WindowScroller } from 'react-virtualized'
 import styled from 'styled-components'
-import { IIVRLog, LOG_FETCH_LIMIT } from '../../../api/logs-api'
+import { IIVRLog, LOG_FETCH_LIMIT } from '../../api/logs-api'
 import {
   PaginationButtonNext,
   PaginationButtonPrevious,
-} from '../../../components/Buttons'
-import { fog, lightGrey, white } from '../../../styles/colors'
+} from '../../components/Buttons'
+import { fog, lightGrey, white } from '../../styles/colors'
 
-interface IState {
-  data: IIVRLog[]
+interface IState<T> {
+  data: T[]
   last: boolean
   loading: boolean
   offset: number
 }
 
-interface IProps {
-  searchFilter: string // for api to access
+interface IProps<T> {
+  searchFilter: any // for api to access
   children: (log: IIVRLog) => void // for render props
   updateSearchFilter?: (search: string) => void
-  api: (offset: number, filter?: string) => Promise<IIVRLog[]> //  api function
+  api: (offset: number, filter?: string) => Promise<T[]> //  api function
   rowHeight: number
 }
 
-class LogsList extends React.Component<IProps, IState> {
+class LogList<T> extends React.Component<IProps<T>, IState<T>> {
   public state = {
     data: [],
     last: false,
@@ -31,7 +31,7 @@ class LogsList extends React.Component<IProps, IState> {
     offset: 0,
   }
 
-  public componentWillReceiveProps(newProps: IProps) {
+  public componentWillReceiveProps(newProps: IProps<T>) {
     if (this.props.searchFilter !== newProps.searchFilter) {
       this.clearAndFetch()
     }
@@ -140,4 +140,4 @@ const PaginationContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
 `
-export default LogsList
+export default LogList

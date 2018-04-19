@@ -13,7 +13,7 @@ import {
 } from '../../styles/colors'
 import IVRLogsContainer from './IVR/IVRLogsContainer'
 import NodalLogsContainer from './Nodal/NodalLogsContainer'
-import ReviewerLogsContainer from './Reviewer/ReviewerLogsContainer'
+import ReviewerLogContainer from './Reviewer/ReviewerLogContainer'
 
 class LogsNavigation extends React.Component<RouteComponentProps<{}>> {
   public componentDidMount() {
@@ -38,7 +38,7 @@ class LogsNavigation extends React.Component<RouteComponentProps<{}>> {
         </TabsOuterContainer>
         <ContentContainer>
           <Switch>
-            <Route path={'/logs/reviewer'} component={ReviewerLogsContainer} />
+            <Route path={'/logs/reviewer'} component={ReviewerLogContainer} />
             <Route path={'/logs/nodal'} component={NodalLogsContainer} />
             <Route path={'/logs/ivr'} component={IVRLogsContainer} />
           </Switch>
