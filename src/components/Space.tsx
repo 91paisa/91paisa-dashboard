@@ -17,7 +17,7 @@ interface IProps {
 }
 
 const Space: React.SFC<IProps> = ({ width, height }: IProps) => (
-  <div
+  <span
     style={{
       height: height ? height.valueOf() : '0',
       width: width ? width.valueOf() : '0',

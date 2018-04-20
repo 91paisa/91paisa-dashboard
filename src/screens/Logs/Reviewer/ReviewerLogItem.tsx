@@ -31,19 +31,17 @@ class ReviewerLogItem extends React.Component<IProps> {
 
 const timestampView = (createdTimestamp: string) => (
   <Section>
-    <p>
-      {moment(createdTimestamp).fromNow()} • {getLT(createdTimestamp)} •{' '}
-      {getDDMMYYYY(createdTimestamp)}
-    </p>
+    {moment(createdTimestamp).fromNow()} • {getLT(createdTimestamp)} •{' '}
+    {getDDMMYYYY(createdTimestamp)}
   </Section>
 )
 
 const reviewAndActionView = (
-  reviewer: { id: string },
+  reviewer: { id: string; name: string },
   action: reviewerActionEnum,
 ) => (
   <Section>
-    <span>{reviewer.id}</span>
+    <span>{reviewer.name}</span>
     <Space width={SpaceEnum.s} />
     <ReviewAction action={action} />
   </Section>
@@ -72,11 +70,11 @@ const customerInfoView = (log: IReviewLog) => {
         <Space width={SpaceEnum.xxs} />
         {log.customer.name && (
           <>
-            <p>{log.customer.name}</p>
+            <span>{log.customer.name}</span>
             <Space width={SpaceEnum.xs} />
           </>
         )}
-        <p> +91 {log.customer.id} </p>
+        <span> +91 {log.customer.id} </span>
       </StyledLink>
     )
   }
@@ -90,11 +88,11 @@ const beneficiaryInfoView = (log: IReviewLog) => {
         <Space width={SpaceEnum.xxs} />
         {log.beneficiary.name && (
           <>
-            <p style={{ fontWeight: 600 }}>{log.beneficiary.name}</p>
+            <span style={{ fontWeight: 600 }}>{log.beneficiary.name}</span>
             <Space width={SpaceEnum.xs} />
           </>
         )}
-        <p> +91 {log.beneficiary.id} </p>
+        <span> +91 {log.beneficiary.id} </span>
         <Space width={SpaceEnum.xxs} />
       </>
     )
@@ -114,7 +112,7 @@ const actionDetail = (log: IReviewLog) => {
     case reviewerActionEnum.c_mandate:
       return (
         <Section>
-          <span>{getActionDetailStarting(log.action)}</span>
+          {getActionDetailStarting(log.action)}
           {customerInfoView(log)}
         </Section>
       )
@@ -135,8 +133,6 @@ const actionDetail = (log: IReviewLog) => {
         <Section>
           <span>{getActionDetailStarting(log.action)}</span>
           {transactionView(log)}
-          <span>for customer</span>
-          {customerInfoView(log)}
         </Section>
       )
     default:
@@ -150,8 +146,10 @@ const StyledLink = styled(Link)`
   display: flex;
 `
 const Section = styled.div`
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
   display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
 `
 
 const Container = styled.div`
