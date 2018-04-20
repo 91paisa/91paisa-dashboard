@@ -72,7 +72,9 @@ class LoginScreen extends Component<IProps, IState> {
     }
     this.props.loading()
     const { email, password } = this.state
-    this.props.login(email, password)
+    if (this.props.status !== authStatus.loading) {
+      this.props.login(email, password)
+    }
   }
 }
 
