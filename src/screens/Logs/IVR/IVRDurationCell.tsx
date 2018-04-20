@@ -21,9 +21,7 @@ const IVRDurationCell: React.SFC<IProps> = ({
     style={{ paddingLeft: '1rem', display: 'flex', color: dark }}
     title={`${getLT(createdTimestamp)} ${getDDMMYYYY(createdTimestamp)}`}
   >
-    {moment(createdTimestamp)
-      .startOf('day')
-      .fromNow()}
+    {moment(createdTimestamp).fromNow()}
     <Space width={SpaceEnum.m} />
     <p>{getCallDuration(createdTimestamp, updatedTimestamp)}</p>
   </div>
