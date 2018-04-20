@@ -108,6 +108,19 @@ const reviewerLogsFormData = (
   const data = new FormData()
   data.append('limit', limit.toString())
   data.append('offset', offset.toString())
+  if (filter) {
+    const actionFilter = parseInt(filter.toString(), 10)
+    const isActionFilter = !isNaN(actionFilter)
+    if (isActionFilter) {
+      if (actionFilter !== reviewerActionEnum.all) {
+        data.append('activity', actionFilter.toString())
+      }
+    } else {
+      if (typeof filter === 'string') {
+        data.append('reviewer', filter)
+      }
+    }
+  }
   return data
 }
 

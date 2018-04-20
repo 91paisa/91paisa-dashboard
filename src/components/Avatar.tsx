@@ -1,15 +1,14 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { getGithubId } from '../helpers/reviewer-helper'
 import { fog } from '../styles/colors'
 
 class Avatar extends React.Component {
   public render() {
     return (
       <Container
-        src={`https://avatars1.githubusercontent.com/u/${getGithubId(
-          '',
-        )}?s=100&v=4`}
+      // src={`https://avatars1.githubusercontent.com/u/${getGithubId(
+      //   '',
+      // )}?s=100&v=4`}
       />
     )
   }
