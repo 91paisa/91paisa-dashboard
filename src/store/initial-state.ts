@@ -14,7 +14,7 @@ export interface IReduxState {
     nodal: IBalance | null
   }
   customers: ICustomer[]
-  reviewers: IReviewer[]
+  reviewers: { [key: string]: IReviewer }
   transactions: ITransaction[]
   search: {
     customer: string
@@ -39,7 +39,7 @@ const state: IReduxState = {
     },
   },
   customers: [],
-  reviewers: [],
+  reviewers: {},
   search: {
     customer: '',
   },

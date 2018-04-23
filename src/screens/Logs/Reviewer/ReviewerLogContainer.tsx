@@ -1,14 +1,22 @@
 import * as React from 'react'
+import { connect } from 'react-redux'
 import { fetchReviewerLogsAPI, reviewerActionEnum } from '../../../api/logs-api'
 import { remToPx } from '../../../helpers/unit-helper'
+import { IReduxState } from '../../../store/initial-state'
 import { ActionContainer } from '../LogStyles'
 import ReviewerLogFilter from './ReviewerLogFilter'
 import ReviewerLogItem from './ReviewerLogItem'
 import ReviewerLogList from './ReviewerLogList'
-class ReviewerLogContainer extends React.Component {
+
+interface IProps {
+  reviewers: any
+}
+
+class ReviewerLogContainer extends React.Component<IProps> {
   public state = {
     filter: reviewerActionEnum.all,
   }
+
   public render() {
     return (
       <>
@@ -23,7 +31,12 @@ class ReviewerLogContainer extends React.Component {
           api={fetchReviewerLogsAPI}
           rowHeight={remToPx(7)}
         >
-          {log => <ReviewerLogItem log={log} />}
+          {log => (
+            <ReviewerLogItem
+              log={log}
+              reviewer={this.props.reviewers[log.reviewer.id]}
+            />
+          )}
         </ReviewerLogList>
       </>
     )
@@ -32,4 +45,12 @@ class ReviewerLogContainer extends React.Component {
     this.setState({ filter })
   }
 }
-export default ReviewerLogContainer
+
+const mapStateToProps = (state: IReduxState) => {
+  const { reviewers } = state
+  return {
+    reviewers,
+  }
+}
+
+export default connect(mapStateToProps)(ReviewerLogContainer)

@@ -3,6 +3,7 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { IReviewLog, reviewerActionEnum } from '../../../api/logs-api'
+import { IReviewer } from '../../../api/reviewer-api'
 import Avatar from '../../../components/Avatar'
 import Space, { SpaceEnum } from '../../../components/Space'
 import { getDDMMYYYY, getLT } from '../../../helpers/time-helper'
@@ -11,14 +12,16 @@ import { getActionDetailStarting } from './reviewer-log-helper'
 import ReviewAction from './ReviewerAction'
 interface IProps {
   log: IReviewLog
+  reviewer: IReviewer
 }
 
 class ReviewerLogItem extends React.Component<IProps> {
   public render() {
-    const { reviewer, action, createdTimestamp } = this.props.log
+    const { action, createdTimestamp } = this.props.log
+    const { reviewer } = this.props
     return (
       <Container>
-        <Avatar />
+        <Avatar src={reviewer.image} />
         <div>
           {reviewAndActionView(reviewer, action)}
           {actionDetail(this.props.log)}

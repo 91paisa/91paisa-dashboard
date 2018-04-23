@@ -15,15 +15,20 @@ export interface IReviewer {
 }
 
 const formatReviewersResponse = (data: any) =>
-  data.map((d: any) => ({
-    accessLevel: d.access_level,
-    email: d.email,
-    id: d.reviewer_id,
-    image: d.image_url,
-    name: d.name,
-  }))
+  data
+    .map((d: any) => ({
+      accessLevel: d.access_level,
+      email: d.email,
+      id: d.reviewer_id,
+      image: d.image_url,
+      name: d.name,
+    }))
+    .reduce((result: any, item: IReviewer) => {
+      result[item.id] = item
+      return result
+    }, {})
 
-export const getAllReviewersAPI = (): Promise<IReviewer[]> =>
+export const getAllReviewersAPI = () =>
   axios
     .get(ReviewerPath.all)
     .then(res => formatReviewersResponse(res.data.data))
