@@ -1,6 +1,7 @@
 import { authStatus } from '../actions/auth-actions'
 import { IBalance } from '../api/balances-api'
 import { ICustomer } from '../api/customer-api'
+import { IReviewer } from '../api/reviewer-api'
 import { ITransaction } from '../api/transaction-api'
 
 export interface IReduxState {
@@ -13,6 +14,7 @@ export interface IReduxState {
     nodal: IBalance | null
   }
   customers: ICustomer[]
+  reviewers: IReviewer[]
   transactions: ITransaction[]
   search: {
     customer: string
@@ -37,6 +39,7 @@ const state: IReduxState = {
     },
   },
   customers: [],
+  reviewers: [],
   search: {
     customer: '',
   },

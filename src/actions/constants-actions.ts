@@ -21,3 +21,7 @@ export enum transactionActions {
 export enum searchActions {
   customer = 'CUSTOMER_SEARCH',
 }
+
+export enum reviewerActions {
+  getAll = 'REVIEWERS_GET_ALL',
+}

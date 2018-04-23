@@ -1,12 +1,10 @@
 import jwtDecoder from 'jwt-decode'
 import { reviewerActionEnum } from '../api/logs-api'
+import { accessLevelsEnum } from '../api/reviewer-api'
 
 export const getTokenFromLocalStorage = (): string | null =>
   localStorage.getItem('token')
 
-enum accessLevelsEnum {
-  admin = 1,
-}
 export const isAdmin = () => {
   const token = getTokenFromLocalStorage()
   if (token) {

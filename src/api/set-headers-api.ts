@@ -8,5 +8,6 @@ export const setHeadersApi = () => {
     'application/x-www-form-urlencoded'
   if (token) {
     axios.defaults.headers.post.token = token
+    axios.defaults.headers.get.token = token
   }
 }

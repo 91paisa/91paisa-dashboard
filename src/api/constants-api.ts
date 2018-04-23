@@ -33,3 +33,7 @@ export const LogsPath = {
   ivr: `${basePath()}logs/ivr/`,
   reviewer: `${basePath()}logs/reviewer/`,
 }
+
+export const ReviewerPath = {
+  all: `${basePath()}reviewer/all`,
+}

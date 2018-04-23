@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import styled from 'styled-components'
 import { getEkoBalance, getNodalBalance } from '../actions/balances-actions'
 import { getAllCustomers } from '../actions/customer-actions'
+import { getAllReviewers } from '../actions/reviewer-actions'
 import { getAllTransactions } from '../actions/transactions-actions'
 import { setHeadersApi } from '../api/set-headers-api'
 import BottomBar from '../components/BottomBar/BottomBar'
@@ -16,6 +17,7 @@ interface IProps {
   getAllTransactions: any
   getNodalBalance: any
   getEkoBalance: any
+  getAllReviewers: any
 }
 
 interface IState {
@@ -69,6 +71,7 @@ class Home extends Component<IProps, IState> {
     _.getAllTransactions()
     _.getNodalBalance()
     _.getEkoBalance()
+    _.getAllReviewers()
   }
 
   private updateWindowDimensions = () =>
@@ -86,7 +89,13 @@ const Container = styled.div`
 `
 const mapDispatchToProps = (dispatch: any) =>
   bindActionCreators(
-    { getAllCustomers, getNodalBalance, getEkoBalance, getAllTransactions },
+    {
+      getAllCustomers,
+      getAllReviewers,
+      getAllTransactions,
+      getEkoBalance,
+      getNodalBalance,
+    },
     dispatch,
   )
 export default connect(null, mapDispatchToProps)(Home)
