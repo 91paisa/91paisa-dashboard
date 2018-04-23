@@ -34,7 +34,7 @@ class ReviewerLogContainer extends React.Component<IProps> {
           {log => (
             <ReviewerLogItem
               log={log}
-              reviewer={this.props.reviewers[log.reviewer.id]}
+              reviewer={this.props.reviewers[log.reviewerId]}
             />
           )}
         </ReviewerLogList>

@@ -90,10 +90,7 @@ export interface IReviewLog {
     name?: string
   }
   createdTimestamp: string
-  reviewer: {
-    id: string
-    name: string
-  }
+  reviewerId: string
   transaction?: {
     id: string
     amount: number
@@ -167,10 +164,7 @@ const formatReviewerLogResponse = (data: any): IReviewLog[] => {
       beneficiary,
       createdTimestamp: d.created_at,
       customer,
-      reviewer: {
-        id: d.reviewer.reviewer_id,
-        name: d.reviewer.name,
-      },
+      reviewerId: d.reviewer.reviewer_id,
       transaction,
     }
   })
