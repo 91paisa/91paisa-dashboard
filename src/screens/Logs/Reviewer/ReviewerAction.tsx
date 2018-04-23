@@ -5,9 +5,12 @@ import { normalizeEnumKey } from '../../../helpers/transaction-helper'
 import { identity, white } from '../../../styles/colors'
 interface IProps {
   action: reviewerActionEnum
+  onClick: () => void
 }
-const ReviewAction: React.SFC<IProps> = ({ action }: IProps) => (
-  <Container>{normalizeEnumKey(reviewerActionEnum[action])}</Container>
+const ReviewAction: React.SFC<IProps> = ({ action, onClick }: IProps) => (
+  <Container onClick={onClick}>
+    {normalizeEnumKey(reviewerActionEnum[action])}
+  </Container>
 )
 
 const Container: any = styled.div`
@@ -16,6 +19,7 @@ const Container: any = styled.div`
   display: flex;
   color: ${white};
   font-weight: 600;
+  cursor: pointer;
   padding: 0 0.5rem;
   align-items: center;
 `

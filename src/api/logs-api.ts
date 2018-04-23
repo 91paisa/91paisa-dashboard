@@ -106,7 +106,7 @@ const reviewerLogsFormData = (
   data.append('limit', limit.toString())
   data.append('offset', offset.toString())
   if (filter) {
-    const actionFilter = parseInt(filter.toString(), 10)
+    const actionFilter = Number(filter.toString())
     const isActionFilter = !isNaN(actionFilter)
     if (isActionFilter) {
       if (actionFilter !== reviewerActionEnum.all) {

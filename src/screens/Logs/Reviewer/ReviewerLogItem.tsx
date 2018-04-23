@@ -2,7 +2,11 @@ import moment from 'moment'
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { IReviewLog, reviewerActionEnum } from '../../../api/logs-api'
+import {
+  IReviewLog,
+  reviewerActionEnum,
+  searchFilterType,
+} from '../../../api/logs-api'
 import { IReviewer } from '../../../api/reviewer-api'
 import Avatar from '../../../components/Avatar'
 import Space, { SpaceEnum } from '../../../components/Space'
@@ -13,17 +17,18 @@ import ReviewAction from './ReviewerAction'
 interface IProps {
   log: IReviewLog
   reviewer: IReviewer
+  updateSearchFilter: (reviewer: searchFilterType) => void
 }
 
 class ReviewerLogItem extends React.Component<IProps> {
   public render() {
     const { action, createdTimestamp } = this.props.log
-    const { reviewer } = this.props
+    const { reviewer, updateSearchFilter } = this.props
     return (
       <Container>
         <Avatar src={reviewer.image} />
         <div>
-          {reviewAndActionView(reviewer, action)}
+          {reviewAndActionView(reviewer, action, updateSearchFilter)}
           {actionDetail(this.props.log)}
           {timestampView(createdTimestamp)}
         </div>
@@ -42,11 +47,17 @@ const timestampView = (createdTimestamp: string) => (
 const reviewAndActionView = (
   reviewer: { id: string; name: string },
   action: reviewerActionEnum,
+  updateSearchFilter: (filter: searchFilterType) => void,
 ) => (
   <Section>
-    <span>{reviewer.name}</span>
+    <NameLink onClick={() => updateSearchFilter(reviewer.id)}>
+      {reviewer.name}
+    </NameLink>
     <Space width={SpaceEnum.s} />
-    <ReviewAction action={action} />
+    <ReviewAction
+      onClick={() => updateSearchFilter(action.toString())}
+      action={action}
+    />
   </Section>
 )
 
@@ -153,6 +164,12 @@ const Section = styled.div`
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
+`
+
+const NameLink = styled.p`
+  color: ${identity};
+  cursor: pointer;
+  font-weight: 600;
 `
 
 const Container = styled.div`

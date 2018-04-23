@@ -1,6 +1,10 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { fetchReviewerLogsAPI, reviewerActionEnum } from '../../../api/logs-api'
+import {
+  fetchReviewerLogsAPI,
+  reviewerActionEnum,
+  searchFilterType,
+} from '../../../api/logs-api'
 import { remToPx } from '../../../helpers/unit-helper'
 import { IReduxState } from '../../../store/initial-state'
 import { ActionContainer } from '../LogStyles'
@@ -35,13 +39,14 @@ class ReviewerLogContainer extends React.Component<IProps> {
             <ReviewerLogItem
               log={log}
               reviewer={this.props.reviewers[log.reviewerId]}
+              updateSearchFilter={this.updateFilter}
             />
           )}
         </ReviewerLogList>
       </>
     )
   }
-  private updateFilter = (filter: reviewerActionEnum) => {
+  private updateFilter = (filter: searchFilterType) => {
     this.setState({ filter })
   }
 }
