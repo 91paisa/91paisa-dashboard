@@ -30,7 +30,8 @@ const DailySummary: React.SFC<IProps> = ({ customerStats }: IProps) => (
           <Label>Mandate</Label>
           <RowFlex>
             <SubLabel>
-              initiated: <Text>{customerStats.mandateInitiated}</Text>
+              initiated:{' '}
+              <OrangeText>{customerStats.mandateInitiated}</OrangeText>
             </SubLabel>
             <SubLabel>
               rejected: <RedText>{customerStats.mandateRejected}</RedText>
@@ -38,8 +39,7 @@ const DailySummary: React.SFC<IProps> = ({ customerStats }: IProps) => (
           </RowFlex>
           <RowFlex>
             <SubLabel>
-              not requested:{' '}
-              <OrangeText>{customerStats.mandateNotRequested}</OrangeText>
+              not requested: <Text>{customerStats.mandateNotRequested}</Text>
             </SubLabel>
             <SubLabel>
               approved: <GreenText>{customerStats.mandateApproved}</GreenText>
