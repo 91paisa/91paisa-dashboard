@@ -5,10 +5,7 @@ import Card from '../../../components/Card'
 import CardTitle from '../../../components/CardTitle'
 import { toRupee } from '../../../helpers/unit-helper'
 import {
-  alertPending,
-  alertRed,
   lightGrey,
-  positiveGreen,
 } from '../../../styles/colors'
 interface IProps {
   stats?: IStats
@@ -25,22 +22,20 @@ const DailySummary: React.SFC<IProps> = ({ stats }: IProps) => (
               <InnerContainer>
                 <Label>Customers</Label>
                 <SubLabel>
-                  Verified: <GreenText>{stats.customer.verified}</GreenText> /{' '}
+                  Verified: <Text>{stats.customer.verified}</Text> /{' '}
                   <Text>{stats.customer.total}</Text>
                 </SubLabel>
               </InnerContainer>
               <Label>Mandate</Label>
               <RowFlex>
                 <SubLabel>
-                  initiated:{' '}
-                  <OrangeText>{stats.customer.mandateInitiated}</OrangeText>
+                  initiated: <Text>{stats.customer.mandateInitiated}</Text>
                 </SubLabel>
                 <SubLabel>
-                  rejected: <RedText>{stats.customer.mandateRejected}</RedText>
+                  rejected: <Text>{stats.customer.mandateRejected}</Text>
                 </SubLabel>
                 <SubLabel>
-                  approved:{' '}
-                  <GreenText>{stats.customer.mandateApproved}</GreenText>
+                  approved: <Text>{stats.customer.mandateApproved}</Text>
                 </SubLabel>
               </RowFlex>
               <InnerContainer />
@@ -51,7 +46,7 @@ const DailySummary: React.SFC<IProps> = ({ stats }: IProps) => (
             <InnerContainer>
               <Label>Beneficiaries</Label>
               <SubLabel>
-                Verified: <GreenText>{stats.beneficiary.verified}</GreenText> /{' '}
+                Verified: <Text>{stats.beneficiary.verified}</Text> /{' '}
                 <Text>{stats.beneficiary.total}</Text>
               </SubLabel>
             </InnerContainer>
@@ -62,19 +57,12 @@ const DailySummary: React.SFC<IProps> = ({ stats }: IProps) => (
               <Label>Transactions</Label>
               <RowFlex>
                 <SubLabel>
-                  Total: <Text>{toRupee(stats.transaction.total.amount)}</Text>
-                  <Text>({stats.transaction.total.count})</Text>
-                </SubLabel>
-                <SubLabel>
                   Success:{' '}
-                  <GreenText>
-                    {toRupee(stats.transaction.successful.amount)}
-                  </GreenText>
+                  <Text>{toRupee(stats.transaction.successful.amount)}</Text>
                   <Text>({stats.transaction.successful.count})</Text>
                 </SubLabel>
                 <SubLabel>
-                  Fail:{' '}
-                  <RedText>{toRupee(stats.transaction.failed.amount)}</RedText>
+                  Fail: <Text>{toRupee(stats.transaction.failed.amount)}</Text>
                   <Text>({stats.transaction.failed.count})</Text>
                 </SubLabel>
                 <SubLabel>
@@ -84,17 +72,17 @@ const DailySummary: React.SFC<IProps> = ({ stats }: IProps) => (
                 </SubLabel>
                 <SubLabel>
                   In Progress:{' '}
-                  <OrangeText>
-                    {toRupee(stats.transaction.processing.amount)}
-                  </OrangeText>
+                  <Text>{toRupee(stats.transaction.processing.amount)}</Text>
                   <Text>({stats.transaction.processing.count})</Text>
                 </SubLabel>
                 <SubLabel>
                   Cancel:{' '}
-                  <RedText>
-                    {toRupee(stats.transaction.cancelled.amount)}
-                  </RedText>
+                  <Text>{toRupee(stats.transaction.cancelled.amount)}</Text>
                   <Text>({stats.transaction.cancelled.count})</Text>
+                </SubLabel>
+                <SubLabel>
+                  Total: <Text>{toRupee(stats.transaction.total.amount)}</Text>
+                  <Text>({stats.transaction.total.count})</Text>
                 </SubLabel>
               </RowFlex>
             </InnerContainer>
@@ -123,21 +111,9 @@ const Label = styled.p`
 `
 
 const Text = styled.span`
-  font-weight: 600;
+  font-weight: 500;
   padding-right: 4px;
   display: inline;
-  font-size: 1.2rem;
-`
-const GreenText = Text.extend`
-  color: ${positiveGreen};
-`
-
-const RedText = Text.extend`
-  color: ${alertRed};
-`
-
-const OrangeText = Text.extend`
-  color: ${alertPending};
 `
 
 const SubLabel = styled.p`
