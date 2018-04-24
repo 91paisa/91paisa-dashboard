@@ -39,5 +39,7 @@ export const ReviewerPath = {
 }
 
 export const StatisticsPath = {
-  customer: `${basePath()}statistics/customers/`,
+  beneficiary: `${basePath()}statistics/beneficiary/`,
+  customer: `${basePath()}statistics/customer/`,
+  transaction: `${basePath()}statistics/eko_transaction/`,
 }

@@ -1,22 +1,22 @@
 import { Component, default as React } from 'react'
-import { getStatsForTodayAPI } from '../../api/statistics-api'
+import { getStatsForTodayAPI, IStats } from '../../api/statistics-api'
 import DailySummary from './DailySummary/DailySummary'
 
 class Dashboard extends Component {
   public state = {
+    beneficiary: undefined,
     customer: undefined,
+    transaction: undefined,
   }
   public componentDidMount() {
     getStatsForTodayAPI().then(r => {
-      this.setState({ customer: { ...r } })
+      this.setState({ ...r })
     })
   }
   public render() {
-    return (
-      <div>
-        <DailySummary customerStats={this.state.customer} />
-      </div>
-    )
+    // tslint:disable-next-line
+    console.log('rrr', this.state)
+    return <DailySummary stats={this.state as IStats} />
   }
 }
 

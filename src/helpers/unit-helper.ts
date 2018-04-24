@@ -9,3 +9,11 @@ export const remToPx = (rem: number): number => {
 
 export const getRowHeightForIVRLogItem = () =>
   isPhoneOrTable() ? remToPx(4.5) : remToPx(3.5)
+
+export const toRupee = (amount: number) =>
+  amount.toLocaleString('en-In', {
+    currency: 'INR',
+    maximumFractionDigits: 0,
+    minimumFractionDigits: 0,
+    style: 'currency',
+  })
