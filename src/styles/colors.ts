@@ -12,7 +12,5 @@ export const primary =
 export const primaryDark =
   process.env.REACT_APP_BASE_URL === 'prod' ? '#1a785c' : '#651FFF'
 export const primaryLight =
-  process.env.REACT_APP_BASE_URL === 'prod' ? '#1a785c' : '#D1C4E9'
-export const primaryHover =
   process.env.REACT_APP_BASE_URL === 'prod' ? '#F1F8E9' : '#EDE7F6'
 export const white = '#ffffff'

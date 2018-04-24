@@ -9,7 +9,7 @@ import { getAllReviewers } from '../actions/reviewer-actions'
 import { getAllTransactions } from '../actions/transactions-actions'
 import { setHeadersApi } from '../api/set-headers-api'
 import BottomBar from '../components/BottomBar/BottomBar'
-import NavBar from '../components/Sidebar/NavBar'
+import NavBar from '../components/NavBar/NavBar'
 import Content from './Content'
 
 interface IProps {

@@ -2,6 +2,7 @@ import { Component, default as React } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { primary, primaryLight, white } from '../../styles/colors'
+import ReviewerProfile from './ReviewerProfile'
 
 class NavBar extends Component {
   public render() {
@@ -10,10 +11,12 @@ class NavBar extends Component {
         <LogoNavLinkContainer exact={true} to={`/`}>
           <Logo>91P</Logo>
         </LogoNavLinkContainer>
-        <StyledLink to={`/customers/`}>Customers</StyledLink>
-        <StyledLink to={`/transactions/`}>Transactions</StyledLink>
-        <StyledLink to={`/logs/`}>Logs</StyledLink>
-        <StyledLink to={`/settings/`}>Settings</StyledLink>
+        <div style={{ display: 'flex' }}>
+          <StyledLink to={`/customers/`}>Customers</StyledLink>
+          <StyledLink to={`/transactions/`}>Transactions</StyledLink>
+          <StyledLink to={`/logs/`}>Logs</StyledLink>
+        </div>
+        <ReviewerProfile />
       </Container>
     )
   }
@@ -21,8 +24,12 @@ class NavBar extends Component {
 
 const Container = styled.div`
   background: ${primary};
-  display: flex;
+  display: grid;
   user-select: none;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  grid-template-columns: auto 1fr auto;
 `
 
 const active = 'active'
@@ -72,4 +79,5 @@ const Logo = styled.p`
     transform: skew(0deg);
   }
 `
+
 export default NavBar

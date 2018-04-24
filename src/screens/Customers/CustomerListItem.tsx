@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { ICustomer } from '../../api/customer-api'
 import Space, { SpaceEnum } from '../../components/Space'
-import { dark, primaryHover } from '../../styles/colors'
+import { dark, primaryLight } from '../../styles/colors'
 import PhoneCell from './PhoneCell'
 import StatusCircle from './StatusCircle'
 interface IProps {
@@ -60,7 +60,7 @@ const Container: any = styled.div`
   margin: auto 0;
   display: block;
   &:hover {
-    background: ${primaryHover};
+    background: ${primaryLight};
   }
 `
 

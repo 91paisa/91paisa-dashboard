@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { ITransaction } from '../../../api/transaction-api'
 import Space, { SpaceEnum } from '../../../components/Space'
-import { dark, primaryHover } from '../../../styles/colors'
+import { dark, primaryLight } from '../../../styles/colors'
 import {
   isDesktop,
   isPhoneOrTable,
@@ -64,7 +64,7 @@ const Container = styled(Link)`
     grid-template-columns: minmax(100px, 0.5fr) minmax(140px, 0.7fr);
   }
   &:hover {
-    background: ${primaryHover};
+    background: ${primaryLight};
   }
 `
 

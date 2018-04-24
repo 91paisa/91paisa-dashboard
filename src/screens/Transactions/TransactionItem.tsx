@@ -13,7 +13,7 @@ import {
 import { default as Space, SpaceEnum } from '../../components/Space'
 import { getDDMMYYYY } from '../../helpers/time-helper'
 import { isTransactionComplete } from '../../helpers/transaction-helper'
-import { dark, primaryHover } from '../../styles/colors'
+import { dark, primaryLight } from '../../styles/colors'
 import { isPhoneOrTable } from '../../styles/screenSize'
 import PhoneCell from '../Customers/PhoneCell'
 import AmountCell from './AmountCell'
@@ -157,7 +157,7 @@ const DesktopContainer = styled(Link)`
     minmax(100px, 2fr);
   height: 100%;
   &:hover {
-    background: ${primaryHover};
+    background: ${primaryLight};
   }
 `
 
@@ -174,7 +174,7 @@ const TabletContainer = styled(Link)`
   color: ${dark};
   height: 100%;
   &:hover {
-    background: ${primaryHover};
+    background: ${primaryLight};
   }
 `
 

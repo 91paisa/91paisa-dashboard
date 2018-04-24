@@ -15,6 +15,15 @@ export const isAdmin = () => {
   return false
 }
 
+export const getId = () => {
+  const token = getTokenFromLocalStorage()
+  if (token) {
+    const decode: any = jwtDecoder(token)
+    return decode.id
+  }
+  return undefined
+}
+
 export const getFilters = () => {
   return Object.keys(reviewerActionEnum)
     .filter(k => typeof reviewerActionEnum[k as any] === 'number')
