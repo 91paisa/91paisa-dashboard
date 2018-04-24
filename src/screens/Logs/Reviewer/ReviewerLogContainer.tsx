@@ -8,27 +8,40 @@ import {
 import { remToPx } from '../../../helpers/unit-helper'
 import { IReduxState } from '../../../store/initial-state'
 import { ActionContainer } from '../LogStyles'
-import ReviewerLogFilter from './ReviewerLogFilter'
+import ReviewerLogFilter from './filter/ReviewerLogFilter'
+import ReviewerNameFilter from './filter/ReviewerNameFilter'
 import ReviewerLogItem from './ReviewerLogItem'
 import ReviewerLogList from './ReviewerLogList'
 
 interface IProps {
   reviewers: any
 }
-
-class ReviewerLogContainer extends React.Component<IProps> {
-  public state = {
+interface IState {
+  filter: reviewerActionEnum | string
+}
+class ReviewerLogContainer extends React.Component<IProps, IState> {
+  public initialState = {
     filter: reviewerActionEnum.all,
+  }
+  public state = {
+    ...this.initialState,
   }
 
   public render() {
     return (
       <>
         <ActionContainer>
-          <ReviewerLogFilter
-            filter={this.updateFilter}
-            updateFilter={this.state.filter}
-          />
+          {Number(this.state.filter.toString()) ? (
+            <ReviewerLogFilter
+              filter={this.updateFilter}
+              updateFilter={this.state.filter}
+            />
+          ) : (
+            <ReviewerNameFilter
+              reviewer={this.props.reviewers[this.state.filter]}
+              resetFilter={() => this.setState({ ...this.initialState })}
+            />
+          )}
         </ActionContainer>
         <ReviewerLogList
           searchFilter={this.state.filter}

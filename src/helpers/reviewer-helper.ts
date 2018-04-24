@@ -15,10 +15,6 @@ export const isAdmin = () => {
   return false
 }
 
-export const getGithubId = (reviewerId: string) => {
-  return 5713737
-}
-
 export const getFilters = () => {
   return Object.keys(reviewerActionEnum)
     .filter(k => typeof reviewerActionEnum[k as any] === 'number')

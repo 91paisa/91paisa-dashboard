@@ -1,11 +1,12 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { reviewerActionEnum } from '../../../api/logs-api'
-import { getFilters } from '../../../helpers/reviewer-helper'
-import { dark, fog, white } from '../../../styles/colors'
+import { reviewerActionEnum } from '../../../../api/logs-api'
+import { getFilters } from '../../../../helpers/reviewer-helper'
+import { dark, white } from '../../../../styles/colors'
+import { Container, Label } from './styles'
 
 interface IProps {
-  filter: (filter: reviewerActionEnum) => void
+  filter: (filter: reviewerActionEnum | string) => void
   updateFilter: reviewerActionEnum
 }
 
@@ -44,11 +45,6 @@ class ReviewerLogFilter extends React.Component<IProps> {
 
 const Option = styled.option``
 
-const Label = styled.div`
-  line-height: 2rem;
-  border-right: 1px solid ${fog};
-  padding: 0 0.5rem;
-`
 const Select = styled.select`
   &:focus {
     outline: none;
@@ -63,13 +59,6 @@ const Select = styled.select`
   border-radius: 0;
   background: ${white};
   color: ${dark};
-`
-
-const Container = styled.div`
-  display: flex;
-  border: 1px solid ${fog}
-  align-items: center;
-  border-radius: 0.5rem;
 `
 
 export default ReviewerLogFilter
