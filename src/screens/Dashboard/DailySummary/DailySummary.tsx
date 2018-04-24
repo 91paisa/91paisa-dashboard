@@ -4,9 +4,7 @@ import { IStats } from '../../../api/statistics-api'
 import Card from '../../../components/Card'
 import CardTitle from '../../../components/CardTitle'
 import { toRupee } from '../../../helpers/unit-helper'
-import {
-  lightGrey,
-} from '../../../styles/colors'
+import { lightGrey } from '../../../styles/colors'
 interface IProps {
   stats?: IStats
 }
