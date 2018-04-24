@@ -31,7 +31,7 @@ class ReviewerLogContainer extends React.Component<IProps, IState> {
     return (
       <>
         <ActionContainer>
-          {Number(this.state.filter.toString()) ? (
+          {Number(this.state.filter.toString()) !== undefined ? (
             <ReviewerLogFilter
               filter={this.updateFilter}
               updateFilter={this.state.filter}
