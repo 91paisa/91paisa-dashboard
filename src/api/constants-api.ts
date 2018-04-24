@@ -37,3 +37,7 @@ export const LogsPath = {
 export const ReviewerPath = {
   all: `${basePath()}reviewer/all`,
 }
+
+export const StatisticsPath = {
+  customer: `${basePath()}statistics/customers/`,
+}
