@@ -31,15 +31,15 @@ class ReviewerLogContainer extends React.Component<IProps, IState> {
     return (
       <>
         <ActionContainer>
-          {Number(this.state.filter.toString()) !== undefined ? (
-            <ReviewerLogFilter
-              filter={this.updateFilter}
-              updateFilter={this.state.filter}
-            />
-          ) : (
+          {isNaN(Number(this.state.filter.toString())) ? (
             <ReviewerNameFilter
               reviewer={this.props.reviewers[this.state.filter]}
               resetFilter={() => this.setState({ ...this.initialState })}
+            />
+          ) : (
+            <ReviewerLogFilter
+              filter={this.updateFilter}
+              updateFilter={this.state.filter}
             />
           )}
         </ActionContainer>

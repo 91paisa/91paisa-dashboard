@@ -18,11 +18,13 @@ class ReviewerNameFilter extends React.Component<IProps> {
             style={{
               background: 'none',
               border: 'none',
-              padding: '0.2rem',
+              borderRadius: '0.5rem',
+              cursor: 'pointer',
+              padding: '0.2rem 0.4rem',
             }}
             onClick={this.props.resetFilter}
           >
-            X
+            ❌ Clear filter
           </button>
         </Container>
       </>
