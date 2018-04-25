@@ -6,6 +6,7 @@ class Dashboard extends Component {
   public state = {
     beneficiary: undefined,
     customer: undefined,
+    splitTransaction: undefined,
     transaction: undefined,
   }
   public componentDidMount() {
@@ -15,7 +16,7 @@ class Dashboard extends Component {
   }
   public render() {
     // tslint:disable-next-line
-    console.log('rrr', this.state)
+    // console.log('rrr', this.state)
     return <DailySummary stats={this.state as IStats} />
   }
 }

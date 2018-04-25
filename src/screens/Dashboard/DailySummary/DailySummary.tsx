@@ -39,7 +39,6 @@ const DailySummary: React.SFC<IProps> = ({ stats }: IProps) => (
               <InnerContainer />
             </>
           )}
-
           {stats.beneficiary && (
             <InnerContainer>
               <Label>Beneficiaries</Label>
@@ -49,39 +48,71 @@ const DailySummary: React.SFC<IProps> = ({ stats }: IProps) => (
               </SubLabel>
             </InnerContainer>
           )}
-
-          {stats.transaction && (
+          {stats.splitTransaction && (
             <InnerContainer>
-              <Label>Transactions</Label>
+              <Label>Split Transactions</Label>
               <RowFlex>
                 <SubLabel>
                   Success:{' '}
-                  <Text>{toRupee(stats.transaction.successful.amount)}</Text>
-                  <Text>({stats.transaction.successful.count})</Text>
+                  <Text>
+                    {toRupee(stats.splitTransaction.successful.amount)}
+                  </Text>
+                  <Text>({stats.splitTransaction.successful.count})</Text>
                 </SubLabel>
                 <SubLabel>
-                  Fail: <Text>{toRupee(stats.transaction.failed.amount)}</Text>
-                  <Text>({stats.transaction.failed.count})</Text>
+                  Fail:{' '}
+                  <Text>{toRupee(stats.splitTransaction.failed.amount)}</Text>
+                  <Text>({stats.splitTransaction.failed.count})</Text>
                 </SubLabel>
                 <SubLabel>
                   Initiated:{' '}
-                  <Text>{toRupee(stats.transaction.initiated.amount)}</Text>
-                  <Text>({stats.transaction.initiated.count})</Text>
+                  <Text>
+                    {toRupee(stats.splitTransaction.initiated.amount)}
+                  </Text>
+                  <Text>({stats.splitTransaction.initiated.count})</Text>
                 </SubLabel>
                 <SubLabel>
                   In Progress:{' '}
-                  <Text>{toRupee(stats.transaction.processing.amount)}</Text>
-                  <Text>({stats.transaction.processing.count})</Text>
+                  <Text>
+                    {toRupee(stats.splitTransaction.processing.amount)}
+                  </Text>
+                  <Text>({stats.splitTransaction.processing.count})</Text>
                 </SubLabel>
                 <SubLabel>
                   Cancel:{' '}
-                  <Text>{toRupee(stats.transaction.cancelled.amount)}</Text>
-                  <Text>({stats.transaction.cancelled.count})</Text>
+                  <Text>
+                    {toRupee(stats.splitTransaction.cancelled.amount)}
+                  </Text>
+                  <Text>({stats.splitTransaction.cancelled.count})</Text>
+                </SubLabel>
+                <TotalSubLabel>
+                  Total:{' '}
+                  <Text>{toRupee(stats.splitTransaction.total.amount)}</Text>
+                  <Text>({stats.splitTransaction.total.count})</Text>
+                </TotalSubLabel>
+              </RowFlex>
+            </InnerContainer>
+          )}
+          {stats.transaction && (
+            <InnerContainer>
+              <Label>Overall Transactions count</Label>
+              <RowFlex>
+                <SubLabel>
+                  Initiated: <Text>{stats.transaction.initiated}</Text>
                 </SubLabel>
                 <SubLabel>
-                  Total: <Text>{toRupee(stats.transaction.total.amount)}</Text>
-                  <Text>({stats.transaction.total.count})</Text>
+                  Cancelled: <Text>{stats.transaction.cancelled}</Text>
                 </SubLabel>
+                <SubLabel>
+                  Failed: <Text>{stats.transaction.failed}</Text>
+                </SubLabel>
+                <SubLabel>
+                  Success: <Text>{stats.transaction.successful}</Text>
+                </SubLabel>
+                <div />
+                <TotalSubLabel>
+                  Total: <Text>{stats.transaction.total}</Text>
+                </TotalSubLabel>
               </RowFlex>
             </InnerContainer>
           )}
@@ -118,6 +149,10 @@ const SubLabel = styled.p`
   font-size: 1rem;
   padding: 1rem;
   text-transform: capitalize;
+`
+const TotalSubLabel = SubLabel.extend`
+  background: ${lightGrey};
+  border-radius: 0 0 0.5rem 0;
 `
 
 const Container = styled.div`
