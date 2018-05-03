@@ -15,8 +15,6 @@ class Dashboard extends Component {
     })
   }
   public render() {
-    // tslint:disable-next-line
-    // console.log('rrr', this.state)
     return <DailySummary stats={this.state as IStats} />
   }
 }

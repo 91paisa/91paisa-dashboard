@@ -20,6 +20,7 @@ interface IProps {
 }
 class CustomerTransactionItem extends React.Component<IProps> {
   public render() {
+
     const { transaction } = this.props
     return (
       <Container to={`/transactions/${transaction.id}`}>

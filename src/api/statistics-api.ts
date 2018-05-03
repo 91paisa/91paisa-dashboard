@@ -82,8 +82,6 @@ export const getStatsForTodayAPI = (): Promise<IStats> => {
         }
       })
       .reduce((result: any, item: IRootStatistics) => {
-        // tslint:disable-next-line
-        console.log('abcdefghi', item)
         result[item.type] = item
         return result
       }, {})

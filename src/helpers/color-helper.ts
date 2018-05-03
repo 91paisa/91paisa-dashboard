@@ -3,6 +3,7 @@ import { nodalStatusEnum, splitTransactionStatus } from '../api/transaction-api'
 import {
   alertPending,
   alertRed,
+  brown,
   dark,
   graphite,
   grey,
@@ -58,7 +59,7 @@ export const getNodalTransactionColor = (status: nodalStatusEnum): string => {
   switch (status) {
     case nodalStatusEnum.notInitiated:
       return graphite
-    case nodalStatusEnum.credited:
+    case nodalStatusEnum.settled:
       return positiveGreen
     case nodalStatusEnum.dispute:
     case nodalStatusEnum.failed:
@@ -67,7 +68,10 @@ export const getNodalTransactionColor = (status: nodalStatusEnum): string => {
     case nodalStatusEnum.authorized:
       return identity
     case nodalStatusEnum.initiates:
+    case nodalStatusEnum.credited:
       return alertPending
+    case nodalStatusEnum.routed:
+      return brown
     case nodalStatusEnum.noop:
       return white
   }

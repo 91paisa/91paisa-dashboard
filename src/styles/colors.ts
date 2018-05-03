@@ -1,5 +1,6 @@
 export const alertRed = '#fa4352'
 export const alertPending = '#ff9800'
+export const brown = '#795548'
 export const dark = '#1d2028'
 export const fog = '#d8d8d8'
 export const graphite = '#767676'

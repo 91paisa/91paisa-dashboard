@@ -43,6 +43,8 @@ export enum nodalStatusEnum {
   failed = 3,
   credited = 4,
   dispute = 5,
+  routed = 6,
+  settled = 7,
 }
 
 export interface ISplitTransaction {
