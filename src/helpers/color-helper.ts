@@ -1,5 +1,9 @@
 import { customerStatus } from '../api/customer-api'
-import { nodalStatusEnum, splitTransactionStatus } from '../api/transaction-api'
+import {
+  nodalStatusEnum,
+  settlementStatusEnum,
+  splitTransactionStatus,
+} from '../api/transaction-api'
 import {
   alertPending,
   alertRed,
@@ -75,5 +79,20 @@ export const getNodalTransactionColor = (status: nodalStatusEnum): string => {
       return brown
     case nodalStatusEnum.noop:
       return white
+  }
+}
+
+export const getRouteColor = (status: number): string => {
+  switch (status) {
+    case settlementStatusEnum.notTriedYet:
+      return graphite
+    case settlementStatusEnum.ready:
+      return identity
+    case settlementStatusEnum.started:
+      return alertPending
+    case settlementStatusEnum.completed:
+      return positiveGreen
+    default:
+      return dark
   }
 }

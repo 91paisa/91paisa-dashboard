@@ -62,6 +62,35 @@ export interface INodal {
   status: nodalStatusEnum
 }
 
+export enum settlementStatusEnum {
+  notTriedYet = 0,
+  ready = 1,
+  started = 2,
+  completed = 3,
+}
+
+export interface ISettlement {
+  id: string
+  amount: number
+  status: settlementStatusEnum
+  referenceId: string
+}
+
+export interface IRefund {
+  id: string
+  amount: number
+  status: settlementStatusEnum
+  createdTimestamp: string
+  updatedTimestamp: string
+}
+
+export interface ISettlementContainer {
+  eko?: ISettlement
+  zms?: ISettlement
+  createdTimestamp: string
+  updatedTimestamp: string
+}
+
 export interface ITransaction {
   actionStatus: transactionActionEnum
   id: string
@@ -81,6 +110,8 @@ export interface ITransaction {
   updatedTimestamp: string
   transactionDetails?: ISplitTransaction[]
   nodal: INodal
+  settlement: ISettlementContainer | undefined
+  refund: IRefund | undefined
 }
 
 const getAllTransactionsFormData = (limit: number, offset: number) => {
@@ -91,6 +122,18 @@ const getAllTransactionsFormData = (limit: number, offset: number) => {
 }
 
 const getNodalId = (_: any) => _.razorpay_payment_id.String
+
+const getSettlementData = (_: any) => {
+  if (_.settlement.created_at === '0001-01-01T00:00:00Z') {
+    return undefined
+  }
+  return {
+    createdTimestamp: _.settlement.created_at,
+    eko: getSettlementInfo(_.settlement.eko),
+    updatedTimestamp: _.settlement.updated_at,
+    zms: getSettlementInfo(_.settlement.zms),
+  }
+}
 
 export const getAllTransactionsAPI = (
   limit: number = 1000,
@@ -118,6 +161,8 @@ export const getAllTransactionsAPI = (
           id: getNodalId(_),
           status: getNodalStatus(_, _.action_status),
         },
+        refund: getRefundData(_),
+        settlement: getSettlementData(_),
         transactionDetails: _.eko_transactions.map(
           ($: any): ISplitTransaction => ({
             amount: $.amount,
@@ -133,6 +178,21 @@ export const getAllTransactionsAPI = (
       }))
     })
     .catch(() => [])
+}
+
+const getSettlementInfo = (settlement: any): ISettlement | undefined => {
+  if (!settlement.transfer_id) {
+    return undefined
+  }
+  return {
+    amount: settlement.amount,
+    id: settlement.transfer_id,
+    referenceId: settlement.utr,
+    status: settlement.status,
+  }
+}
+const getRefundData = (settlement: any): IRefund | undefined => {
+  return undefined
 }
 
 /**
