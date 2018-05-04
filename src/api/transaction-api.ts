@@ -23,7 +23,8 @@ export enum splitTransactionStatus {
   failure = 8,
   refundPending = 9,
   refundSuccess = 10,
-  cancel = 11,
+  cancelPending = 11,
+  cancelled = 12,
 }
 
 export enum transactionActionEnum {
@@ -49,6 +50,7 @@ export enum nodalStatusEnum {
 
 export interface ISplitTransaction {
   id: string
+  cancellationId: string
   amount: number
   status: splitTransactionStatus
   createdTimestamp: string
@@ -116,18 +118,37 @@ export const getAllTransactionsAPI = (
           id: getNodalId(_),
           status: getNodalStatus(_, _.action_status),
         },
-        transactionDetails: _.eko_transactions.map(($: any) => ({
-          amount: $.amount,
-          createdTimestamp: $.created_at,
-          id: $.eko_tid.String,
-          status: $.status_code,
-          updatedTimestamp: $.updated_at,
-        })),
+        transactionDetails: _.eko_transactions.map(
+          ($: any): ISplitTransaction => ({
+            amount: $.amount,
+            cancellationId: $.eko_refund_tid.String,
+            createdTimestamp: $.created_at,
+            id: $.eko_tid.String,
+            status: getSplitTransactionStatus($),
+            updatedTimestamp: $.updated_at,
+          }),
+        ),
         type: _.transaction_type,
         updatedTimestamp: _.updated_at,
       }))
     })
     .catch(() => [])
+}
+
+/**
+ * Required to handle cancelled and cancelPending status depending on if refund ID is available
+ */
+const getSplitTransactionStatus = (
+  ekoTransaction: any,
+): splitTransactionStatus => {
+  const ekoStatusCode = ekoTransaction.status_code
+  if (
+    ekoStatusCode === splitTransactionStatus.cancelPending &&
+    ekoTransaction.eko_refund_tid.String
+  ) {
+    return splitTransactionStatus.cancelled
+  }
+  return ekoStatusCode
 }
 
 const getNodalStatus = (_: any, actionStatus: transactionActionEnum) => {

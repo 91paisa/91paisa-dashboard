@@ -18,6 +18,23 @@ interface IContainerProps {
   status: splitTransactionStatus
 }
 
+function renderIds(props: IProps) {
+  return (
+    <>
+      {props.split.cancellationId ? (
+        <>
+          <p>
+            <s># {props.split.id}</s>
+          </p>
+          <p># {props.split.cancellationId}</p>
+        </>
+      ) : (
+        <p># {props.split.id}</p>
+      )}
+    </>
+  )
+}
+
 const SplitItem: React.SFC<IProps> = props => (
   <Container status={props.split.status}>
     <div>
@@ -26,7 +43,7 @@ const SplitItem: React.SFC<IProps> = props => (
       <TimeCell time={props.split.updatedTimestamp} />
     </div>
     <div style={{ textAlign: 'right', display: 'block' }}>
-      <p># {props.split.id}</p>
+      {renderIds(props)}
       <SplitStatus status={props.split.status} />
     </div>
   </Container>
