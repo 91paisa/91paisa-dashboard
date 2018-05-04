@@ -33,3 +33,7 @@ yarn-error.log*
 .idea/sqlDataSources.xml
 .idea/dynamic.xml
 .idea/uiDesigner.xml
+
+
+.idea/typescript-compiler.xml
+.idea/vagrant.xml
