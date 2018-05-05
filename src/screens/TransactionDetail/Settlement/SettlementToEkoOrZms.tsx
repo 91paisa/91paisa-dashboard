@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { ISettlement, settlementStatusEnum } from '../../../api/transaction-api'
 import Space, { SpaceEnum } from '../../../components/Space'
 import { getRouteColor } from '../../../helpers/color-helper'
+import { getTimeInLTDDMMYYAGOView } from '../../../helpers/time-helper'
 import AmountCell from '../../Transactions/AmountCell'
 import SettlementStatus from './SettlementStatus'
 
@@ -19,14 +20,18 @@ const SettlementToEkoOrZms: React.SFC<IProps> = ({
   status,
   title,
   referenceId,
+  createdTimestamp,
+  updatedTimestamp,
 }: IProps) => (
   <Container status={status}>
     <Title status={status}>{title}</Title>
     <Flex>
       <div>
         <AmountCell style={{ fontSize: '1.3rem' }} amount={amount} />
-        <Space height={SpaceEnum.xl} />
+        <Space height={SpaceEnum.xxs} />
         {!referenceId && <p>reference ID: {referenceId}</p>}
+        <Space height={SpaceEnum.m} />
+        {renderTimestamps(createdTimestamp, updatedTimestamp)}
       </div>
       <div
         style={{
@@ -46,6 +51,28 @@ const SettlementToEkoOrZms: React.SFC<IProps> = ({
     </Flex>
   </Container>
 )
+
+const renderTimestamps = (created: string, updated: string) => (
+  <>
+    <TimeContainer>
+      <TimeTitle>Created:</TimeTitle>
+      <div>{getTimeInLTDDMMYYAGOView(created)}</div>
+    </TimeContainer>
+    <TimeContainer>
+      <TimeTitle>Updated:</TimeTitle>
+      <div>{getTimeInLTDDMMYYAGOView(updated)}</div>
+    </TimeContainer>
+  </>
+)
+
+const TimeContainer = styled.div`
+  display: grid;
+  grid-template-columns: 4rem auto;
+  grid-gap: 20px;
+  margin-bottom: 2px;
+`
+
+const TimeTitle = styled.p``
 
 const Title: any = styled.h3`
   font-weight: 500;

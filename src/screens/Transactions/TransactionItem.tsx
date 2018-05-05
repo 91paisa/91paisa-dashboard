@@ -11,7 +11,7 @@ import {
   PhoneOrTabletBrowser,
 } from '../../components/BrowserContainer'
 import { default as Space, SpaceEnum } from '../../components/Space'
-import { getDDMMYYYY } from '../../helpers/time-helper'
+import { getDDMMYY } from '../../helpers/time-helper'
 import { isTransactionComplete } from '../../helpers/transaction-helper'
 import { dark, primaryLight } from '../../styles/colors'
 import { isPhoneOrTable } from '../../styles/screenSize'
@@ -88,12 +88,12 @@ class TransactionItem extends React.Component<IProps> {
           <Name>{customer.name}</Name>
           <span>➡</span>
           <Name>{beneficiary.name}</Name>
-          <Name>{getDDMMYYYY(createdTimestamp)}</Name>
+          <Name>{getDDMMYY(createdTimestamp)}</Name>
           <span>➡</span>
           <div>
             <Name>
               {isTransactionComplete(transactionDetails)
-                ? getDDMMYYYY(updatedTimestamp)
+                ? getDDMMYY(updatedTimestamp)
                 : '- - -'}
             </Name>
           </div>

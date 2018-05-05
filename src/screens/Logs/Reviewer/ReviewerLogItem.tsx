@@ -10,7 +10,7 @@ import {
 import { IReviewer } from '../../../api/reviewer-api'
 import Avatar from '../../../components/Avatar'
 import Space, { SpaceEnum } from '../../../components/Space'
-import { getDDMMYYYY, getLT } from '../../../helpers/time-helper'
+import { getDDMMYY, getLT } from '../../../helpers/time-helper'
 import { dark, identity } from '../../../styles/colors'
 import { getActionDetailStarting } from './reviewer-log-helper'
 import ReviewAction from './ReviewerAction'
@@ -40,7 +40,7 @@ class ReviewerLogItem extends React.Component<IProps> {
 const timestampView = (createdTimestamp: string) => (
   <Section>
     {moment(createdTimestamp).fromNow()} • {getLT(createdTimestamp)} •{' '}
-    {getDDMMYYYY(createdTimestamp)}
+    {getDDMMYY(createdTimestamp)}
   </Section>
 )
 

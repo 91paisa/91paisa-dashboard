@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import Space, { SpaceEnum } from '../../components/Space'
-import { getDDMMYYYY, getLT } from '../../helpers/time-helper'
+import { getDDMMYY, getLT } from '../../helpers/time-helper'
 
 interface IProps {
   time: string
@@ -13,7 +13,7 @@ const TimeCell: React.SFC<IProps> = ({ time, space, style }: IProps) => (
   <Container style={style}>
     <p>{getLT(time)}</p>
     <Space width={space} height={space} />
-    <p>{getDDMMYYYY(time)}</p>
+    <p>{getDDMMYY(time)}</p>
   </Container>
 )
 

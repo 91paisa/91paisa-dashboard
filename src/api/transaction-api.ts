@@ -74,6 +74,8 @@ export interface ISettlement {
   amount: number
   status: settlementStatusEnum
   referenceId: string
+  createdTimestamp: string
+  updatedTimestamp: string
 }
 
 export interface IRefund {
@@ -87,8 +89,6 @@ export interface IRefund {
 export interface ISettlementContainer {
   eko?: ISettlement
   zms?: ISettlement
-  createdTimestamp: string
-  updatedTimestamp: string
 }
 
 export interface ITransaction {
@@ -124,7 +124,7 @@ const getAllTransactionsFormData = (limit: number, offset: number) => {
 const getNodalId = (_: any) => _.razorpay_payment_id.String
 
 const getSettlementData = (_: any) => {
-  if (_.settlement.created_at === '0001-01-01T00:00:00Z') {
+  if (!_.settlement.eko.transfer_id && !_.settlement.zms.transfer_id) {
     return undefined
   }
   return {
@@ -186,13 +186,24 @@ const getSettlementInfo = (settlement: any): ISettlement | undefined => {
   }
   return {
     amount: settlement.amount,
+    createdTimestamp: '2018-05-05T08:15:36.510505Z',
     id: settlement.transfer_id,
     referenceId: settlement.utr,
     status: settlement.status,
+    updatedTimestamp: '2018-05-05T08:15:36.510505Z',
   }
 }
-const getRefundData = (settlement: any): IRefund | undefined => {
-  return undefined
+const getRefundData = (_: any): IRefund | undefined => {
+  if (!_.settlement.refund.refund_id) {
+    return undefined
+  }
+  return {
+    amount: _.settlement.refund.amount_refunded,
+    createdTimestamp: '2018-05-05T08:15:36.510505Z',
+    id: _.settlement.refund.refund_id,
+    status: _.settlement.refund.status,
+    updatedTimestamp: '2018-05-05T08:15:36.510505Z',
+  }
 }
 
 /**
