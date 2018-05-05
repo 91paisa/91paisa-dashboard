@@ -99,7 +99,7 @@ const Container = styled.img`
   width: 28px;
   height: 28px;
   cursor: pointer;
-  margin: auto 1rem;
+  margin-right: 1rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   border: solid ${white} 1px;
   border-radius: 100%;
