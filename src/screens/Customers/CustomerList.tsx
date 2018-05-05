@@ -21,7 +21,7 @@ class CustomerList extends Component<IProps, {}> {
             <List
               height={height - remToPx(8)}
               rowCount={this.props.customers.length}
-              rowHeight={remToPx(4.6)}
+              rowHeight={remToPx(6.6)}
               overscanColumnCount={3}
               rowRenderer={this.rowRenderer}
               width={width}
@@ -39,8 +39,8 @@ class CustomerList extends Component<IProps, {}> {
     isVisible,
     style,
   }: any) => (
-    <div key={key}>
-      <CustomerListItem style={style} customer={this.props.customers[index]} />
+    <div key={key} style={style}>
+      <CustomerListItem customer={this.props.customers[index]} />
     </div>
   )
 }

@@ -10,10 +10,11 @@ const StatusCircle: React.SFC<IProps> = props => (
   <div
     style={{
       background: getColorBasedOnCustomerStatus(props.status),
-      borderRadius: '9999px',
+      borderRadius: '50%',
       boxShadow: 'inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.1)',
-      height: '8px',
-      width: '8px',
+      height: '10px',
+      margin: 'auto 3px',
+      width: '10px',
     }}
     title={customerStatus[props.status]}
   />

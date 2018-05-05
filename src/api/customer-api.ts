@@ -19,10 +19,15 @@ export interface ILastTransaction {
   createdTimestamp: string
 }
 
+export interface ICustomerStatus {
+  code: customerStatus
+  detail: string | undefined
+}
+
 export interface ICustomer {
   name: string
   phone: string
-  status: customerStatus
+  status: ICustomerStatus
   lastTransaction: ILastTransaction | undefined
   beneficiaries: IBeneficiary[] | undefined
 }
@@ -54,10 +59,12 @@ function formatCustomersList(res: any): ICustomer[] {
         createdTimestamp,
       }
     }
-    const status = getMandateStatusEnum(
-      customer.mandate_status,
-      customer.verified,
-    )
+    const status = {
+      code: getMandateStatusEnum(customer.mandate_status, customer.verified),
+      detail: customer.mandate_fail_reason
+        ? customer.mandate_fail_reason
+        : undefined,
+    }
     return {
       lastTransaction,
       name: customer.name,

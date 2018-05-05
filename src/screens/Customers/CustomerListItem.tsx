@@ -4,64 +4,48 @@ import styled from 'styled-components'
 import { ICustomer } from '../../api/customer-api'
 import Space, { SpaceEnum } from '../../components/Space'
 import { dark, primaryLight } from '../../styles/colors'
+import CustomerStatus from '../CustomerStatus'
 import PhoneCell from './PhoneCell'
-import StatusCircle from './StatusCircle'
+
 interface IProps {
   customer: ICustomer
-  style: any
 }
+
 class CustomerListItem extends React.Component<IProps> {
   public render() {
-    const { style, customer } = this.props
+    const { customer } = this.props
     return (
-      <Container style={style}>
-        <CustomerDetailLink to={`/customers/${customer.phone}`}>
-          <StatusContainer>
-            <StatusCircle status={customer.status} />
-          </StatusContainer>
-          <InnerContainer>
-            <Name>{customer.name}</Name>
-            <Space height={SpaceEnum.xxs} />
-            <PhoneCell phone={customer.phone} />
-          </InnerContainer>
-        </CustomerDetailLink>
-      </Container>
+      <Link to={`/customers/${customer.phone}`}>
+        <Container>
+          <Name>{customer.name}</Name>
+          <Space height={SpaceEnum.xxxs} />
+          <PhoneCell phone={customer.phone} />
+          <Space height={SpaceEnum.xxs} />
+          <CustomerStatus {...customer.status} />
+        </Container>
+      </Link>
     )
   }
 }
 
-const InnerContainer = styled.div`
+const Container = styled.div`
   margin: auto 0;
-`
-const StatusContainer = styled.div`
+  padding: 0 16px;
   display: flex;
-  justify-content: center;
-  margin-top: 1.2rem;
-`
-
-const CustomerDetailLink = styled(Link)`
   width: 100%;
   height: 100%;
-  text-decoration: none;
-  display: grid;
-  grid-template-columns: 3.6rem 1fr;
+  justify-content: center;
+  flex-direction: column;
+  &:hover {
+    background: ${primaryLight};
+  }
 `
 
 const Name = styled.p`
   color: ${dark};
   text-transform: capitalize;
-  font-size: 1rem;
-`
-
-const Container: any = styled.div`
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  margin: auto 0;
-  display: block;
-  &:hover {
-    background: ${primaryLight};
-  }
+  font-size: 1.1rem;
+  font-weight: 500;
 `
 
 export default CustomerListItem
