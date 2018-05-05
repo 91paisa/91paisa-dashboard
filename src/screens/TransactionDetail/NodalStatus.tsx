@@ -1,16 +1,21 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { nodalStatusEnum } from '../../api/transaction-api'
+import { IRefund, nodalStatusEnum } from '../../api/transaction-api'
 import { getNodalTransactionColor } from '../../helpers/color-helper'
 import { normalizeEnumKey } from '../../helpers/transaction-helper'
 import { white } from '../../styles/colors'
 
 interface IProps {
   status: nodalStatusEnum
+  refund: IRefund | undefined
 }
-const NodalStatus: React.SFC<IProps> = ({ status }: IProps) => (
+const NodalStatus: React.SFC<IProps> = ({ status, refund }: IProps) => (
   <Container status={status}>
-    <Label status={status}>Nodal</Label>
+    {refund ? (
+      <Label status={status}>Refund</Label>
+    ) : (
+      <Label status={status}>Nodal</Label>
+    )}
     <Text>{normalizeEnumKey(nodalStatusEnum[status])}</Text>
   </Container>
 )

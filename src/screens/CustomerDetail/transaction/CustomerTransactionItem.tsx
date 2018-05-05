@@ -20,7 +20,6 @@ interface IProps {
 }
 class CustomerTransactionItem extends React.Component<IProps> {
   public render() {
-
     const { transaction } = this.props
     return (
       <Container to={`/transactions/${transaction.id}`}>
@@ -39,6 +38,7 @@ class CustomerTransactionItem extends React.Component<IProps> {
         <TransactionStatusCell
           splits={transaction.transactionDetails}
           nodal={transaction.nodal}
+          refund={transaction.refund}
         />
       </Container>
     )

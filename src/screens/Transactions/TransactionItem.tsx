@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import {
   INodal,
+  IRefund,
   ISplitTransaction,
   ITransaction,
 } from '../../api/transaction-api'
@@ -34,6 +35,7 @@ class TransactionItem extends React.Component<IProps> {
       transactionDetails,
       updatedTimestamp,
       nodal,
+      refund,
     } = this.props.transaction
     return (
       <>
@@ -47,6 +49,7 @@ class TransactionItem extends React.Component<IProps> {
             updatedTimestamp,
             transactionDetails as ISplitTransaction[],
             nodal,
+            refund,
           )}
         </PhoneOrTabletBrowser>
         <DesktopBrowser>
@@ -59,6 +62,7 @@ class TransactionItem extends React.Component<IProps> {
             updatedTimestamp,
             transactionDetails as ISplitTransaction[],
             nodal,
+            refund,
           )}
         </DesktopBrowser>
       </>
@@ -74,6 +78,7 @@ class TransactionItem extends React.Component<IProps> {
     updatedTimestamp: string,
     transactionDetails: ISplitTransaction[],
     nodal: INodal,
+    refund: IRefund|undefined,
   ) => (
     <TabletContainer to={`/transactions/${id}`}>
       <AmountCell style={{ fontWeight: 'bold' }} amount={amount} />
@@ -99,7 +104,7 @@ class TransactionItem extends React.Component<IProps> {
           </div>
         </div>
       </div>
-      <TransactionStatusCell splits={transactionDetails} nodal={nodal} />
+      <TransactionStatusCell splits={transactionDetails} nodal={nodal} refund={refund} />
     </TabletContainer>
   )
 
@@ -112,6 +117,7 @@ class TransactionItem extends React.Component<IProps> {
     updatedTimestamp: string,
     transactionDetails: ISplitTransaction[],
     nodal: INodal,
+    refund: IRefund|undefined,
   ) => (
     <DesktopContainer to={`/transactions/${id}`}>
       <AmountCell amount={amount} style={{ fontSize: '1.3rem' }} />
@@ -131,7 +137,11 @@ class TransactionItem extends React.Component<IProps> {
           <TimeCell time={updatedTimestamp} space={SpaceEnum.s} />
         </>
       )}
-      <TransactionStatusCell splits={transactionDetails} nodal={nodal} />
+      <TransactionStatusCell
+        splits={transactionDetails}
+        nodal={nodal}
+        refund={refund}
+      />
     </DesktopContainer>
   )
 }

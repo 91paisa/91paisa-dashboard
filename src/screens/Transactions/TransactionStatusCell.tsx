@@ -2,6 +2,7 @@ import { default as React, Fragment } from 'react'
 import styled from 'styled-components'
 import {
   INodal,
+  IRefund,
   ISplitTransaction,
   nodalStatusEnum,
   splitTransactionStatus,
@@ -17,6 +18,7 @@ import SplitStatus from '../TransactionDetail/SplitStatus'
 interface IProps {
   splits: ISplitTransaction[] | undefined
   nodal: INodal
+  refund: IRefund | undefined
 }
 
 function splitStatusContainer(splits: ISplitTransaction[]) {
@@ -40,12 +42,13 @@ const insufficientBalance = () => (
 const TransactionStatusCell: React.SFC<IProps> = ({
   splits,
   nodal,
+  refund,
 }: IProps) => {
   return (
     <Container>
       {nodal.status !== nodalStatusEnum.noop && (
         <>
-          <NodalStatus status={nodal.status} />
+          <NodalStatus status={nodal.status} refund={refund} />
           <Space width={SpaceEnum.s} />
         </>
       )}
