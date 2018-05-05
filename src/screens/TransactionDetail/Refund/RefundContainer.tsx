@@ -10,13 +10,7 @@ import SettlementStatus from '../Settlement/SettlementStatus'
 
 class RefundContainer extends React.Component<IRefund> {
   public render() {
-    const {
-      amount,
-      status,
-      id,
-      updatedTimestamp,
-      createdTimestamp,
-    } = this.props
+    const { amount, status, id, createdTimestamp } = this.props
     return (
       <Card>
         <CardTitle>Refund</CardTitle>
@@ -37,10 +31,6 @@ class RefundContainer extends React.Component<IRefund> {
           <TimeContainer>
             <span>Created: </span>
             {getTimeInLTDDMMYYAGOView(createdTimestamp)}
-          </TimeContainer>
-          <TimeContainer>
-            <span>Updated: </span>
-            {getTimeInLTDDMMYYAGOView(updatedTimestamp)}
           </TimeContainer>
         </FlexColumn>
       </Card>

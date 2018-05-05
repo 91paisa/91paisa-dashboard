@@ -83,7 +83,6 @@ export interface IRefund {
   amount: number
   status: settlementStatusEnum
   createdTimestamp: string
-  updatedTimestamp: string
 }
 
 export interface ISettlementContainer {
@@ -186,11 +185,11 @@ const getSettlementInfo = (settlement: any): ISettlement | undefined => {
   }
   return {
     amount: settlement.amount,
-    createdTimestamp: '2018-05-05T08:15:36.510505Z',
+    createdTimestamp: settlement.created_at,
     id: settlement.transfer_id,
     referenceId: settlement.utr,
     status: settlement.status,
-    updatedTimestamp: '2018-05-05T08:15:36.510505Z',
+    updatedTimestamp: settlement.updated_at,
   }
 }
 const getRefundData = (_: any): IRefund | undefined => {
@@ -199,10 +198,9 @@ const getRefundData = (_: any): IRefund | undefined => {
   }
   return {
     amount: _.settlement.refund.amount_refunded,
-    createdTimestamp: '2018-05-05T08:15:36.510505Z',
+    createdTimestamp: _.settlement.refund.created_at,
     id: _.settlement.refund.refund_id,
     status: _.settlement.refund.status,
-    updatedTimestamp: '2018-05-05T08:15:36.510505Z',
   }
 }
 
