@@ -14,7 +14,7 @@ import ReviewerLogItem from './ReviewerLogItem'
 import ReviewerLogList from './ReviewerLogList'
 
 interface IProps {
-  reviewers: any
+  reviewers: any | undefined
 }
 interface IState {
   filter: reviewerActionEnum | string
@@ -28,6 +28,11 @@ class ReviewerLogContainer extends React.Component<IProps, IState> {
   }
 
   public render() {
+    // tslint:disable-next-line
+    console.log(this.props.reviewers)
+    if (this.isEmpty(this.props.reviewers)) {
+      return null
+    }
     return (
       <>
         <ActionContainer>
@@ -61,6 +66,10 @@ class ReviewerLogContainer extends React.Component<IProps, IState> {
   }
   private updateFilter = (filter: searchFilterType) => {
     this.setState({ filter })
+  }
+
+  private isEmpty = (reviewers: any) => {
+    return Object.keys(reviewers).length === 0
   }
 }
 
