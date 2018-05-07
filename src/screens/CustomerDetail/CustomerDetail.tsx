@@ -25,7 +25,7 @@ class CustomerDetail extends Component<IProps, {}> {
                 customerPhone={customer.phone}
                 customerIndex={customerIndex}
               />
-              {customer.lastTransaction && <CustomerTransactionContainer />}
+              <CustomerTransactionContainer />
               <CustomerIVRLogContainer customerPhone={customer.phone} />
             </>
           )}

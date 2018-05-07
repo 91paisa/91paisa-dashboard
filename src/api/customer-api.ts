@@ -28,7 +28,6 @@ export interface ICustomer {
   name: string
   phone: string
   status: ICustomerStatus
-  lastTransaction: ILastTransaction | undefined
   beneficiaries: IBeneficiary[] | undefined
 }
 
@@ -50,15 +49,6 @@ const getCustomersFormData = (offset: number, limit: number): FormData => {
 
 function formatCustomersList(res: any): ICustomer[] {
   return res.data.data.map((customer: any) => {
-    let lastTransaction
-    if (customer.latest_transaction.amount !== 0) {
-      const amount = customer.latest_transaction.amount
-      const createdTimestamp = customer.latest_transaction.created_at
-      lastTransaction = {
-        amount,
-        createdTimestamp,
-      }
-    }
     const status = {
       code: getMandateStatusEnum(customer.mandate_status, customer.verified),
       detail: customer.mandate_fail_reason
@@ -66,7 +56,6 @@ function formatCustomersList(res: any): ICustomer[] {
         : undefined,
     }
     return {
-      lastTransaction,
       name: customer.name,
       phone: customer.phone_number,
       status,

@@ -18,6 +18,9 @@ interface IProps {
 class CustomerTransactionList extends React.Component<IProps> {
   public render() {
     const { transactions, ludicrousMode } = this.props
+    if (!transactions.length) {
+      return null
+    }
     return (
       <Card>
         {!ludicrousMode && <CardTitle>Transactions</CardTitle>}
