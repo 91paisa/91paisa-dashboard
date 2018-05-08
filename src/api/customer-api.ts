@@ -19,9 +19,15 @@ export interface ILastTransaction {
   createdTimestamp: string
 }
 
+export interface IMandateTimestamp {
+  initiated: string
+  completed: string | undefined
+}
+
 export interface ICustomerStatus {
   code: customerStatus
-  detail: string | undefined
+  rejectionReason: string | undefined
+  mandateTimestamp: IMandateTimestamp | undefined
 }
 
 export interface ICustomer {
@@ -51,7 +57,8 @@ function formatCustomersList(res: any): ICustomer[] {
   return res.data.data.map((customer: any) => {
     const status = {
       code: getMandateStatusEnum(customer.mandate_status, customer.verified),
-      detail: customer.mandate_fail_reason
+      mandateTimestamp: getMandateTimestamp(customer),
+      rejectionReason: customer.mandate_fail_reason
         ? customer.mandate_fail_reason
         : undefined,
     }
@@ -61,6 +68,23 @@ function formatCustomersList(res: any): ICustomer[] {
       status,
     }
   })
+}
+function getMandateTimestamp(customer: any): IMandateTimestamp | undefined {
+  const mandateStatus = getMandateStatusEnum(
+    customer.mandate_status,
+    customer.verified,
+  )
+  if (mandateStatus >= customerStatus.mandateInitiated) {
+    const completed =
+      customer.mandate_finished_at === '0001-01-01T00:00:00Z'
+        ? undefined
+        : customer.mandate_finished_at
+    return {
+      completed,
+      initiated: customer.mandate_initiated_at,
+    }
+  }
+  return undefined
 }
 
 function getMandateStatusEnum(mandateStatus: number, verified: boolean) {

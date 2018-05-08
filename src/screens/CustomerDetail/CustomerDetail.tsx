@@ -4,6 +4,7 @@ import { ICustomer } from '../../api/customer-api'
 import Space, { SpaceEnum } from '../../components/Space'
 import BeneficiariesListContainer from './Beneficiary/BeneficiariesListContainer'
 import CustomerCard from './CustomerCard'
+import CustomerFlowBox from './CustomerFlowBox'
 import CustomerIVRLogContainer from './log/CustomerIVRLogContainer'
 import CustomerTransactionContainer from './transaction/CustomerTransactionsContainer'
 
@@ -21,6 +22,7 @@ class CustomerDetail extends Component<IProps, {}> {
           {customer && (
             <>
               <CustomerCard customer={customer} />
+              <CustomerFlowBox {...customer} />
               <BeneficiariesListContainer
                 customerPhone={customer.phone}
                 customerIndex={customerIndex}

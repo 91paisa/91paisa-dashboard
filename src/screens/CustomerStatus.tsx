@@ -4,16 +4,25 @@ import { customerStatus, ICustomerStatus } from '../api/customer-api'
 import Space, { SpaceEnum } from '../components/Space'
 import { normalizeEnumKey } from '../helpers/transaction-helper'
 import { graphite } from '../styles/colors'
+import MandateTimestampInitiatedDuration from './Customers/MandateTimestampInitiatedDuration'
 import StatusCircle from './Customers/StatusCircle'
 
 const CustomerStatus: React.SFC<ICustomerStatus> = ({
   code,
-  detail,
+  rejectionReason,
+  mandateTimestamp,
 }: ICustomerStatus) => (
   <Container status={code}>
     <StatusCircle status={code} />
     <Space width={SpaceEnum.xs} />
-    <Detail>{detail ? detail : normalizeEnumKey(customerStatus[code])}</Detail>
+    <Detail>{normalizeEnumKey(customerStatus[code])}</Detail>
+    <Space width={SpaceEnum.xs} />
+    {code === customerStatus.mandateInitiated &&
+      mandateTimestamp && (
+        <Detail>
+          <MandateTimestampInitiatedDuration {...mandateTimestamp} />
+        </Detail>
+      )}
   </Container>
 )
 

@@ -4,7 +4,7 @@ import { ICustomer } from '../../api/customer-api'
 import Card from '../../components/Card'
 import Space, { SpaceEnum } from '../../components/Space'
 import { getColorBasedOnCustomerStatus } from '../../helpers/color-helper'
-import { alertRed, dark } from '../../styles/colors'
+import { dark } from '../../styles/colors'
 import PhoneCell from '../Customers/PhoneCell'
 import StatusStrip from './StatusStrip'
 
@@ -26,22 +26,9 @@ const CustomerCard: React.SFC<IProps> = ({ customer }: IProps) => {
         phone={customer.phone}
         fontSize={'1.3rem'}
       />
-      {customer.status.detail && (
-        <>
-          <Space height={SpaceEnum.m} />
-          <Detail>Mandate Rejected: {customer.status.detail}</Detail>
-        </>
-      )}
     </Container>
   )
 }
-
-const Detail = styled.p`
-  font-style: italic;
-  font-weight: 600;
-  text-align: center;
-  color: ${alertRed};
-`
 
 const Container: any = Card.extend`
   padding: 0 0 1rem 0;
