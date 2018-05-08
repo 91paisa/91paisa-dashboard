@@ -17,7 +17,7 @@ import {
 } from '../styles/colors'
 
 export const getColorBasedOnCustomerStatus = (status: customerStatus) => {
-  if (status === customerStatus.mandateNotInitialted) {
+  if (status === customerStatus.mandateNotInitiated) {
     return grey
   }
   if (status === customerStatus.mandateApproved) {

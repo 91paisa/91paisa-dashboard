@@ -54,10 +54,5 @@
     "ts-loader": "^4.2.0",
     "typescript": "^2.8.1"
   },
-  "moduleFileExtensions": [
-    "ts",
-    "tsx",
-    "js",
-    "json"
-  ]
+  "moduleFileExtensions": ["ts", "tsx", "js", "json"]
 }

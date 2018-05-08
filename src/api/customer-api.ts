@@ -3,7 +3,7 @@ import { CustomerPath } from './constants-api'
 
 export enum customerStatus {
   unverified,
-  mandateNotInitialted,
+  mandateNotInitiated,
   mandateInitiated,
   mandateApproved,
   mandateRejected,
@@ -75,7 +75,7 @@ function getMandateStatusEnum(mandateStatus: number, verified: boolean) {
   } else if (!verified) {
     status = customerStatus.unverified
   } else {
-    status = customerStatus.mandateNotInitialted
+    status = customerStatus.mandateNotInitiated
   }
   return status
 }
