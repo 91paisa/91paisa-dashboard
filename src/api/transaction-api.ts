@@ -28,6 +28,7 @@ export enum splitTransactionStatus {
 }
 
 export enum transactionActionEnum {
+  error = -2,
   updating = -1,
   notAvailable = 0,
   available = 1,

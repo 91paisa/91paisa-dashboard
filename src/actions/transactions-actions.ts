@@ -28,6 +28,14 @@ export const updateTransaction = (
           transaction: { ...transaction, actionStatus: action.valueOf() },
           type: transactionActions.update,
         })
+      } else {
+        dispatch({
+          transaction: {
+            ...transaction,
+            actionStatus: transactionActionEnum.error,
+          },
+          type: transactionActions.update,
+        })
       }
     })
   }

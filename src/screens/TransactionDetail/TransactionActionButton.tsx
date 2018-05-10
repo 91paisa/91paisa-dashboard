@@ -38,6 +38,9 @@ class TransactionActionButton extends Component<IProps> {
     if (transaction.actionStatus === transactionActionEnum.reject) {
       return this.handleRejectedActionStatus()
     }
+    if (transaction.actionStatus === transactionActionEnum.error) {
+      return this.renderErrorMessage()
+    }
 
     if (!isAdmin()) {
       return this.handleNotAdminStatus()
@@ -48,6 +51,16 @@ class TransactionActionButton extends Component<IProps> {
         <ApproveButton onClick={this.handleApprove}>Approve</ApproveButton>
         <Space width={SpaceEnum.xxl} />
         <RejectButton onClick={this.handleReject}>Reject</RejectButton>
+      </Container>
+    )
+  }
+
+  private renderErrorMessage() {
+    return (
+      <Container>
+        <p style={{ color: alertRed }}>
+          Internal server error! Please try again later or file an issue! 🐛
+        </p>
       </Container>
     )
   }
