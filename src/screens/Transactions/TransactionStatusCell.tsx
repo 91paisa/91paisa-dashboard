@@ -12,8 +12,8 @@ import {
   getSplitsWithCount,
   ISplitsWithCount,
 } from '../../helpers/transaction-helper'
-import NodalStatus from '../TransactionDetail/NodalStatus'
 import SplitStatus from '../TransactionDetail/SplitStatus'
+import RefundStatus from '../TransactionDetail/status/RefundStatus'
 
 interface IProps {
   splits: ISplitTransaction[] | undefined
@@ -48,8 +48,12 @@ const TransactionStatusCell: React.SFC<IProps> = ({
     <Container>
       {nodal.status !== nodalStatusEnum.noop && (
         <>
-          <NodalStatus status={nodal.status} refund={refund} />
-          <Space width={SpaceEnum.s} />
+          {refund && (
+            <>
+              <RefundStatus {...refund} />
+              <Space width={SpaceEnum.s} />
+            </>
+          )}
         </>
       )}
 

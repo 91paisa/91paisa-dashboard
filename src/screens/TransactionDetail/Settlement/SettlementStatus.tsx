@@ -1,12 +1,15 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { settlementStatusEnum } from '../../../api/transaction-api'
-import { getRouteColor } from '../../../helpers/color-helper'
+import {
+  refundStatusEnum,
+  settlementStatusEnum,
+} from '../../../api/transaction-api'
+import { getSettlementColor } from '../../../helpers/color-helper'
 import { normalizeEnumKey } from '../../../helpers/transaction-helper'
 import { white } from '../../../styles/colors'
 
 interface IProps {
-  status: settlementStatusEnum
+  status: settlementStatusEnum | refundStatusEnum
 }
 const SettlementStatus: React.SFC<IProps> = ({ status }: IProps) => (
   <div>
@@ -30,7 +33,7 @@ const Text: any = styled.p`
   font-style: italic;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   border-radius: 0.2rem;
-  background: ${(props: any) => getRouteColor(props.status)};
+  background: ${(props: any) => getSettlementColor(props.status)};
 `
 
 export default SettlementStatus

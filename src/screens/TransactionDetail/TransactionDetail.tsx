@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { ITransaction, nodalStatusEnum } from '../../api/transaction-api'
 import Card from '../../components/Card'
 import Space, { SpaceEnum } from '../../components/Space'
-import NodalStatus from './NodalStatus'
 import RefundContainer from './Refund/RefundContainer'
 import SettlementContainer from './Settlement/SettlementContainer'
 import SplitList from './SplitList'
@@ -29,10 +28,10 @@ class TransactionDetail extends Component<IProps> {
             <TransactionActionButton transaction={transaction} />
             {transaction.nodal.status !== nodalStatusEnum.noop && (
               <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <NodalStatus
-                  status={transaction.nodal.status}
-                  refund={transaction.refund}
-                />
+                {/*<NodalStatus*/}
+                {/*status={transaction.nodal.status}*/}
+                {/*refund={transaction.refund}*/}
+                {/*/>*/}
               </div>
             )}
           </Card>

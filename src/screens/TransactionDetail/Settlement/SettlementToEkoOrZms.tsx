@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { ISettlement, settlementStatusEnum } from '../../../api/transaction-api'
 import Space, { SpaceEnum } from '../../../components/Space'
-import { getRouteColor } from '../../../helpers/color-helper'
+import { getSettlementColor } from '../../../helpers/color-helper'
 import { getTimeInLTDDMMYYAGOView } from '../../../helpers/time-helper'
 import AmountCell from '../../Transactions/AmountCell'
 import SettlementStatus from './SettlementStatus'
@@ -84,7 +84,7 @@ const Title: any = styled.h3`
   text-align: center;
   background: transparent;
   border-bottom-color: ${(props: IContainerProps) =>
-    getRouteColor(props.status)};
+    getSettlementColor(props.status)};
   border-bottom-width: 2px;
   border-bottom-style: solid;
   text-transform: uppercase;
@@ -99,6 +99,6 @@ const Container: any = styled.div`
   border-radius: 0.5rem;
   border-width: 2px;
   border-style: solid;
-  border-color: ${(props: IContainerProps) => getRouteColor(props.status)};
+  border-color: ${(props: IContainerProps) => getSettlementColor(props.status)};
 `
 export default SettlementToEkoOrZms

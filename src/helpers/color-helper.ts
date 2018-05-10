@@ -1,6 +1,7 @@
 import { customerStatus } from '../api/customer-api'
 import {
   nodalStatusEnum,
+  refundStatusEnum,
   settlementStatusEnum,
   splitTransactionStatus,
 } from '../api/transaction-api'
@@ -60,7 +61,7 @@ export const getSplitTransactionColor = (
   }
 }
 
-export const getNodalTransactionColor = (status: nodalStatusEnum): string => {
+export const getNodalColor = (status: nodalStatusEnum): string => {
   switch (status) {
     case nodalStatusEnum.notInitiated:
       return graphite
@@ -82,7 +83,7 @@ export const getNodalTransactionColor = (status: nodalStatusEnum): string => {
   }
 }
 
-export const getRouteColor = (status: number): string => {
+export const getSettlementColor = (status: settlementStatusEnum): string => {
   switch (status) {
     case settlementStatusEnum.notTriedYet:
       return graphite
@@ -90,9 +91,21 @@ export const getRouteColor = (status: number): string => {
       return identity
     case settlementStatusEnum.started:
       return alertPending
-    case settlementStatusEnum.completed:
+    case settlementStatusEnum.success:
       return positiveGreen
     default:
       return dark
+  }
+}
+
+export const getRefundColor = (status: refundStatusEnum): string => {
+  switch (status) {
+    case refundStatusEnum.notTriedYet:
+    return graphite
+    case refundStatusEnum.ready:
+      return alertPending
+    case refundStatusEnum.routed:
+    case refundStatusEnum.success:
+      return positiveGreen
   }
 }

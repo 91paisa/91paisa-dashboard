@@ -28,8 +28,6 @@ class ReviewerLogContainer extends React.Component<IProps, IState> {
   }
 
   public render() {
-    // tslint:disable-next-line
-    console.log(this.props.reviewers)
     if (this.isEmpty(this.props.reviewers)) {
       return null
     }

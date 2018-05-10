@@ -67,7 +67,14 @@ export enum settlementStatusEnum {
   notTriedYet = 0,
   ready = 1,
   started = 2,
-  completed = 3,
+  success = 3,
+}
+
+export enum refundStatusEnum {
+  notTriedYet = 0,
+  ready = 1,
+  routed = 2,
+  success = 3,
 }
 
 export interface ISettlement {
@@ -82,7 +89,7 @@ export interface ISettlement {
 export interface IRefund {
   id: string
   amount: number
-  status: settlementStatusEnum
+  status: refundStatusEnum
   createdTimestamp: string
 }
 
