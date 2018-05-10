@@ -75,7 +75,7 @@ export interface ISettlement {
   status: settlementStatusEnum
   referenceId: string
   createdTimestamp: string
-  updatedTimestamp: string
+  updatedTimestamp: string | undefined
 }
 
 export interface IRefund {
@@ -189,7 +189,10 @@ const getSettlementInfo = (settlement: any): ISettlement | undefined => {
     id: settlement.transfer_id,
     referenceId: settlement.utr,
     status: settlement.status,
-    updatedTimestamp: settlement.updated_at,
+    updatedTimestamp:
+      settlement.updated_at === '0001-01-01T00:00:00Z'
+        ? undefined
+        : settlement.updated_at,
   }
 }
 const getRefundData = (_: any): IRefund | undefined => {

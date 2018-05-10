@@ -52,7 +52,7 @@ const SettlementToEkoOrZms: React.SFC<IProps> = ({
   </Container>
 )
 
-const renderTimestamps = (created: string, updated: string) => (
+const renderTimestamps = (created: string, updated: string | undefined) => (
   <>
     <TimeContainer>
       <TimeTitle>Created:</TimeTitle>
@@ -60,7 +60,7 @@ const renderTimestamps = (created: string, updated: string) => (
     </TimeContainer>
     <TimeContainer>
       <TimeTitle>Updated:</TimeTitle>
-      <div>{getTimeInLTDDMMYYAGOView(updated)}</div>
+      {updated ? <div>{getTimeInLTDDMMYYAGOView(updated)}</div> : <p>---</p>}
     </TimeContainer>
   </>
 )
