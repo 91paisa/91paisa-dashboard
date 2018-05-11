@@ -35,11 +35,7 @@ class CustomerTransactionItem extends React.Component<IProps> {
         {(isTablet() || isDesktop()) && (
           <TimeCell time={transaction.createdTimestamp} space={SpaceEnum.s} />
         )}
-        <TransactionStatusCell
-          splits={transaction.transactionDetails}
-          nodal={transaction.nodal}
-          refund={transaction.refund}
-        />
+        <TransactionStatusCell {...transaction} />
       </Container>
     )
   }

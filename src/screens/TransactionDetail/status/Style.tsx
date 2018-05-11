@@ -4,12 +4,17 @@ import {
   refundStatusEnum,
   settlementStatusEnum,
 } from '../../../api/transaction-api'
-import { getNodalColor, getRefundColor } from '../../../helpers/color-helper'
+import {
+  getNodalColor,
+  getRefundColor,
+  getSettlementColor,
+} from '../../../helpers/color-helper'
 import { white } from '../../../styles/colors'
 
 export const enum statusTypeEnum {
   refund,
   settlement,
+  nodal,
 }
 
 interface IProps {
@@ -54,9 +59,11 @@ export const NodalStatusContainer: any = styled.div`
 
 const getColor = (statusCode: any, statusType: statusTypeEnum): string => {
   switch (statusType) {
-    case statusTypeEnum.settlement:
+    case statusTypeEnum.nodal:
       return getNodalColor(statusCode as nodalStatusEnum)
     case statusTypeEnum.refund:
       return getRefundColor(statusCode as refundStatusEnum)
+    case statusTypeEnum.settlement:
+      return getSettlementColor(statusCode as settlementStatusEnum)
   }
 }

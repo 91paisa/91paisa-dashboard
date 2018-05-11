@@ -1,10 +1,8 @@
 import { default as React, Fragment } from 'react'
 import styled from 'styled-components'
 import {
-  INodal,
-  IRefund,
   ISplitTransaction,
-  nodalStatusEnum,
+  ITransaction,
   splitTransactionStatus,
 } from '../../api/transaction-api'
 import Space, { SpaceEnum } from '../../components/Space'
@@ -13,13 +11,7 @@ import {
   ISplitsWithCount,
 } from '../../helpers/transaction-helper'
 import SplitStatus from '../TransactionDetail/SplitStatus'
-import RefundStatus from '../TransactionDetail/status/RefundStatus'
-
-interface IProps {
-  splits: ISplitTransaction[] | undefined
-  nodal: INodal
-  refund: IRefund | undefined
-}
+import NodalStatusContainer from '../TransactionDetail/status/NodalStatusContainer'
 
 function splitStatusContainer(splits: ISplitTransaction[]) {
   return getSplitsWithCount(splits).map(
@@ -39,26 +31,15 @@ const insufficientBalance = () => (
   <SplitStatus status={splitTransactionStatus.insufficientBalance} />
 )
 
-const TransactionStatusCell: React.SFC<IProps> = ({
-  splits,
-  nodal,
-  refund,
-}: IProps) => {
+const TransactionStatusCell: React.SFC<ITransaction> = (
+  props: ITransaction,
+) => {
   return (
     <Container>
-      {nodal.status !== nodalStatusEnum.noop && (
-        <>
-          {refund && (
-            <>
-              <RefundStatus {...refund} />
-              <Space width={SpaceEnum.s} />
-            </>
-          )}
-        </>
-      )}
+      <NodalStatusContainer {...props} />
 
-      {splits && splits.length > 0
-        ? splitStatusContainer(splits)
+      {props.transactionDetails && props.transactionDetails.length > 0
+        ? splitStatusContainer(props.transactionDetails)
         : insufficientBalance()}
     </Container>
   )

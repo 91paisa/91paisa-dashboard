@@ -1,12 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import {
-  INodal,
-  IRefund,
-  ISplitTransaction,
-  ITransaction,
-} from '../../api/transaction-api'
+import { ISplitTransaction, ITransaction } from '../../api/transaction-api'
 import {
   DesktopBrowser,
   PhoneOrTabletBrowser,
@@ -26,62 +21,20 @@ interface IProps {
 }
 class TransactionItem extends React.Component<IProps> {
   public render() {
-    const {
-      amount,
-      id,
-      customer,
-      beneficiary,
-      createdTimestamp,
-      transactionDetails,
-      updatedTimestamp,
-      nodal,
-      refund,
-    } = this.props.transaction
+    const { transaction } = this.props
     return (
       <>
         <PhoneOrTabletBrowser>
-          {this.renderTablet(
-            id,
-            amount,
-            customer,
-            beneficiary,
-            createdTimestamp,
-            updatedTimestamp,
-            transactionDetails as ISplitTransaction[],
-            nodal,
-            refund,
-          )}
+          {this.renderTablet(transaction)}
         </PhoneOrTabletBrowser>
-        <DesktopBrowser>
-          {this.renderDesktop(
-            id,
-            amount,
-            customer,
-            beneficiary,
-            createdTimestamp,
-            updatedTimestamp,
-            transactionDetails as ISplitTransaction[],
-            nodal,
-            refund,
-          )}
-        </DesktopBrowser>
+        <DesktopBrowser>{this.renderDesktop(transaction)}</DesktopBrowser>
       </>
     )
   }
 
-  private renderTablet = (
-    id: string,
-    amount: number,
-    customer: { name: string; phone: string },
-    beneficiary: { name: string; phone: string },
-    createdTimestamp: string,
-    updatedTimestamp: string,
-    transactionDetails: ISplitTransaction[],
-    nodal: INodal,
-    refund: IRefund|undefined,
-  ) => (
-    <TabletContainer to={`/transactions/${id}`}>
-      <AmountCell style={{ fontWeight: 'bold' }} amount={amount} />
+  private renderTablet = (t: ITransaction) => (
+    <TabletContainer to={`/transactions/${t.id}`}>
+      <AmountCell style={{ fontWeight: 'bold' }} amount={t.amount} />
       <div>
         <div
           style={{
@@ -90,58 +43,46 @@ class TransactionItem extends React.Component<IProps> {
             gridTemplateRows: 'auto',
           }}
         >
-          <Name>{customer.name}</Name>
+          <Name>{t.customer.name}</Name>
           <span>➡</span>
-          <Name>{beneficiary.name}</Name>
-          <Name>{getDDMMYY(createdTimestamp)}</Name>
+          <Name>{t.beneficiary.name}</Name>
+          <Name>{getDDMMYY(t.createdTimestamp)}</Name>
           <span>➡</span>
           <div>
             <Name>
-              {isTransactionComplete(transactionDetails)
-                ? getDDMMYY(updatedTimestamp)
+              {isTransactionComplete(
+                t.transactionDetails as ISplitTransaction[],
+              )
+                ? getDDMMYY(t.updatedTimestamp)
                 : '- - -'}
             </Name>
           </div>
         </div>
       </div>
-      <TransactionStatusCell splits={transactionDetails} nodal={nodal} refund={refund} />
+      <TransactionStatusCell {...t} />
     </TabletContainer>
   )
 
-  private renderDesktop = (
-    id: string,
-    amount: number,
-    customer: { name: string; phone: string },
-    beneficiary: { name: string; phone: string },
-    createdTimestamp: string,
-    updatedTimestamp: string,
-    transactionDetails: ISplitTransaction[],
-    nodal: INodal,
-    refund: IRefund|undefined,
-  ) => (
-    <DesktopContainer to={`/transactions/${id}`}>
-      <AmountCell amount={amount} style={{ fontSize: '1.3rem' }} />
+  private renderDesktop = (t: ITransaction) => (
+    <DesktopContainer to={`/transactions/${t.id}`}>
+      <AmountCell amount={t.amount} style={{ fontSize: '1.3rem' }} />
       <div>
-        <Name>{customer.name}</Name>
+        <Name>{t.customer.name}</Name>
         {!isPhoneOrTable() && <Space height={SpaceEnum.s} />}
-        <PhoneCell phone={customer.phone} />
+        <PhoneCell phone={t.customer.phone} />
       </div>
       <div>
-        <Name>{beneficiary.name}</Name>
+        <Name>{t.beneficiary.name}</Name>
         {!isPhoneOrTable() && <Space height={SpaceEnum.s} />}
-        <PhoneCell phone={beneficiary.phone} />
+        <PhoneCell phone={t.beneficiary.phone} />
       </div>
       {!isPhoneOrTable() && (
         <>
-          <TimeCell time={createdTimestamp} space={SpaceEnum.s} />
-          <TimeCell time={updatedTimestamp} space={SpaceEnum.s} />
+          <TimeCell time={t.createdTimestamp} space={SpaceEnum.s} />
+          <TimeCell time={t.updatedTimestamp} space={SpaceEnum.s} />
         </>
       )}
-      <TransactionStatusCell
-        splits={transactionDetails}
-        nodal={nodal}
-        refund={refund}
-      />
+      <TransactionStatusCell {...t} />
     </DesktopContainer>
   )
 }
