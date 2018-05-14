@@ -73,7 +73,7 @@ export const getNodalColor = (status: nodalStatusEnum): string => {
       return alertRed
     case nodalStatusEnum.authorized:
       return identity
-    case nodalStatusEnum.initiates:
+    case nodalStatusEnum.initiated:
     case nodalStatusEnum.credited:
       return alertPending
     case nodalStatusEnum.routed:

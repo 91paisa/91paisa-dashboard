@@ -40,7 +40,7 @@ export enum nodalStatusEnum {
   internalError = -2,
   noop = -1,
   notInitiated = 0,
-  initiates = 1,
+  initiated = 1,
   authorized = 2,
   failed = 3,
   credited = 4,
